@@ -4,10 +4,34 @@
 
 body {
   margin: 0;
-  font-family: 'Helvetica', sans-serif;
+  font-family: "Helvetica", sans-serif;
 }
 
-/* All the snapping stuff */
+.header {
+  position: fixed;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+
+  .__logo {
+    padding: 20px;
+  }
+
+  .__links {
+    display: flex;
+
+    .__link {
+      padding: 20px;
+    }
+  }
+
+  .__sign-up {
+    padding: 20px;
+  }
+}
 .scroll-container {
   height: 100vh;
   overflow-y: scroll;
@@ -35,13 +59,4 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: darkorchid;
-}
-
-section:nth-child(2n) {
-  background-color: turquoise;
-}
-
-section:nth-child(3n) {
-  background-color: tomato;
 }
