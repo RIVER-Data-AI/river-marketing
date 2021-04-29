@@ -19,8 +19,8 @@
 # in the templates via {{ site.myvariable }}.
 
 title: River
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/river-marketing" # the subpath of your site, e.g. /blog
+url: "https://carbonfive.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Exclude from processing.
 # The following items will not be processed, by default.
