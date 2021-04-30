@@ -44,12 +44,16 @@ const river = (() => {
     switch (event.key) {
       case "Down":
       case "ArrowDown":
+      case "Right":
+      case "ArrowRight":
       case "PageDown":
         nextSection();
         break;
 
       case "Up":
       case "ArrowUp":
+      case "Left":
+      case "ArrowLeft":
       case "PageUp":
         previousSection();
         break;
