@@ -1,3 +1,5 @@
+@import "fonts";
+
 * {
   box-sizing: border-box;
 }
@@ -16,19 +18,43 @@ body {
   justify-content: space-between;
   background: white;
 
+  > * {
+    flex-basis: 33.3%;
+  }
+
   .__logo {
     padding: 20px;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .__links {
     display: flex;
+    justify-content: space-between;
 
     .__link {
       padding: 20px;
+      font-family: "Baskerville", serif;
+      font-style: italic;
+      font-size: 30px;
+      text-decoration: none;
+
+      &,
+      &:hover,
+      &:active,
+      &:visited {
+        color: var(--gray-dark);
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
   .__sign-up {
+    display: flex;
+    justify-content: flex-end;
     padding: 20px;
   }
 }
