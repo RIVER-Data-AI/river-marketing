@@ -56,6 +56,21 @@ body {
     display: flex;
     justify-content: flex-end;
     padding: 20px;
+
+    .__link {
+      color: white;
+      font-family: "Baskerville", serif;
+      font-size: 20px;
+      line-height: 22px;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 4px;
+
+      --signup-link-pill-color: #b8302e;
+      background-color: var(--signup-link-pill-color);
+      padding: 12px 27px 8px 27px;
+      border-radius: 20px;
+    }
   }
 }
 
