@@ -63,8 +63,9 @@ body {
 }
 
 .header {
-  position: fixed;
+  position: relative;
   width: 100vw;
+  height: 10vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -128,15 +129,50 @@ body {
   }
 }
 
+.main {
+  position: relative;
+  height: 90vh;
+}
+
+.video-container {
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .__overlay {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .__video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  display: none;
+}
+
+html[data-visibleSectionId="home-privacy-platform"] .video-container,
+html[data-visible-section-id="home-privacy-platform"] .video-container {
+  display: block;
+}
+
 .scroll-container {
-  height: 100vh;
+  position: relative;
+  height: 90vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
 
 .section {
   display: flex;
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   scroll-snap-align: center;
   flex-flow: column nowrap;

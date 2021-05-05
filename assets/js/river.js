@@ -14,54 +14,94 @@ const river = (() => {
     }
   };
 
-  const previousSection = () => {
-    const section = currentlyVisibleSection();
-    const targetSection = section?.previousElementSibling;
-    if (!targetSection) {
-      return;
-    }
-
-    targetSection.scrollIntoView(scrollOptions);
-  };
-
-  const nextSection = () => {
-    const section = currentlyVisibleSection();
-    const targetSection = section?.nextElementSibling;
+  const scrollToSection = (targetSection) => {
     if (!targetSection) {
       return;
     }
 
     // Safari apparently has an issue with smooth scrolling; let's punt that for now.
     // https://stackoverflow.com/questions/51229742/javascript-window-scroll-behavior-smooth-not-working-in-safari
-    section.nextElementSibling.scrollIntoView(scrollOptions);
+    targetSection.scrollIntoView(scrollOptions);
   };
 
-  document.addEventListener("keyup", (event) => {
-    if (event.defaultPrevented) {
-      return; // Do nothing if the event was already processed
-    }
+  const previousSection = () => {
+    scrollToSection(currentlyVisibleSection()?.previousElementSibling);
+  };
 
-    switch (event.key) {
-      case "Down":
-      case "ArrowDown":
-      case "Right":
-      case "ArrowRight":
-      case "PageDown":
-        nextSection();
-        break;
+  const nextSection = () => {
+    scrollToSection(currentlyVisibleSection()?.nextElementSibling);
+  };
 
-      case "Up":
-      case "ArrowUp":
-      case "Left":
-      case "ArrowLeft":
-      case "PageUp":
-        previousSection();
-        break;
+  const initKeyboardNavigation = () => {
+    document.addEventListener("keyup", (event) => {
+      if (event.defaultPrevented) {
+        return; // Do nothing if the event was already processed
+      }
 
-      default:
+      switch (event.key) {
+        case "Down":
+        case "ArrowDown":
+        case "Right":
+        case "ArrowRight":
+        case "PageDown":
+          nextSection();
+          break;
+
+        case "Up":
+        case "ArrowUp":
+        case "Left":
+        case "ArrowLeft":
+        case "PageUp":
+          previousSection();
+          break;
+
+        default:
+          return;
+      }
+    });
+  };
+
+  const initScrollTracking = () => {
+    // https://pqina.nl/blog/applying-styles-based-on-the-user-scroll-position-with-smart-css/
+    const debounce = (fn) => {
+      let frame;
+
+      return (...params) => {
+        if (frame) {
+          cancelAnimationFrame(frame);
+        }
+
+        frame = requestAnimationFrame(() => {
+          fn(...params);
+        });
+      };
+    };
+
+    const storeScroll = () => {
+      const scrollContainer = document.querySelector(".scroll-container");
+      if (!scrollContainer) {
         return;
-    }
-  });
+      }
+
+      const scrollPosition = scrollContainer.scrollTop;
+      document.documentElement.dataset.scrollPosition = scrollPosition;
+
+      setTimeout(() => {
+        const visibleSection = currentlyVisibleSection();
+        document.documentElement.dataset.visibleSectionId = visibleSection?.id;
+      }, 100);
+    };
+
+    document.addEventListener("scroll", debounce(storeScroll), {
+      passive: true,
+    });
+
+    storeScroll();
+  };
+
+  // Set up the page
+  initKeyboardNavigation();
+  initScrollTracking();
 
   return {
     previousSection,
