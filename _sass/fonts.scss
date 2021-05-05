@@ -1,5 +1,21 @@
 @font-face {
   font-family: "Baskerville";
-  src: url("{{ site.baseurl }}/assets/fonts/Baskerville-MT-Std_6114.ttf")
-    format("ttf");
+  src: url(../fonts/Baskerville-MT-Std_6114.ttf);
 }
+
+@font-face {
+  font-family: "Minion";
+  src: url(../fonts/MinionPro-Regular.otf);
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Regular.otf);
+}
+
+@font-face {
+  font-family: "MontserratBold";
+  src: url(../fonts/Montserrat-Bold.otf);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&display=swap");
