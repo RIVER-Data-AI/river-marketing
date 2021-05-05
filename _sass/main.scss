@@ -186,6 +186,33 @@ body {
 
   &.--home-privacy-platform {
     .__body {
+      width: 60em;
     }
+  }
+}
+
+.button-container {
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.button {
+  font-family: "Montserrat", serif;
+  font-size: 20px;
+  line-height: 22px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 4px;
+  padding: 12px 27px 8px 27px;
+  border-radius: 20px;
+
+  &.--red-outline {
+    border: 2px solid var(--orange);
+    color: var(--gray-dark);
+    background-color: white;
   }
 }
