@@ -146,7 +146,6 @@ body {
 
   .__body {
     margin: auto;
-    max-width: 90vw;
   }
 
   .__breadcrumb {
@@ -180,6 +179,9 @@ body {
   }
 
   &.--home-intro {
+    .__body {
+      width: 80em;
+    }
   }
 
   &.--home-privacy-platform {
