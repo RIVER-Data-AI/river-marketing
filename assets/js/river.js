@@ -1,9 +1,17 @@
 const river = (() => {
-  const scrollOptions = {
-    behavior: "smooth",
+  /* Section Tracking */
+  const sectionAppeared = (section) => {
+    if (!section) return;
+
+    console.log("APPEAR", section?.id);
+  };
+  const sectionDisappeared = (section) => {
+    if (!section) return;
+
+    console.log("DISAPPEAR", section?.id);
   };
 
-  const currentlyVisibleSection = () => {
+  const findCurrentlyVisibleSection = () => {
     const sections = document.getElementsByClassName("section");
     for (const section of sections) {
       const sectionRect = section.getBoundingClientRect();
@@ -14,22 +22,53 @@ const river = (() => {
     }
   };
 
-  const scrollToSection = (targetSection) => {
-    if (!targetSection) {
+  const updateCurrentlyVisibleSection = () => {
+    const lastVisibleSectionId =
+      document.documentElement.dataset.visibleSectionId;
+
+    const currentlyVisibleSection = findCurrentlyVisibleSection();
+
+    if (!currentlyVisibleSection) {
+      return;
+    }
+
+    if (lastVisibleSectionId === currentlyVisibleSection.id) {
+      return;
+    }
+
+    sectionAppeared(currentlyVisibleSection);
+    sectionDisappeared(document.getElementById(lastVisibleSectionId));
+
+    document.documentElement.dataset.visibleSectionId =
+      currentlyVisibleSection.id;
+  };
+
+  const initSectionTracking = () => {
+    window.addEventListener("DOMContentLoaded", (event) => {
+      updateCurrentlyVisibleSection();
+    });
+
+    setInterval(updateCurrentlyVisibleSection, 500);
+  };
+
+  const scrollToSection = (section) => {
+    if (!section) {
       return;
     }
 
     // Safari apparently has an issue with smooth scrolling; let's punt that for now.
     // https://stackoverflow.com/questions/51229742/javascript-window-scroll-behavior-smooth-not-working-in-safari
-    targetSection.scrollIntoView(scrollOptions);
+    section.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
-  const previousSection = () => {
-    scrollToSection(currentlyVisibleSection()?.previousElementSibling);
+  const scrollToPreviousSection = () => {
+    scrollToSection(findCurrentlyVisibleSection()?.previousElementSibling);
   };
 
-  const nextSection = () => {
-    scrollToSection(currentlyVisibleSection()?.nextElementSibling);
+  const scrollToNextSection = () => {
+    scrollToSection(findCurrentlyVisibleSection()?.nextElementSibling);
   };
 
   const initKeyboardNavigation = () => {
@@ -44,7 +83,7 @@ const river = (() => {
         case "Right":
         case "ArrowRight":
         case "PageDown":
-          nextSection();
+          scrollToNextSection();
           break;
 
         case "Up":
@@ -52,7 +91,7 @@ const river = (() => {
         case "Left":
         case "ArrowLeft":
         case "PageUp":
-          previousSection();
+          scrollToPreviousSection();
           break;
 
         default:
@@ -85,11 +124,6 @@ const river = (() => {
 
       const scrollPosition = scrollContainer.scrollTop;
       document.documentElement.dataset.scrollPosition = scrollPosition;
-
-      setTimeout(() => {
-        const visibleSection = currentlyVisibleSection();
-        document.documentElement.dataset.visibleSectionId = visibleSection?.id;
-      }, 100);
     };
 
     document.addEventListener("scroll", debounce(storeScroll), {
@@ -102,9 +136,10 @@ const river = (() => {
   // Set up the page
   initKeyboardNavigation();
   initScrollTracking();
+  initSectionTracking();
 
   return {
-    previousSection,
-    nextSection,
+    previousSection: scrollToPreviousSection,
+    nextSection: scrollToNextSection,
   };
 })();
