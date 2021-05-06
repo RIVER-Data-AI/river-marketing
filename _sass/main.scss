@@ -155,11 +155,11 @@ body {
     object-fit: cover;
   }
 
+  transition: opacity 0.3s;
   opacity: 0;
 }
 
 html[data-visible-section-id="home-privacy-platform"] .video-container {
-  transition: opacity 0.3s;
   opacity: 1;
 }
 
