@@ -29,7 +29,7 @@ layout: default
         You choose how, where, and who has access to your data.
       </p>
       <div class="button-container">
-        <p class="button --red-outline --center">Sign up to become a privacy pioneer</p>
+        <p class="button --red-stroke --center">Sign up to become a privacy pioneer</p>
       </div>
     </div>
 
@@ -51,21 +51,23 @@ layout: default
   <section class="section" id="home-river-gives-you-control">
     <div class="__body">
       <p class="p2">River gives you control over your data.</p>
-      <p class="p1">
-        Websites and businesses collect oceans of data about you and your
-        family, all day, every day. Information like how you slept last night,
-        how many pounds you gained over the holidays, where you like to shop,
-        which games you like to play, what shows you like to watch, how many
-        times you ordered pineapple on your pizza, and so much more. Every
-        single action in your day can be boiled down to a data point, and this
-        information is used by big corporations to nudge you towards buying
-        things you don't want and don't need. Companies pay big money for your
-        data, but they're getting far more than they need. River helps you get
-        paid for the info you're willing to sell while protecting the data you'd
-        like to keep private.
-      </p>
-      <p>If it's free, you're probably the product.</p>
-      <p>STOP GIVING AWAY YOUR DATA VOLUNTARILY SIGN UP FOR RIVER TODAY</p>
+      <div class="col2">
+        <p class="p1">
+          Websites and businesses collect oceans of data about you and your
+          family, all day, every day. Information like how you slept last night,
+          how many pounds you gained over the holidays, where you like to shop,
+          which games you like to play, what shows you like to watch, how many
+          times you ordered pineapple on your pizza, and so much more. Every
+          single action in your day can be boiled down to a data point, and this
+          information is used by big corporations to nudge you towards buying
+          things you don't want and don't need. Companies pay big money for your
+          data, but they're getting far more than they need. River helps you get
+          paid for the info you're willing to sell while protecting the data you'd
+          like to keep private.
+        </p>
+        <p class="p4 --yellow">If it's free, you're probably the product.</p>
+        <p class="button --yellow-fill">STOP GIVING AWAY YOUR DATA VOLUNTARILY SIGN UP FOR RIVER TODAY</p>
+      </div>
     </div>
 
     {% include breadcrumb.html teaser="Dive into <br /> Your Data." %}
@@ -74,19 +76,21 @@ layout: default
   <section class="section" id="home-who-owns-your-data">
     <div class="__body">
       <p class="p2">Who Owns Your Data?</p>
-      <p class="p1">
-        Through legislation in the US and around the world, it's been made
-        crystal clear to marketers and app-developers that you own your own
-        data. The problem is, you can't really do anything with it. Yet. <br />
-        River gives you full control over which services have access to your data, and
-        for how long they can have it. And we can help enterprises and
-        organizations quickly and easily comply with US and global laws designed
-        to protect your privacy. Our business model works by giving you control
-        over your data and by providing a platform that makes compliance
-        accessible for developers and marketers.
-      </p>
+      <div class="col2">
+        <p class="p1">
+          Through legislation in the US and around the world, it's been made
+          crystal clear to marketers and app-developers that you own your own
+          data. The problem is, you can't really do anything with it. Yet. <br />
+          River gives you full control over which services have access to your data, and
+          for how long they can have it. And we can help enterprises and
+          organizations quickly and easily comply with US and global laws designed
+          to protect your privacy. Our business model works by giving you control
+          over your data and by providing a platform that makes compliance
+          accessible for developers and marketers.
+        </p>
 
-      <p class="p4 --yellow">It's your data. River helps you manage it.</p>
+        <p class="p4 --yellow">It's your data. River helps you manage it.</p>
+      </div>
     </div>
 
     {% include breadcrumb.html teaser="The Confluence <br /> of Data." %}
@@ -95,29 +99,38 @@ layout: default
   <section class="section" id="home-who-is-using-your-data">
     <div class="__body">
       <p class="p2">Who is using your data?</p>
-      <p class="p3 --yellow">WHO'S TRACKING YOUR NOW?</p>
-      <p class="p1 --yellow">Assume Everyone is tracking you.</p>
-      <p class="p1">
-        Social media channels, search engines, websites, apps, games, personal
-        assistants, sensors, smartphones, smart cars, smart TVs, and smart
-        anything.
-      </p>
 
-      <p class="p3 --yellow">HOW DO THEY TRACK YOU?</p>
-      <p class="p1 --yellow">Beyond Cookies</p>
-      <p class="p1">
-        Super-cookies, embedded scripts, fingerprinters, cross-device tracking,
-        click-throughs, web beacons, favicons - and more, all silently stealing
-        your data.
-      </p>
+      <div class="col3">
+        <div class="__card">
+          <p class="p3 --yellow">WHO'S TRACKING YOUR NOW?</p>
+          <p class="p1 --yellow">Assume Everyone is tracking you.</p>
+          <p class="p1">
+            Social media channels, search engines, websites, apps, games, personal
+            assistants, sensors, smartphones, smart cars, smart TVs, and smart
+            anything.
+          </p>
+        </div>
 
-      <p class="p3 --yellow">WHAT CAN I CONTROL?</p>
-      <p class="p1 --yellow">You Own Your Data</p>
-      <p class="p1">
-        With River, you decide which services can have access to your data, as
-        well as what kind of access they can have. You can rent, sell, or lease
-        the information to them or deny them altogether. The decision is yours.
-      </p>
+        <div class="__card">
+          <p class="p3 --yellow">HOW DO THEY TRACK YOU?</p>
+          <p class="p1 --yellow">Beyond Cookies</p>
+          <p class="p1">
+            Super-cookies, embedded scripts, fingerprinters, cross-device tracking,
+            click-throughs, web beacons, favicons - and more, all silently stealing
+            your data.
+          </p>
+        </div>
+
+        <div class="__card">
+          <p class="p3 --yellow">WHAT CAN I CONTROL?</p>
+          <p class="p1 --yellow">You Own Your Data</p>
+          <p class="p1">
+            With River, you decide which services can have access to your data, as
+            well as what kind of access they can have. You can rent, sell, or lease
+            the information to them or deny them altogether. The decision is yours.
+          </p>
+        </div>
+      </div>
     </div>
 
     {% include breadcrumb.html teaser="Dive <br /> into River." %}
@@ -126,17 +139,26 @@ layout: default
   <section class="section" id="home-who-is-using-your-data-2">
     <div class="__body">
       <p class="p2">Who is using your data?</p>
-      <p class="p3 --yellow">WHAT CAN I DO WITH MY DATA?</p>
-      <p class="p1 --yellow">You Have Options</p>
-      <p class="p1">
-        Store it, sanitize it, share it, secure it, or sell it, then confidently delete your account. Or not.
-      </p>
 
-      <p class="p1 --yellow">WAIT - I OWN MY DATA? <br /> WHAT DOES THAT MEAN?</p>
-      <p class="p1 --yellow">100% Yours</p>
-      <p class="p1">
-        The GDPR in the EU and the CCPA in California are two examples of privacy legislation, and according to Gartner, 65% of the global population will enjoy protection of their personal data through some form of regulation.
-      </p>
+      <div class="col3">
+        <div class="__card">
+          <p class="p3 --yellow">WHAT CAN I DO WITH MY DATA?</p>
+          <p class="p1 --yellow">You Have Options</p>
+          <p class="p1">
+            Store it, sanitize it, share it, secure it, or sell it, then confidently delete your account. Or not.
+          </p>
+        </div>
+
+        <div class="__card">
+          <p class="p1 --yellow">WAIT - I OWN MY DATA? <br /> WHAT DOES THAT MEAN?</p>
+          <p class="p1 --yellow">100% Yours</p>
+          <p class="p1">
+            The GDPR in the EU and the CCPA in California are two examples of privacy legislation, and according to Gartner, 65% of the global population will enjoy protection of their personal data through some form of regulation.
+          </p>
+        </div>
+
+        <div class="__card">&nbsp;</div>
+      </div>
     </div>
 
     {% include breadcrumb.html teaser="Dive <br /> into River." %}
@@ -158,24 +180,32 @@ layout: default
   <section class="section" id="home-how-does-river-work">
     <div class="__body">
       <p class="p2">How does River work?</p>
-      <p class="p3 --green">A firewall for your data</p>
-      <p class="p1">
-        You choose what data you'd like to send to market, including how long it
-        will be available for, which industries can access your data, and what
-        it can be used for.
-      </p>
-      <p class="p3 --yellow">Your digital agent</p>
-      <p class="p1">
-        We represent you in the online space, negotiating lucrative deals to
-        maximize the value of your data, so you can get paid for your unique
-        insights.
-      </p>
-      <p class="p3 --orange">Future plans</p>
-      <p class="p1">
-        Everyone creates data, but ont everyone wants to share it, so in the
-        future, we'll offer a premium service that allows you to access the
-        services you want without sharing your information.
-      </p>
+      <div class="col3">
+        <div class="__card">
+          <p class="p3 --green">A firewall for your data</p>
+          <p class="p1">
+            You choose what data you'd like to send to market, including how long it
+            will be available for, which industries can access your data, and what
+            it can be used for.
+          </p>
+        </div>
+        <div class="__card">
+          <p class="p3 --yellow">Your digital agent</p>
+          <p class="p1">
+            We represent you in the online space, negotiating lucrative deals to
+            maximize the value of your data, so you can get paid for your unique
+            insights.
+          </p>
+        </div>
+        <div class="__card">
+          <p class="p3 --orange">Future plans</p>
+          <p class="p1">
+            Everyone creates data, but ont everyone wants to share it, so in the
+            future, we'll offer a premium service that allows you to access the
+            services you want without sharing your information.
+          </p>
+        </div>
+      </div>
     </div>
 
     {% include breadcrumb.html teaser="Data <br /> for Profit." %}
@@ -196,29 +226,34 @@ layout: default
 
   <section class="section" id="home-resources">
     <div class="__body">
-      <p class="p3 --yellow">Resources</p>
+      <div class="col2">
+        <div class="__card">
+          <p class="p3 --yellow">Resources</p>
 
-      <p class="p1">GLOSSARY</p>
-      <p class="p1">Technical terms and ideas to expand your understanding.</p>
-      <p class="p1">INDEPENDENT SOURCES</p>
-      <p class="p1">White papers, articles, and information from unbiased sources.</p>
-      <p class="p1">FAQ</p>
-      <p class="p1">You have questions. We have answers.</p>
-      <p class="p1">Ready to start getting paid for your data?</p>
-      <p class="p1">Stay informed about the updates and activities at River.</p>
-      <p class="p1">It's your data. It's your choice.</p>
-      <p>Sign up to be an early adopter</p>
-      <p class="p1">Still have questions? Let's chat.</p>
-      <p class="p3 --yellow">LEGALS</p>
-      <p class="p1">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+          <p class="p1">GLOSSARY</p>
+          <p class="p1">Technical terms and ideas to expand your understanding.</p>
+          <p class="p1">INDEPENDENT SOURCES</p>
+          <p class="p1">White papers, articles, and information from unbiased sources.</p>
+          <p class="p1">FAQ</p>
+          <p class="p1">You have questions. We have answers.</p>
+          <p class="p1">Ready to start getting paid for your data?</p>
+          <p class="p1">Stay informed about the updates and activities at River.</p>
+          <p class="p1">It's your data. It's your choice.</p>
+          <p class="button --yellow-fill">Sign up to be an early adopter</p>
+          <p class="p1">Still have questions? Let's chat.</p>
+        </div>
+        <div class="__card">
+          <p class="p3 --yellow">LEGALS</p>
+          <p class="p1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+            occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+        </div>
     </div>
   </section>
 </div>
