@@ -8,6 +8,7 @@
 
 html {
   --body-color: var(--gray-dark);
+  transition: background-color ease-in 0.3s;
 }
 
 body {
@@ -182,7 +183,7 @@ body {
   .__overlay {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+    background: transparent;
     position: fixed;
     top: 0;
     left: 0;
@@ -294,6 +295,10 @@ body {
   border: none;
   width: 188px;
   height: 188px;
+
+  &.--black {
+    background-image: url("../img/play-button-black.png");
+  }
 }
 
 /******************************************************************************
@@ -310,10 +315,16 @@ body {
   A Privacy Platform You'll Want To Use
 *******************************************************************************/
 
-html[data-visible-section-id="home-privacy-platform"] {
-  .video-container .__video.--water {
-    display: block;
-    opacity: 1;
+html[data-section="home-privacy-platform"] {
+  .video-container {
+    .__video.--water {
+      display: block;
+      opacity: 1;
+    }
+
+    .__overlay {
+      background: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+    }
   }
 }
 
@@ -325,10 +336,11 @@ section.--home-privacy-platform {
 
 /******************************************************************************
   Video 1
-*******************************************************************************/
+******************************************************************************/
 
-html[data-visible-section-id="home-video-1"] {
+html[data-section="home-video-1"] {
   --body-color: white;
+  background-color: var(--blue-dark);
 
   .__breadcrumb {
     background-image: url("../img/down-arrow-white.png");
@@ -362,4 +374,164 @@ html[data-visible-section-id="home-video-1"] {
       margin-right: 40px;
     }
   }
+}
+
+/******************************************************************************
+  River Gives You Control
+******************************************************************************/
+
+html[data-section="home-river-gives-you-control"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .__breadcrumb {
+    background-image: url("../img/down-arrow-white.png");
+  }
+}
+
+.section.--home-river-gives-you-control {
+  max-width: 105em;
+}
+
+/******************************************************************************
+  Who Owns Your Data
+******************************************************************************/
+
+html[data-section="home-who-owns-your-data"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .__breadcrumb {
+    background-image: url("../img/down-arrow-white.png");
+  }
+}
+
+.section.--home-who-owns-your-data {
+  max-width: 105em;
+}
+
+/******************************************************************************
+  Who Is Using Your Data
+******************************************************************************/
+
+html[data-section="home-who-is-using-your-data"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .__breadcrumb {
+    background-image: url("../img/down-arrow-white.png");
+  }
+}
+
+.section.--home-who-is-using-your-data {
+  max-width: 105em;
+}
+
+/******************************************************************************
+  Who Is Using Your Data, 2
+******************************************************************************/
+
+html[data-section="home-who-is-using-your-data-2"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .__breadcrumb {
+    background-image: url("../img/down-arrow-white.png");
+  }
+}
+
+.section.--home-who-is-using-your-data-2 {
+  max-width: 105em;
+}
+
+/******************************************************************************
+  Data Untapped
+******************************************************************************/
+
+html[data-section="home-data-untapped"] {
+}
+
+.section.--home-data-untapped {
+  max-width: 70em;
+
+  .__body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .__video-button {
+      flex-shrink: 0;
+      flex-basis: 200px;
+      margin-top: 60px;
+      margin-right: 40px;
+
+      background-image: url("../img/play-button-black.png");
+    }
+  }
+}
+
+/******************************************************************************
+  How Does River Work
+******************************************************************************/
+
+html[data-section="home-how-does-river-work"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .__breadcrumb {
+    background-image: url("../img/down-arrow-white.png");
+  }
+}
+
+.section.--home-how-does-river-work {
+  max-width: 105em;
+}
+
+/******************************************************************************
+  Business of Data
+******************************************************************************/
+
+html[data-section="home-business-of-data"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .__breadcrumb {
+    background-image: url("../img/down-arrow-white.png");
+  }
+}
+
+.section.--home-business-of-data {
+  max-width: 70em;
+
+  .__body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .__video-button {
+      flex-shrink: 0;
+      flex-basis: 200px;
+      margin-top: 60px;
+      margin-right: 40px;
+    }
+  }
+}
+
+/******************************************************************************
+  Resources
+******************************************************************************/
+
+html[data-section="home-resources"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .__breadcrumb {
+    background-image: url("../img/down-arrow-white.png");
+  }
+}
+
+.section.--home-resources {
+  max-width: 105em;
 }

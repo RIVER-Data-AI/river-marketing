@@ -23,8 +23,7 @@ const river = (() => {
   };
 
   const updateCurrentlyVisibleSection = () => {
-    const lastVisibleSectionId =
-      document.documentElement.dataset.visibleSectionId;
+    const lastVisibleSectionId = document.documentElement.dataset.section;
 
     const currentlyVisibleSection = findCurrentlyVisibleSection();
 
@@ -39,8 +38,7 @@ const river = (() => {
     sectionAppeared(currentlyVisibleSection);
     sectionDisappeared(document.getElementById(lastVisibleSectionId));
 
-    document.documentElement.dataset.visibleSectionId =
-      currentlyVisibleSection.id;
+    document.documentElement.dataset.section = currentlyVisibleSection.id;
   };
 
   const initSectionTracking = () => {
