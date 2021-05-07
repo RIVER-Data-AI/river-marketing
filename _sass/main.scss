@@ -1,3 +1,4 @@
+@import "normalize";
 @import "fonts";
 @import "colors";
 
@@ -150,6 +151,7 @@ body {
     padding: 20px;
 
     .__link {
+      flex-shrink: 0;
       color: white;
       font-family: "Baskerville", serif;
       font-size: 20px;
@@ -212,6 +214,7 @@ body {
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
   padding: 1rem;
 
   .__body {
@@ -248,18 +251,6 @@ body {
       text-decoration: none;
     }
   }
-
-  &.--home-intro {
-    .__body {
-      width: 80em;
-    }
-  }
-
-  &.--home-privacy-platform {
-    .__body {
-      width: 60em;
-    }
-  }
 }
 
 .button-container {
@@ -293,12 +284,48 @@ body {
   }
 }
 
-html[data-visible-section-id="home-privacy-platform"] .video-container {
-  .__video.--water {
+.play-video-button {
+  background-image: url("../img/play-button-white.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  background-color: transparent;
+  border: none;
+  width: 188px;
+  height: 188px;
+}
+
+/******************************************************************************
+  Home Intro
+*******************************************************************************/
+
+.section.--home-intro {
+  .__body {
+    max-width: 80em;
+  }
+}
+
+/******************************************************************************
+  A Privacy Platform You'll Want To Use
+*******************************************************************************/
+
+html[data-visible-section-id="home-privacy-platform"] {
+  .video-container .__video.--water {
     display: block;
     opacity: 1;
   }
 }
+
+section.--home-privacy-platform {
+  .__body {
+    max-width: 60em;
+  }
+}
+
+/******************************************************************************
+  Video 1
+*******************************************************************************/
 
 html[data-visible-section-id="home-video-1"] {
   --body-color: white;
@@ -315,6 +342,24 @@ html[data-visible-section-id="home-video-1"] {
 
     .__overlay {
       opacity: 0;
+    }
+  }
+}
+
+.section.--home-video-1 {
+  max-width: 70em;
+
+  .__body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .__video-button {
+      flex-shrink: 0;
+      flex-basis: 200px;
+      margin-top: 60px; // Align to top of "You"
+      margin-right: 40px;
     }
   }
 }
