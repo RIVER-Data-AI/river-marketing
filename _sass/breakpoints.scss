@@ -1,7 +1,7 @@
 // 0 --- mobile --- 1080 --- small --- 2048 --- med --- 3000 --- max
-$bp-mobile-max-width: 1080px;
-$bp-small-max-width: 2048px;
-$bp-medium-max-width: 3000px;
+$bp-mobile-max-width: 800px;
+$bp-small-max-width: 1200px;
+$bp-medium-max-width: 1680px;
 
 @mixin bp-mobile {
   @media (max-width: $bp-mobile-max-width) {

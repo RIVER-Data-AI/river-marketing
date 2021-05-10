@@ -132,14 +132,14 @@ const river = (() => {
   };
 
   const initBreakpointTracking = () => {
-    console.log("init bp tracking");
-    window.addEventListener("resize", () => {
+    const updateBreakpointDebugger = () => {
       const windowWidth = window.innerWidth;
-      console.log("New Width", windowWidth);
       document.querySelector(
         "#bp-debugger .__w"
       ).textContent = `${windowWidth}px`;
-    });
+    };
+    window.addEventListener("resize", updateBreakpointDebugger);
+    window.addEventListener("DOMContentLoaded", updateBreakpointDebugger);
   };
 
   // Set up the page

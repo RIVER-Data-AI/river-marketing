@@ -18,4 +18,27 @@
   src: url(../fonts/Montserrat-Bold.otf);
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&display=swap");
+@font-face {
+  font-family: "Shippori Mincho Medium";
+  src: url(../fonts/ShipporiMincho-Medium.otf);
+}
+
+@font-face {
+  font-family: "Shippori Mincho Regular";
+  src: url(../fonts/ShipporiMincho-Regular.otf);
+}
+
+@font-face {
+  font-family: "Shippori Mincho Semi Bold";
+  src: url(../fonts/ShipporiMincho-SemiBold.otf);
+}
+
+@font-face {
+  font-family: "Shippori Mincho Bold";
+  src: url(../fonts/ShipporiMincho-Bold.otf);
+}
+
+@font-face {
+  font-family: "Shippori Mincho Extra Bold";
+  src: url(../fonts/ShipporiMincho-ExtraBold.otf);
+}
