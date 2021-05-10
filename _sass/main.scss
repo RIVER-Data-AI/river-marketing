@@ -46,6 +46,10 @@ body {
   margin-bottom: 28px;
   color: var(--body-color);
 
+  @include bp-mobile {
+    font-size: 18px;
+  }
+
   @include bp-small {
     font-size: 18px;
   }
@@ -64,6 +68,10 @@ body {
   letter-spacing: 0.01em;
   color: var(--body-color);
 
+  @include bp-mobile {
+    font-size: 54px;
+  }
+
   @include bp-small {
     font-size: 64px;
   }
@@ -80,6 +88,10 @@ body {
   font-size: 31px;
   color: var(--body-color);
 
+  @include bp-mobile {
+    font-size: 18px;
+  }
+
   @include bp-small {
     font-size: 18px;
   }
@@ -94,6 +106,10 @@ body {
   font-style: italic;
   font-size: 31px;
   color: var(--body-color);
+
+  @include bp-mobile {
+    font-size: 18px;
+  }
 
   @include bp-small {
     font-size: 18px;
@@ -283,6 +299,18 @@ body {
       font-size: 32px;
       color: var(--body-color);
       text-decoration: none;
+
+      @include bp-mobile {
+        font-size: 24px;
+      }
+
+      @include bp-small {
+        font-size: 24px;
+      }
+
+      @include bp-medium {
+        font-size: 24px;
+      }
     }
   }
 }
