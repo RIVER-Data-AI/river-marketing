@@ -1,0 +1,28 @@
+// 0 --- mobile --- 1080 --- small --- 2048 --- med --- 3000 --- max
+$bp-mobile-max-width: 1080px;
+$bp-small-max-width: 2048px;
+$bp-medium-max-width: 3000px;
+
+@mixin bp-mobile {
+  @media (max-width: $bp-mobile-max-width) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media (min-width: $bp-mobile-max-width + 1) and (max-width: $bp-small-max-width) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media (min-width: $bp-small-max-width + 1) and (max-width: $bp-medium-max-width) {
+    @content;
+  }
+}
+
+@mixin bp-large {
+  @media (min-width: $bp-medium-max-width + 1) {
+    @content;
+  }
+}

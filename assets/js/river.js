@@ -131,8 +131,20 @@ const river = (() => {
     storeScroll();
   };
 
+  const initBreakpointTracking = () => {
+    console.log("init bp tracking");
+    window.addEventListener("resize", () => {
+      const windowWidth = window.innerWidth;
+      console.log("New Width", windowWidth);
+      document.querySelector(
+        "#bp-debugger .__w"
+      ).textContent = `${windowWidth}px`;
+    });
+  };
+
   // Set up the page
   initKeyboardNavigation();
+  initBreakpointTracking();
   initScrollTracking();
   initSectionTracking();
 
