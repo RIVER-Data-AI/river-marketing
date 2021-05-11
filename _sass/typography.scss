@@ -1,0 +1,234 @@
+/******************************************************************************
+  Typography - if it specs font-size, it should probably be in here
+*******************************************************************************/
+
+body {
+  font-family: "Helvetica", sans-serif;
+  font-size: 22px;
+
+  @include bp-mobile {
+    font-size: 14px;
+  }
+
+  @include bp-small {
+    font-size: 14px;
+  }
+
+  @include bp-medium {
+    font-size: 18px;
+  }
+}
+
+.p1,
+.p2,
+.p3,
+.p4 {
+  &.--green {
+    color: var(--green);
+  }
+
+  &.--orange {
+    color: var(--orange);
+  }
+
+  &.--yellow {
+    color: var(--yellow);
+  }
+
+  &.--magenta {
+    color: var(--magenta);
+  }
+
+  &.--no-vmargin {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.p1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  line-height: 1.5em;
+  margin-top: 28px;
+  margin-bottom: 28px;
+  color: var(--body-color);
+
+  @include bp-mobile {
+    font-size: 14px;
+  }
+
+  @include bp-small {
+    font-size: 14px;
+  }
+
+  @include bp-medium {
+    font-size: 18px;
+  }
+}
+
+.p2 {
+  font-family: "Shippori Mincho Bold", serif;
+  font-size: 76px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+  line-height: 1.1em;
+  letter-spacing: 0.01em;
+  color: var(--body-color);
+
+  @include bp-mobile {
+    font-size: 40px;
+  }
+
+  @include bp-small {
+    font-size: 40px;
+  }
+
+  @include bp-medium {
+    font-size: 64px;
+  }
+}
+
+.p3 {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 24px;
+  color: var(--body-color);
+
+  @include bp-mobile {
+    font-size: 14px;
+  }
+
+  @include bp-small {
+    font-size: 14px;
+  }
+
+  @include bp-medium {
+    font-size: 18px;
+  }
+}
+
+.p4 {
+  font-family: "Baskerville", serif;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--body-color);
+
+  @include bp-mobile {
+    font-size: 18px;
+  }
+
+  @include bp-small {
+    font-size: 18px;
+  }
+
+  @include bp-medium {
+    font-size: 22px;
+  }
+}
+
+.l1 {
+  font-family: "Baskerville", serif;
+  font-style: italic;
+  font-size: 30px;
+  text-decoration: none;
+
+  &,
+  &:hover,
+  &:active,
+  &:visited {
+    color: var(--body-color);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include bp-mobile {
+    font-size: 24px;
+  }
+
+  @include bp-small {
+    font-size: 24px;
+  }
+
+  @include bp-medium {
+    font-size: 24px;
+  }
+}
+
+.l2 {
+  font-family: "Baskerville", serif;
+  font-size: 32px;
+  color: var(--body-color);
+  text-decoration: none;
+
+  &,
+  &:active,
+  &:hover,
+  &:visited {
+    color: var(--body-color);
+    text-decoration: none;
+  }
+
+  @include bp-mobile {
+    font-size: 24px;
+  }
+
+  @include bp-small {
+    font-size: 24px;
+  }
+
+  @include bp-medium {
+    font-size: 24px;
+  }
+}
+
+.button-container {
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.button {
+  font-family: "Montserrat", serif;
+  font-size: 20px;
+  line-height: 22px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  padding: 0.6em 1.4em 0.35em 1.4em;
+  border-radius: 20px;
+
+  &.--sign-up {
+    color: white;
+    font-family: "Baskerville", serif;
+    background-color: var(--signup-link-pill-color);
+  }
+
+  &.--red-stroke {
+    border: 2px solid var(--orange);
+    color: var(--gray-dark);
+    background-color: white;
+  }
+
+  &.--yellow-fill {
+    background-color: var(--yellow);
+    color: var(--gray-dark);
+  }
+
+  @include bp-mobile {
+    font-size: 16px;
+  }
+
+  @include bp-small {
+    font-size: 16px;
+  }
+
+  @include bp-medium {
+    font-size: 16px;
+  }
+}
