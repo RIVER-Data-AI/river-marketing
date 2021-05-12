@@ -97,7 +97,8 @@ body {
   top: 0;
   left: 0;
 
-  .__overlay {
+  .__overlay,
+  .__overlay-2 {
     width: 100vw;
     height: 100vh;
     background: transparent;
@@ -307,7 +308,21 @@ html[data-section="home-video-1"] {
     }
 
     .__overlay {
-      opacity: 0;
+      background: linear-gradient(
+        rgb(107, 107, 107) 0%,
+        rgb(35, 64, 104) 50%,
+        rgba(35, 64, 104, 0.6) 90%,
+        rgba(35, 64, 104, 0) 100%
+      );
+
+      $mask-gradient: linear-gradient(
+        90deg,
+        white 0%,
+        rgba(255, 255, 255, 0) 200%
+      );
+
+      mask-image: $mask-gradient;
+      -webkit-mask-image: $mask-gradient;
     }
   }
 }
