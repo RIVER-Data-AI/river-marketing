@@ -5,12 +5,17 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" />
     <script
+      src="https://www.youtube.com/player_api"
+      type="text/javascript"
+    ></script>
+    <script
       type="text/javascript"
       src="{{ site.baseurl }}/assets/js/river.js"
     ></script>
   </head>
   <body>
-    {% include video.html %} {% include header.html %}
+    {% include background_video.html %} {% include header.html %}
     <main class="main">{{ content }}</main>
+    {% include video_player.html %}
   </body>
 </html>

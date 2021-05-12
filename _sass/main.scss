@@ -91,7 +91,7 @@ body {
   height: 90vh;
 }
 
-.video-container {
+.background-video-container {
   object-fit: cover;
   position: fixed;
   top: 0;
@@ -189,6 +189,8 @@ body {
   width: 188px;
   height: 188px;
 
+  cursor: pointer;
+
   &.--black {
     background-image: url("../img/play-button-black.png");
   }
@@ -206,6 +208,30 @@ body {
   @include bp-medium {
     width: 10vw;
     height: 10vw;
+  }
+}
+
+.video-player-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  background: #00000077;
+
+  &.--hidden {
+    left: -100vw;
+  }
+
+  .video-player {
+    width: 90vw;
+    height: 80vw;
+    background: white;
   }
 }
 
@@ -271,7 +297,7 @@ body {
 *******************************************************************************/
 
 html[data-section="home-privacy-platform"] {
-  .video-container {
+  .background-video-container {
     .__video.--water {
       display: block;
       opacity: 1;
@@ -301,7 +327,7 @@ html[data-section="home-video-1"] {
     background-image: url("../img/down-arrow-white.png");
   }
 
-  .video-container {
+  .background-video-container {
     .__video.--water-rough {
       display: block;
       opacity: 1;

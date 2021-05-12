@@ -92,6 +92,9 @@ const river = (() => {
           scrollToPreviousSection();
           break;
 
+        case "Escape":
+          hideVideo();
+
         default:
           return;
       }
@@ -142,14 +145,53 @@ const river = (() => {
     window.addEventListener("DOMContentLoaded", updateBreakpointDebugger);
   };
 
+  const initVideoPlayer = () => {
+    window.addEventListener("DOMContentLoaded", hideVideo);
+  };
+
+  var youtubeVideoPlayer;
+
+  const showVideo = (videoName) => {
+    const videoPlayerRect = document
+      .getElementById("video-player")
+      .getBoundingClientRect();
+    const videoWidth = videoPlayerRect.width;
+    const videoHeight = videoPlayerRect.height;
+
+    const videoDictionary = {
+      "video-1": "7-oL_MINZyo",
+      "video-2": "7-oL_MINZyo",
+      "video-3": "7-oL_MINZyo",
+    };
+    const videoId = videoDictionary[videoName] ?? "7-oL_MINZyo";
+
+    youtubeVideoPlayer = new YT.Player("ytplayer", {
+      height: videoHeight,
+      width: videoWidth,
+      videoId: videoId,
+    });
+
+    document
+      .getElementById("video-player-container")
+      .classList.remove("--hidden");
+  };
+
+  const hideVideo = () => {
+    document.getElementById("video-player-container").classList.add("--hidden");
+  };
+
   // Set up the page
   initKeyboardNavigation();
   initBreakpointTracking();
   initScrollTracking();
   initSectionTracking();
+  initVideoPlayer();
 
   return {
     previousSection: scrollToPreviousSection,
     nextSection: scrollToNextSection,
+
+    showVideo: showVideo,
+    hideVideo: hideVideo,
   };
 })();
