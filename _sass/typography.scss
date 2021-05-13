@@ -22,7 +22,9 @@ body {
 .p1,
 .p2,
 .p3,
-.p4 {
+.p4,
+.l1,
+.l2 {
   transition: color ease-in 0.3s;
 
   &.--green {
