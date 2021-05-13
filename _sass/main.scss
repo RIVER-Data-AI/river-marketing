@@ -46,9 +46,22 @@ body {
 }
 
 .header {
-  position: relative;
+  height: 8vh;
+}
+
+.scroll-container {
+  height: 92vh;
+  margin-top: 8vh;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: 10vh;
+  height: 8vh;
+  padding: 0 2em;
+  margin: 1.5em 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,13 +69,8 @@ body {
   background: transparent;
 
   .__logo {
-    padding-left: 3vw;
-    display: flex;
-    justify-content: flex-start;
-    flex-basis: 20%;
-
     svg {
-      width: 4vw;
+      width: 3em;
       color: var(--body-color);
       transition: color ease-in 0.3s;
     }
@@ -81,8 +89,7 @@ body {
   .__sign-up {
     display: flex;
     justify-content: flex-end;
-    padding-right: 3vw;
-    flex-basis: 33%;
+    flex-basis: 10%;
 
     .__link {
       flex-shrink: 0;
@@ -92,7 +99,6 @@ body {
 
 .main {
   position: relative;
-  height: 90vh;
 }
 
 .background-video-container {
@@ -124,14 +130,13 @@ body {
 
 .scroll-container {
   position: relative;
-  height: 90vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
 
 .section {
   display: flex;
-  height: 90vh;
+  height: 100%;
   width: 100vw;
   scroll-snap-align: center;
   flex-flow: column nowrap;
@@ -167,17 +172,16 @@ body {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    height: 10vh;
     max-width: 30vw;
     text-decoration: none;
 
-    padding-left: 100px;
-    background-image: url("../img/down-arrow.png");
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-    background-position: center left;
-
+    svg {
+      color: var(--body-color);
+      transition: color ease-in 0.3s;
+      width: 3em;
+    }
     .__teaser {
+      margin-left: 0.5em;
     }
   }
 }
@@ -323,10 +327,6 @@ html[data-section="home-video-1"] {
   --body-color: white;
   background-color: var(--blue-dark);
 
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
-
   .background-video-container {
     .__video.--water-rough {
       display: block;
@@ -364,10 +364,6 @@ html[data-section="home-video-1"] {
 html[data-section="home-river-gives-you-control"] {
   --body-color: white;
   background-color: var(--blue-dark);
-
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
 }
 
 .section.--home-river-gives-you-control {
@@ -389,10 +385,6 @@ html[data-section="home-river-gives-you-control"] {
 html[data-section="home-who-owns-your-data"] {
   --body-color: white;
   background-color: var(--blue-dark);
-
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
 }
 
 .section.--home-who-owns-your-data {
@@ -414,10 +406,6 @@ html[data-section="home-who-owns-your-data"] {
 html[data-section="home-who-is-using-your-data"] {
   --body-color: white;
   background-color: var(--blue-dark);
-
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
 }
 
 .section.--home-who-is-using-your-data {
@@ -439,10 +427,6 @@ html[data-section="home-who-is-using-your-data"] {
 html[data-section="home-who-is-using-your-data-2"] {
   --body-color: white;
   background-color: var(--blue-dark);
-
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
 }
 
 .section.--home-who-is-using-your-data-2 {
@@ -475,10 +459,6 @@ html[data-section="home-data-untapped"] {
 html[data-section="home-how-does-river-work"] {
   --body-color: white;
   background-color: var(--blue-dark);
-
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
 }
 
 .section.--home-how-does-river-work {
@@ -500,10 +480,6 @@ html[data-section="home-how-does-river-work"] {
 html[data-section="home-business-of-data"] {
   --body-color: white;
   background-color: var(--blue-dark);
-
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
 }
 
 .section.--home-business-of-data {
@@ -521,10 +497,6 @@ html[data-section="home-business-of-data"] {
 html[data-section="home-resources"] {
   --body-color: white;
   background-color: var(--blue-dark);
-
-  .__breadcrumb {
-    background-image: url("../img/down-arrow-white.png");
-  }
 }
 
 .section.--home-resources {
