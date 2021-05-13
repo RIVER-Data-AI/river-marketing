@@ -179,11 +179,6 @@ body {
 }
 
 .play-video-button {
-  background-image: url("../img/play-button-white.png");
-  background-size: auto 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-
   background-color: transparent;
   border: none;
   width: 188px;
@@ -191,8 +186,8 @@ body {
 
   cursor: pointer;
 
-  &.--black {
-    background-image: url("../img/play-button-black.png");
+  svg {
+    color: var(--body-color);
   }
 
   @include bp-mobile {
@@ -466,12 +461,6 @@ html[data-section="home-data-untapped"] {
 
 .section.--home-data-untapped {
   max-width: 39em;
-
-  .__body {
-    .__video-button {
-      background-image: url("../img/play-button-black.png");
-    }
-  }
 }
 
 /******************************************************************************
