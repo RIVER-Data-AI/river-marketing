@@ -55,14 +55,17 @@ body {
   justify-content: space-between;
   background: transparent;
 
-  > * {
-    flex-basis: 33.3%;
-  }
-
   .__logo {
-    padding: 20px;
+    padding-left: 3vw;
     display: flex;
     justify-content: flex-start;
+    flex-basis: 20%;
+
+    svg {
+      width: 4vw;
+      color: var(--body-color);
+      transition: color ease-in 0.3s;
+    }
   }
 
   .__links {
@@ -78,7 +81,8 @@ body {
   .__sign-up {
     display: flex;
     justify-content: flex-end;
-    padding: 20px;
+    padding-right: 3vw;
+    flex-basis: 33%;
 
     .__link {
       flex-shrink: 0;
@@ -188,6 +192,7 @@ body {
 
   svg {
     color: var(--body-color);
+    transition: color ease-in 0.3s;
   }
 
   @include bp-mobile {
