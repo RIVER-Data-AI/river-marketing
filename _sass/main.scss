@@ -241,6 +241,13 @@ body {
     background: white;
     transition: left ease-in 0.3s;
     transition-delay: 0.1s;
+
+    text-align: center;
+
+    img {
+      width: 90vw;
+      height: 80vh;
+    }
   }
 
   &.--hidden {
