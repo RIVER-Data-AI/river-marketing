@@ -146,7 +146,7 @@ const river = (() => {
   };
 
   const initVideoPlayer = () => {
-    window.addEventListener("DOMContentLoaded", hideVideo);
+    // window.addEventListener("DOMContentLoaded", hideVideo);
   };
 
   var youtubeVideoPlayer;
