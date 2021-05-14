@@ -107,8 +107,7 @@ body {
   top: 0;
   left: 0;
 
-  .__overlay,
-  .__overlay-2 {
+  .__overlay {
     width: 100vw;
     height: 100vh;
     background: transparent;
@@ -125,6 +124,18 @@ body {
     transition: opacity 0.3s;
     opacity: 0;
     display: none;
+  }
+
+  .__line-drawing {
+    position: fixed;
+
+    left: 0;
+    top: 70vh;
+
+    svg {
+      height: 10vh;
+      width: 100vw;
+    }
   }
 }
 
@@ -306,6 +317,22 @@ body {
     margin: 0;
     padding: 4px;
     text-align: center;
+  }
+}
+
+.svg-line-drawing {
+  color: #dddddd;
+  stroke: #dddddd;
+  fill: transparent;
+  stroke-width: 1;
+  stroke-dasharray: 2600;
+  stroke-dashoffset: 2600;
+  animation: dash 2s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
