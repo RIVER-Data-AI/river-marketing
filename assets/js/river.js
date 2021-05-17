@@ -1,9 +1,55 @@
 const river = (() => {
+  // Return a { width, height } that will encompass the viewport
+  const cramIntoViewport = (
+    videoAspectRatio,
+    viewportWidth,
+    viewportHeight
+  ) => {
+    const viewportAspectRatio = viewportHeight / viewportWidth;
+
+    if (viewportAspectRatio > videoAspectRatio) {
+      return {
+        width: viewportHeight / videoAspectRatio,
+        height: viewportHeight,
+      };
+    } else {
+      return {
+        width: viewportWidth,
+        height: viewportWidth * videoAspectRatio,
+      };
+    }
+  };
+
   /* Section Tracking */
   const sectionAppeared = (section) => {
     if (!section) return;
 
-    console.log("APPEAR", section?.id);
+    console.log("APPEAR", section.id);
+
+    switch (section.id) {
+      case "home-privacy-platform":
+        const videoDimensions = cramIntoViewport(
+          9 / 16,
+          window.innerWidth,
+          window.innerHeight
+        );
+
+        const player = new Vimeo.Player("background-video-water-smooth", {
+          id: "549508169",
+          controls: false,
+          loop: true,
+          dnt: true,
+          muted: true,
+          width: videoDimensions.width,
+          height: videoDimensions.height,
+        });
+
+        player.play();
+        break;
+
+      default:
+        break;
+    }
   };
   const sectionDisappeared = (section) => {
     if (!section) return;
@@ -145,11 +191,7 @@ const river = (() => {
     window.addEventListener("DOMContentLoaded", updateBreakpointDebugger);
   };
 
-  const initVideoPlayer = () => {
-    // window.addEventListener("DOMContentLoaded", hideVideo);
-  };
-
-  var youtubeVideoPlayer;
+  const initVideoPlayer = () => {};
 
   const showVideo = (videoName) => {
     const videoPlayerRect = document
@@ -157,19 +199,6 @@ const river = (() => {
       .getBoundingClientRect();
     const videoWidth = videoPlayerRect.width;
     const videoHeight = videoPlayerRect.height;
-
-    const videoDictionary = {
-      "video-1": "7-oL_MINZyo",
-      "video-2": "7-oL_MINZyo",
-      "video-3": "7-oL_MINZyo",
-    };
-    const videoId = videoDictionary[videoName] ?? "7-oL_MINZyo";
-
-    youtubeVideoPlayer = new YT.Player("ytplayer", {
-      height: videoHeight,
-      width: videoWidth,
-      videoId: videoId,
-    });
 
     document
       .getElementById("video-player-container")
@@ -180,12 +209,25 @@ const river = (() => {
     document.getElementById("video-player-container").classList.add("--hidden");
   };
 
+  const initBackgroundVideo = () => {
+    window.addEventListener("DOMContentLoaded", (event) => {
+      // var player = new Vimeo.Player("background-video-player");
+      // player.on("play", function () {
+      //   console.log("Played the video");
+      // });
+      // player.getVideoTitle().then(function (title) {
+      //   console.log("title:", title);
+      // });
+    });
+  };
+
   // Set up the page
   initKeyboardNavigation();
   initBreakpointTracking();
   initScrollTracking();
   initSectionTracking();
   initVideoPlayer();
+  initBackgroundVideo();
 
   return {
     previousSection: scrollToPreviousSection,
