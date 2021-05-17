@@ -1,4 +1,14 @@
 const river = (() => {
+  const videoIds = {
+    SMOOTH: 549508169,
+    CHOPPY: 549500913,
+    ROUGH: 549506147,
+    LESS_SMOOTH: 549498377,
+    CREEK: 549512305,
+  };
+
+  let videoPlayer;
+
   // Return a { width, height } that will encompass the viewport
   const cramIntoViewport = (
     videoAspectRatio,
@@ -20,6 +30,20 @@ const river = (() => {
     }
   };
 
+  const loadAndPlayVideo = (videoId) => {
+    videoPlayer.getVideoId().then((loadedVideoId) => {
+      console.log("compare", loadedVideoId, videoId);
+      if (loadedVideoId === videoId) {
+        console.log("same - dip out");
+        return;
+      }
+
+      videoPlayer.loadVideo(videoId).then(() => {
+        videoPlayer.play();
+      });
+    });
+  };
+
   /* Section Tracking */
   const sectionAppeared = (section) => {
     if (!section) return;
@@ -28,23 +52,29 @@ const river = (() => {
 
     switch (section.id) {
       case "home-privacy-platform":
-        const videoDimensions = cramIntoViewport(
-          9 / 16,
-          window.innerWidth,
-          window.innerHeight
-        );
+        loadAndPlayVideo(videoIds.SMOOTH);
+        break;
 
-        const player = new Vimeo.Player("background-video-water-smooth", {
-          id: "549508169",
-          controls: false,
-          loop: true,
-          dnt: true,
-          muted: true,
-          width: videoDimensions.width,
-          height: videoDimensions.height,
-        });
+      case "home-video-1":
+        loadAndPlayVideo(videoIds.CHOPPY);
+        break;
 
-        player.play();
+      case "home-river-gives-you-control":
+        loadAndPlayVideo(videoIds.LESS_SMOOTH);
+        break;
+
+      case "home-who-owns-your-data":
+        loadAndPlayVideo(videoIds.SMOOTH);
+        break;
+
+      case "home-who-is-using-your-data":
+      case "home-who-is-using-your-data-2":
+        loadAndPlayVideo(videoIds.CREEK);
+        break;
+
+      case "home-how-does-river-work":
+      case "home-business-of-data":
+        loadAndPlayVideo(videoIds.ROUGH);
         break;
 
       default:
@@ -211,13 +241,21 @@ const river = (() => {
 
   const initBackgroundVideo = () => {
     window.addEventListener("DOMContentLoaded", (event) => {
-      // var player = new Vimeo.Player("background-video-player");
-      // player.on("play", function () {
-      //   console.log("Played the video");
-      // });
-      // player.getVideoTitle().then(function (title) {
-      //   console.log("title:", title);
-      // });
+      const videoDimensions = cramIntoViewport(
+        9 / 16,
+        window.innerWidth,
+        window.innerHeight
+      );
+
+      videoPlayer = new Vimeo.Player("background-video-player", {
+        id: videoIds.SMOOTH,
+        controls: false,
+        loop: true,
+        dnt: true,
+        muted: true,
+        width: videoDimensions.width,
+        height: videoDimensions.height,
+      });
     });
   };
 
