@@ -123,7 +123,10 @@ body {
 
     transition: opacity 0.3s;
     opacity: 0;
-    display: none;
+
+    &.--visible {
+      opacity: 1;
+    }
   }
 
   .__line-drawing {
@@ -350,8 +353,6 @@ body {
 html[data-section="home-privacy-platform"] {
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
       filter: grayscale(1);
     }
 
@@ -377,8 +378,6 @@ html[data-section="home-video-1"] {
 
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
     }
 
     .__overlay {
@@ -415,8 +414,6 @@ html[data-section="home-river-gives-you-control"] {
 
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
       filter: grayscale(1);
     }
 
@@ -448,9 +445,11 @@ html[data-section="home-who-owns-your-data"] {
 
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
       filter: grayscale(1);
+    }
+
+    .__overlay {
+      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
   }
 }
@@ -477,9 +476,11 @@ html[data-section="home-who-is-using-your-data"] {
 
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
       filter: grayscale(1);
+    }
+
+    .__overlay {
+      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
   }
 }
@@ -506,9 +507,11 @@ html[data-section="home-who-is-using-your-data-2"] {
 
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
       filter: grayscale(1);
+    }
+
+    .__overlay {
+      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
   }
 }
@@ -546,9 +549,11 @@ html[data-section="home-how-does-river-work"] {
 
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
       filter: grayscale(1);
+    }
+
+    .__overlay {
+      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
   }
 }
@@ -575,9 +580,11 @@ html[data-section="home-business-of-data"] {
 
   .background-video-container {
     .__video {
-      display: block;
-      opacity: 1;
       filter: grayscale(1);
+    }
+
+    .__overlay {
+      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
   }
 }
