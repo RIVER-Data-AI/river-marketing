@@ -1,14 +1,14 @@
 const river = (() => {
   const videoIds = {
-    smooth: 549508169,
-    choppy: 549500913,
-    rough: 549506147,
+    smooth: 552069402,
+    choppy: 552093404,
+    rough: 552093404,
     flowing: 549498377,
     creek: 549512305,
   };
 
-  let videoPlayerContainer;
-  let videoPlayer;
+  let backgroundVideoPlayerContainer;
+  let backgroundVideoPlayers = {};
 
   // Return a { width, height } that will encompass the viewport
   const cramIntoViewport = (
@@ -33,24 +33,11 @@ const river = (() => {
 
   const hideBackgroundVideo = () => {
     return new Promise((resolve, reject) => {
-      videoPlayerContainer.classList.remove("--visible");
+      const visibleVideo = backgroundVideoPlayerContainer
+        .querySelector(`.__video.--visible`)
+        ?.classList.remove("--visible");
+
       setTimeout(resolve, 300);
-    });
-  };
-
-  const loadAndPlayBackgroundVideo = (videoId) => {
-    videoPlayer.getVideoId().then((loadedVideoId) => {
-      if (loadedVideoId === videoId) {
-        return;
-      }
-
-      hideBackgroundVideo().then(() => {
-        videoPlayer.loadVideo(videoId).then(() => {
-          videoPlayer
-            .play()
-            .then(() => videoPlayerContainer.classList.add("--visible"));
-        });
-      });
     });
   };
 
@@ -61,17 +48,30 @@ const river = (() => {
       window.innerHeight
     );
 
-    videoPlayerContainer = document.getElementById("background-video-player");
+    backgroundVideoPlayerContainer = document.getElementById(
+      "background-video-player"
+    );
 
-    videoPlayer = new Vimeo.Player("background-video-player", {
-      id: videoIds.choppy,
-      controls: false,
-      loop: true,
-      dnt: true,
-      muted: true,
-      width: videoDimensions.width,
-      height: videoDimensions.height,
-    });
+    for (videoIdName in videoIds) {
+      backgroundVideoPlayers[videoIdName] = new Vimeo.Player(
+        `background-video-player-${videoIdName}`,
+        {
+          id: videoIds[videoIdName],
+          controls: false,
+          loop: true,
+          dnt: true,
+          muted: true,
+          width: videoDimensions.width,
+          height: videoDimensions.height,
+        }
+      );
+
+      if (videoIdName === "smooth") {
+        backgroundVideoPlayers[videoIdName].setPlaybackRate(0.5);
+      }
+
+      backgroundVideoPlayers[videoIdName].play();
+    }
   };
 
   /* Section Tracking */
@@ -81,10 +81,24 @@ const river = (() => {
     console.log("APPEAR", section.id);
 
     const videoName = section.dataset["video-name"];
-    const videoId = videoIds[videoName];
 
-    if (videoId) {
-      loadAndPlayBackgroundVideo(videoId);
+    console.log("video name", videoName);
+    if (videoName) {
+      const visibleVideo = backgroundVideoPlayerContainer.querySelector(
+        `.__video.--visible`
+      );
+
+      const visibleVideoName = visibleVideo?.dataset?.videoName;
+
+      if (visibleVideoName && visibleVideoName !== videoName) {
+        visibleVideo.classList.remove("--visible");
+      }
+
+      console.log("Present ", videoName);
+
+      backgroundVideoPlayerContainer
+        .querySelector(`.--${videoName}`)
+        ?.classList?.add("--visible");
     } else {
       hideBackgroundVideo();
     }
