@@ -1,10 +1,10 @@
 const river = (() => {
   const videoIds = {
     smooth: 552069402,
-    choppy: 552093404,
+    choppy: 552596244,
     rough: 552093404,
-    flowing: 549498377,
-    creek: 549512305,
+    flowing: 552596313,
+    creek: 552596265,
   };
 
   let backgroundVideoPlayerContainer;
