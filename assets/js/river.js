@@ -10,27 +10,6 @@ const river = (() => {
   let backgroundVideoPlayerContainer;
   let backgroundVideoPlayers = {};
 
-  // Return a { width, height } that will encompass the viewport
-  const cramIntoViewport = (
-    videoAspectRatio,
-    viewportWidth,
-    viewportHeight
-  ) => {
-    const viewportAspectRatio = viewportHeight / viewportWidth;
-
-    if (viewportAspectRatio > videoAspectRatio) {
-      return {
-        width: viewportHeight / videoAspectRatio,
-        height: viewportHeight,
-      };
-    } else {
-      return {
-        width: viewportWidth,
-        height: viewportWidth * videoAspectRatio,
-      };
-    }
-  };
-
   const hideBackgroundVideo = () => {
     return new Promise((resolve, reject) => {
       const visibleVideo = backgroundVideoPlayerContainer
@@ -42,36 +21,49 @@ const river = (() => {
   };
 
   const initBackgroundVideo = () => {
-    const videoDimensions = cramIntoViewport(
-      9 / 16,
-      window.innerWidth,
-      window.innerHeight
-    );
-
     backgroundVideoPlayerContainer = document.getElementById(
       "background-video-player"
     );
 
-    for (videoIdName in videoIds) {
-      backgroundVideoPlayers[videoIdName] = new Vimeo.Player(
-        `background-video-player-${videoIdName}`,
-        {
-          id: videoIds[videoIdName],
-          controls: false,
-          loop: true,
-          dnt: true,
-          muted: true,
-          width: videoDimensions.width,
-          height: videoDimensions.height,
-        }
-      );
+    const videoNamesInOrder = Array.from(
+      backgroundVideoPlayerContainer.querySelectorAll(`.__video`)
+    )
+      .map((d) => d.dataset.videoName)
+      .reduce((m, v) => (m.includes(v) ? m : [...m, v]), []);
 
-      if (videoIdName === "smooth") {
-        backgroundVideoPlayers[videoIdName].setPlaybackRate(0.5);
+    const initBackgroundVideo = (videoName) => {
+      // Don't double-initialize
+      if (backgroundVideoPlayers[videoName]) {
+        return;
       }
 
-      backgroundVideoPlayers[videoIdName].play();
-    }
+      const player = new Vimeo.Player(`background-video-player-${videoName}`, {
+        id: videoIds[videoName],
+        controls: false,
+        loop: true,
+        dnt: true,
+        muted: true,
+      });
+
+      if (videoName === "smooth") {
+        player.setPlaybackRate(0.75);
+      }
+
+      backgroundVideoPlayers[videoName] = player;
+
+      const nextVideoName =
+        videoNamesInOrder[videoNamesInOrder.indexOf(videoName) + 1];
+      if (nextVideoName) {
+        player.on("loaded", (playerId) => {
+          player.play();
+          initBackgroundVideo(nextVideoName);
+        });
+      } else {
+        player.off("loaded");
+      }
+    };
+
+    initBackgroundVideo(videoNamesInOrder[0]);
   };
 
   /* Section Tracking */
@@ -80,7 +72,7 @@ const river = (() => {
 
     console.log("APPEAR", section.id);
 
-    const videoName = section.dataset["video-name"];
+    const { videoName } = section.dataset;
 
     console.log("video name", videoName);
     if (videoName) {
@@ -95,7 +87,7 @@ const river = (() => {
       }
 
       console.log("Present ", videoName);
-
+      backgroundVideoPlayers[videoName].play();
       backgroundVideoPlayerContainer
         .querySelector(`.--${videoName}`)
         ?.classList?.add("--visible");
