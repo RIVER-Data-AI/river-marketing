@@ -4,7 +4,7 @@ const river = (() => {
     choppy: 552596244,
     rough: 552093404,
     flowing: 552596313,
-    creek: 552596265,
+    creek: 552604626,
   };
 
   let backgroundVideoPlayerContainer;
@@ -59,6 +59,7 @@ const river = (() => {
           initBackgroundVideo(nextVideoName);
         });
       } else {
+        console.log("loaded");
         player.off("loaded");
       }
     };
