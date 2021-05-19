@@ -56,10 +56,13 @@ const river = (() => {
       if (nextVideoName) {
         player.on("loaded", (playerId) => {
           player.play();
+          player.on("play", () => {
+            player.pause();
+            player.off("play");
+          });
           initBackgroundVideo(nextVideoName);
         });
       } else {
-        console.log("loaded");
         player.off("loaded");
       }
     };
@@ -74,25 +77,31 @@ const river = (() => {
     console.log("APPEAR", section.id);
 
     const { videoName } = section.dataset;
+    const visibleVideo = backgroundVideoPlayerContainer.querySelector(
+      `.__video.--visible`
+    );
 
-    console.log("video name", videoName);
+    const visibleVideoName = visibleVideo?.dataset?.videoName;
+
     if (videoName) {
-      const visibleVideo = backgroundVideoPlayerContainer.querySelector(
-        `.__video.--visible`
-      );
-
-      const visibleVideoName = visibleVideo?.dataset?.videoName;
-
       if (visibleVideoName && visibleVideoName !== videoName) {
+        backgroundVideoPlayers[visibleVideoName].pause();
         visibleVideo.classList.remove("--visible");
       }
 
-      console.log("Present ", videoName);
-      backgroundVideoPlayers[videoName].play();
-      backgroundVideoPlayerContainer
-        .querySelector(`.--${videoName}`)
-        ?.classList?.add("--visible");
+      const player = backgroundVideoPlayers[videoName];
+
+      player.on("play", () => {
+        backgroundVideoPlayerContainer
+          .querySelector(`.--${videoName}`)
+          ?.classList?.add("--visible");
+
+        player.off("play");
+      });
+
+      player.play();
     } else {
+      backgroundVideoPlayers[visibleVideoName]?.pause();
       hideBackgroundVideo();
     }
   };

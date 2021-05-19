@@ -9,9 +9,11 @@
 }
 
 html {
+  --logo-color: var(--gray-medium);
   --body-color: var(--gray-dark);
-  --signup-link-pill-color: #b8302e;
-  transition: background-color ease-in 0.3s;
+  --signup-link-pill-color: var(--red);
+  --transition-time: 1s;
+  transition: background-color ease-in var(--transition-time);
 }
 
 body {
@@ -71,8 +73,8 @@ body {
   .__logo {
     svg {
       width: 3em;
-      color: var(--body-color);
-      transition: color ease-in 0.3s;
+      color: var(--logo-color);
+      transition: color ease-in var(--transition-time);
     }
   }
 
@@ -111,6 +113,7 @@ body {
     width: 100vw;
     height: 100vh;
     background: transparent;
+    transition: background-color ease-in var(--transition-time);
     position: fixed;
     top: 0;
     left: 0;
@@ -126,7 +129,7 @@ body {
     pointer-events: none;
     overflow: hidden;
 
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-time);
     opacity: 0;
 
     iframe {
@@ -207,7 +210,7 @@ body {
 
     svg {
       color: var(--body-color);
-      transition: color ease-in 0.3s;
+      transition: color ease-in var(--transition-time);
       width: 3em;
     }
     .__teaser {
@@ -226,7 +229,7 @@ body {
 
   svg {
     color: var(--body-color);
-    transition: color ease-in 0.3s;
+    transition: color ease-in var(--transition-time);
     width: 100%;
   }
 
@@ -269,7 +272,7 @@ body {
     width: 90vw;
     height: 80vh;
     background: white;
-    transition: left ease-in 0.3s;
+    transition: left ease-in var(--transition-time);
     transition-delay: 0.1s;
 
     text-align: center;
@@ -368,10 +371,6 @@ body {
 
 html[data-section="home-privacy-platform"] {
   .background-video-container {
-    .__video {
-      // filter: grayscale(1);
-    }
-
     .__overlay {
       background: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
     }
@@ -389,6 +388,7 @@ section.--home-privacy-platform {
 ******************************************************************************/
 
 html[data-section="home-video-1"] {
+  --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
 
@@ -425,16 +425,13 @@ html[data-section="home-video-1"] {
 ******************************************************************************/
 
 html[data-section="home-river-gives-you-control"] {
+  --logo-color: var(--gray-beast);
   --body-color: white;
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__video {
-      // filter: grayscale(1);
-    }
-
     .__overlay {
-      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
+      background: linear-gradient(#ffffff66, #0e2b68ff);
     }
   }
 }
@@ -456,14 +453,11 @@ html[data-section="home-river-gives-you-control"] {
 ******************************************************************************/
 
 html[data-section="home-who-owns-your-data"] {
+  --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__video {
-      // filter: grayscale(1);
-    }
-
     .__overlay {
       background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
@@ -487,14 +481,11 @@ html[data-section="home-who-owns-your-data"] {
 ******************************************************************************/
 
 html[data-section="home-who-is-using-your-data"] {
+  --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__video {
-      // filter: grayscale(1);
-    }
-
     .__overlay {
       background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
@@ -518,14 +509,11 @@ html[data-section="home-who-is-using-your-data"] {
 ******************************************************************************/
 
 html[data-section="home-who-is-using-your-data-2"] {
+  --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__video {
-      // filter: grayscale(1);
-    }
-
     .__overlay {
       background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
@@ -564,10 +552,6 @@ html[data-section="home-how-does-river-work"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__video {
-      // filter: grayscale(1);
-    }
-
     .__overlay {
       background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
@@ -595,10 +579,6 @@ html[data-section="home-business-of-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__video {
-      // filter: grayscale(1);
-    }
-
     .__overlay {
       background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
     }
