@@ -150,6 +150,22 @@ body {
       -webkit-mask-image: $mask-gradient;
     }
 
+    &.--dark-blue {
+      background-image: linear-gradient(
+        rgb(15, 43, 77) 10%,
+        rgba(15, 43, 77, 0.6) 60%,
+        rgba(15, 43, 77, 0.4)
+      );
+    }
+
+    &.--dark-blue-inv {
+      background-image: linear-gradient(
+        rgba(15, 43, 77, 0.4),
+        rgba(15, 43, 77, 0.6) 40%,
+        rgb(15, 43, 77) 90%
+      );
+    }
+
     &.--gray-blue {
       background-image: linear-gradient(
         #ffffff66,
@@ -169,6 +185,15 @@ body {
       background-image: linear-gradient(
         rgba(35, 64, 104, 0.4),
         rgba(35, 70, 104, 1)
+      );
+    }
+
+    &.--creek {
+      background-image: linear-gradient(
+        rgba(60, 85, 135, 1),
+        rgba(60, 85, 135, 1) 10%,
+        rgba(60, 85, 135, 0.4) 70%,
+        rgba(35, 70, 104, 0)
       );
     }
   }
@@ -447,8 +472,9 @@ html[data-section="home-video-1"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--feathered-gray-blue {
-      opacity: 1;
+    .__overlay.--dark-blue,
+    .__overlay.--dark-blue-inv {
+      opacity: 0;
     }
   }
 }
@@ -584,6 +610,10 @@ html[data-section="home-how-does-river-work"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
+    .__overlay.--feathered-gray-blue,
+    .__overlay.--dark-blue-inv {
+      opacity: 0;
+    }
   }
 }
 
@@ -608,6 +638,10 @@ html[data-section="home-business-of-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
+    .__overlay.--feathered-gray-blue,
+    .__overlay.--dark-blue {
+      opacity: 0;
+    }
   }
 }
 
