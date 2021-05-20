@@ -255,6 +255,16 @@ const river = (() => {
     initScrollTracking();
     initSectionTracking();
     initVideoPlayer();
+
+    var typed = new Typed("#home-intro-p1", {
+      strings: [document.querySelector("#home-intro-p1-string").textContent],
+      typeSpeed: 20,
+      onComplete: () => {
+        document
+          .querySelector("#home-intro .__hidden-copy")
+          .classList.remove("--hidden");
+      },
+    });
   });
 
   return {

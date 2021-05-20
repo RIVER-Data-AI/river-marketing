@@ -442,6 +442,17 @@ body {
 *******************************************************************************/
 
 .section.--home-intro {
+  .__hidden-copy {
+    transition: opacity ease-in-out var(--transition-time),
+      transform ease-in-out var(--transition-time);
+
+    opacity: 1;
+
+    &.--hidden {
+      opacity: 0;
+      transform: translate(0%, 100%);
+    }
+  }
 }
 
 /******************************************************************************
