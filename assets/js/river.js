@@ -55,11 +55,6 @@ const river = (() => {
         videoNamesInOrder[videoNamesInOrder.indexOf(videoName) + 1];
       if (nextVideoName) {
         player.on("loaded", (playerId) => {
-          player.play();
-          player.on("play", () => {
-            player.pause();
-            player.off("play");
-          });
           initBackgroundVideo(nextVideoName);
         });
       } else {
@@ -84,22 +79,18 @@ const river = (() => {
     const visibleVideoName = visibleVideo?.dataset?.videoName;
 
     if (videoName) {
+      console.log("SHOW", videoName, backgroundVideoPlayers[videoName]);
       if (visibleVideoName && visibleVideoName !== videoName) {
         backgroundVideoPlayers[visibleVideoName].pause();
         visibleVideo.classList.remove("--visible");
       }
 
       const player = backgroundVideoPlayers[videoName];
-
-      player.on("play", () => {
-        backgroundVideoPlayerContainer
-          .querySelector(`.--${videoName}`)
-          ?.classList?.add("--visible");
-
-        player.off("play");
-      });
-
       player.play();
+
+      backgroundVideoPlayerContainer
+        .querySelector(`.--${videoName}`)
+        ?.classList?.add("--visible");
     } else {
       backgroundVideoPlayers[visibleVideoName]?.pause();
       hideBackgroundVideo();
@@ -135,10 +126,10 @@ const river = (() => {
       return;
     }
 
-    sectionAppeared(currentlyVisibleSection);
-    sectionDisappeared(document.getElementById(lastVisibleSectionId));
-
     document.documentElement.dataset.section = currentlyVisibleSection.id;
+
+    sectionDisappeared(document.getElementById(lastVisibleSectionId));
+    sectionAppeared(currentlyVisibleSection);
   };
 
   const initSectionTracking = () => {
@@ -150,6 +141,8 @@ const river = (() => {
     if (!section) {
       return;
     }
+
+    backgroundVideoPlayers[section.dataset.videoName]?.play();
 
     // Safari apparently has an issue with smooth scrolling; let's punt that for now.
     // https://stackoverflow.com/questions/51229742/javascript-window-scroll-behavior-smooth-not-working-in-safari
@@ -245,12 +238,6 @@ const river = (() => {
   const initVideoPlayer = () => {};
 
   const showVideo = (videoName) => {
-    const videoPlayerRect = document
-      .getElementById("video-player")
-      .getBoundingClientRect();
-    const videoWidth = videoPlayerRect.width;
-    const videoHeight = videoPlayerRect.height;
-
     document
       .getElementById("video-player-container")
       .classList.remove("--hidden");

@@ -115,17 +115,62 @@ body {
   top: 0;
   left: 0;
 
+  .__video .__overlay {
+    opacity: 1;
+  }
+
   .__overlay {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    );
-    transition: background-image ease-in var(--transition-time);
     position: fixed;
     top: 0;
     left: 0;
+    opacity: 0;
+    transition: opacity ease-in-out var(--transition-time);
+
+    &.--white-fade {
+      background-image: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+    }
+
+    &.--feathered-gray-blue {
+      background-image: linear-gradient(
+        rgb(107, 107, 107) 0%,
+        rgb(35, 64, 104) 50%,
+        rgba(35, 64, 104, 0.6) 90%,
+        rgba(35, 64, 104, 0) 100%
+      );
+
+      $mask-gradient: linear-gradient(
+        90deg,
+        white 0%,
+        rgba(255, 255, 255, 0) 200%
+      );
+
+      mask-image: $mask-gradient;
+      -webkit-mask-image: $mask-gradient;
+    }
+
+    &.--gray-blue {
+      background-image: linear-gradient(
+        #ffffff66,
+        rgba(85, 115, 155, 0.6),
+        rgba(14, 43, 104, 1)
+      );
+    }
+
+    &.--blue-blue {
+      background-image: linear-gradient(
+        rgba(15, 43, 77, 0.4),
+        rgba(15, 43, 77, 1)
+      );
+    }
+
+    &.--blue-blue-2 {
+      background-image: linear-gradient(
+        rgba(35, 64, 104, 0.4),
+        rgba(35, 70, 104, 1)
+      );
+    }
   }
 
   .__video {
@@ -380,8 +425,8 @@ body {
 
 html[data-section="home-privacy-platform"] {
   .background-video-container {
-    .__overlay {
-      background-image: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+    .__overlay.--white-fade {
+      opacity: 1;
     }
   }
 }
@@ -402,25 +447,8 @@ html[data-section="home-video-1"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__video {
-    }
-
-    .__overlay {
-      background-image: linear-gradient(
-        rgb(107, 107, 107) 0%,
-        rgb(35, 64, 104) 50%,
-        rgba(35, 64, 104, 0.6) 90%,
-        rgba(35, 64, 104, 0) 100%
-      );
-
-      $mask-gradient: linear-gradient(
-        90deg,
-        white 0%,
-        rgba(255, 255, 255, 0) 200%
-      );
-
-      mask-image: $mask-gradient;
-      -webkit-mask-image: $mask-gradient;
+    .__overlay.--feathered-gray-blue {
+      opacity: 1;
     }
   }
 }
@@ -440,12 +468,8 @@ html[data-section="home-river-gives-you-control"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay {
-      background-image: linear-gradient(
-        #ffffff66,
-        rgba(85, 115, 155, 0.6),
-        rgba(14, 43, 104, 1)
-      );
+    .__overlay.--blue-blue {
+      opacity: 0;
     }
   }
 }
@@ -472,11 +496,8 @@ html[data-section="home-who-owns-your-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay {
-      background-image: linear-gradient(
-        rgba(15, 43, 77, 0.4),
-        rgba(15, 43, 77, 1)
-      );
+    .__overlay.--gray-blue {
+      opacity: 0;
     }
   }
 }
@@ -503,12 +524,6 @@ html[data-section="home-who-is-using-your-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay {
-      background-image: linear-gradient(
-        rgba(35, 64, 104, 0.4),
-        rgba(35, 70, 104, 1)
-      );
-    }
   }
 }
 
@@ -534,12 +549,6 @@ html[data-section="home-who-is-using-your-data-2"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay {
-      background-image: linear-gradient(
-        rgba(35, 64, 104, 0.4),
-        rgba(35, 70, 104, 1)
-      );
-    }
   }
 }
 
@@ -575,12 +584,6 @@ html[data-section="home-how-does-river-work"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay {
-      background-image: linear-gradient(
-        rgba(35, 64, 104, 0.4),
-        rgba(35, 70, 104, 1)
-      );
-    }
   }
 }
 
@@ -605,12 +608,6 @@ html[data-section="home-business-of-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay {
-      background-image: linear-gradient(
-        rgba(35, 64, 104, 0.4),
-        rgba(35, 70, 104, 1)
-      );
-    }
   }
 }
 
