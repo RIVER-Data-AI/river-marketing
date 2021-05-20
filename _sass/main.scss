@@ -9,8 +9,10 @@
 }
 
 html {
-  --logo-color: var(--gray-medium);
   --body-color: var(--gray-dark);
+  --logo-color: var(--gray-medium);
+  --nav-color: var(--body-color);
+
   --signup-link-pill-color: var(--red);
   --transition-time: 1s;
   transition: background-color ease-in var(--transition-time);
@@ -86,6 +88,10 @@ body {
     .__link {
       padding: 20px;
     }
+
+    .l1 {
+      color: var(--nav-color);
+    }
   }
 
   .__sign-up {
@@ -112,8 +118,11 @@ body {
   .__overlay {
     width: 100vw;
     height: 100vh;
-    background: transparent;
-    transition: background-color ease-in var(--transition-time);
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0)
+    );
+    transition: background-image ease-in var(--transition-time);
     position: fixed;
     top: 0;
     left: 0;
@@ -372,7 +381,7 @@ body {
 html[data-section="home-privacy-platform"] {
   .background-video-container {
     .__overlay {
-      background: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+      background-image: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
     }
   }
 }
@@ -397,7 +406,7 @@ html[data-section="home-video-1"] {
     }
 
     .__overlay {
-      background: linear-gradient(
+      background-image: linear-gradient(
         rgb(107, 107, 107) 0%,
         rgb(35, 64, 104) 50%,
         rgba(35, 64, 104, 0.6) 90%,
@@ -426,12 +435,17 @@ html[data-section="home-video-1"] {
 
 html[data-section="home-river-gives-you-control"] {
   --logo-color: var(--gray-beast);
+  --nav-color: var(--gray-beast);
   --body-color: white;
   background-color: var(--blue-dark);
 
   .background-video-container {
     .__overlay {
-      background: linear-gradient(#ffffff66, #0e2b68ff);
+      background-image: linear-gradient(
+        #ffffff66,
+        rgba(85, 115, 155, 0.6),
+        rgba(14, 43, 104, 1)
+      );
     }
   }
 }
@@ -459,7 +473,10 @@ html[data-section="home-who-owns-your-data"] {
 
   .background-video-container {
     .__overlay {
-      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
+      background-image: linear-gradient(
+        rgba(15, 43, 77, 0.4),
+        rgba(15, 43, 77, 1)
+      );
     }
   }
 }
@@ -487,7 +504,10 @@ html[data-section="home-who-is-using-your-data"] {
 
   .background-video-container {
     .__overlay {
-      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
+      background-image: linear-gradient(
+        rgba(35, 64, 104, 0.4),
+        rgba(35, 70, 104, 1)
+      );
     }
   }
 }
@@ -515,7 +535,10 @@ html[data-section="home-who-is-using-your-data-2"] {
 
   .background-video-container {
     .__overlay {
-      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
+      background-image: linear-gradient(
+        rgba(35, 64, 104, 0.4),
+        rgba(35, 70, 104, 1)
+      );
     }
   }
 }
@@ -553,7 +576,10 @@ html[data-section="home-how-does-river-work"] {
 
   .background-video-container {
     .__overlay {
-      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
+      background-image: linear-gradient(
+        rgba(35, 64, 104, 0.4),
+        rgba(35, 70, 104, 1)
+      );
     }
   }
 }
@@ -580,7 +606,10 @@ html[data-section="home-business-of-data"] {
 
   .background-video-container {
     .__overlay {
-      background: linear-gradient(rgba(35, 64, 104, 0.4), rgba(35, 70, 104, 1));
+      background-image: linear-gradient(
+        rgba(35, 64, 104, 0.4),
+        rgba(35, 70, 104, 1)
+      );
     }
   }
 }
