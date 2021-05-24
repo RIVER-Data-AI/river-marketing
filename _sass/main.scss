@@ -3,6 +3,7 @@
 @import "fonts";
 @import "colors";
 @import "typography";
+@import "effects";
 
 * {
   box-sizing: border-box;
@@ -231,10 +232,10 @@ body {
     position: fixed;
 
     left: 0;
-    top: 70vh;
+    top: 45vh;
 
     svg {
-      height: 10vh;
+      height: 50vh;
       width: 100vw;
     }
   }
@@ -374,6 +375,18 @@ body {
   }
 }
 
+.hidden-copy {
+  transition: opacity ease-in-out var(--transition-time),
+    transform ease-in-out var(--transition-time);
+
+  opacity: 1;
+
+  &.--hidden {
+    opacity: 0;
+    transform: translate(0%, 100%);
+  }
+}
+
 .bp-debugger {
   position: fixed;
   right: 0;
@@ -421,14 +434,14 @@ body {
   }
 }
 
-.svg-line-drawing {
-  color: #dddddd;
-  stroke: #dddddd;
+.svg-line-drawing path {
+  color: black;
+  stroke: black;
   fill: transparent;
   stroke-width: 1;
-  stroke-dasharray: 2600;
-  stroke-dashoffset: 2600;
-  animation: dash 2s linear forwards;
+  stroke-dasharray: 6700;
+  stroke-dashoffset: 6700;
+  animation: dash 20s linear forwards;
 }
 
 @keyframes dash {
@@ -442,17 +455,6 @@ body {
 *******************************************************************************/
 
 .section.--home-intro {
-  .__hidden-copy {
-    transition: opacity ease-in-out var(--transition-time),
-      transform ease-in-out var(--transition-time);
-
-    opacity: 1;
-
-    &.--hidden {
-      opacity: 0;
-      transform: translate(0%, 100%);
-    }
-  }
 }
 
 /******************************************************************************
