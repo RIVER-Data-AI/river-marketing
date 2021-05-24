@@ -387,6 +387,10 @@ body {
   }
 }
 
+.style-guide {
+  margin: 200px 50px;
+}
+
 .bp-debugger {
   position: fixed;
   right: 0;
@@ -462,16 +466,11 @@ body {
 *******************************************************************************/
 
 html[data-section="home-privacy-platform"] {
-  .background-video-container {
-    .__overlay.--white-fade {
-      opacity: 1;
-    }
-  }
 }
 
 section.--home-privacy-platform {
   .__body {
-    max-width: 48em;
+    width: 48em;
   }
 }
 

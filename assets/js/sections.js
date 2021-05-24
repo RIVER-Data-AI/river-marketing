@@ -1,24 +1,27 @@
 // "In the online world"
 const section1 = () => {
   return {
-    didAppear: ({ showBackgroundVideo }) => {
-      const typeElement = document.querySelector("#home-intro-p1");
+    didAppear: ({ showBackgroundVideo, scrollToNextSection }) => {
+      const root = document.querySelector("#home-intro");
+      const typeElement = root.querySelector("#home-intro-p1");
 
       if (!typeElement.dataset.typeHasAppeared) {
         document
           .querySelector("#background-video-player .__video.--smooth")
           .classList.add("--delay-3");
         new Typed("#home-intro-p1", {
-          strings: [
-            document.querySelector("#home-intro-p1-string").textContent,
-          ],
-          typeSpeed: 20,
+          strings: [root.querySelector("#home-intro-p1-string").textContent],
+          typeSpeed: 30,
           onComplete: () => {
-            Array.from(
-              document.querySelectorAll("#home-intro .hidden-copy")
-            ).forEach((e) => e.classList.remove("--hidden"));
+            root.querySelector(".typed-cursor").remove();
+
+            Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
+              e.classList.remove("--hidden")
+            );
 
             showBackgroundVideo("smooth");
+
+            setTimeout(scrollToNextSection, 7000);
           },
         });
 
@@ -39,7 +42,25 @@ const section1 = () => {
 const section2 = () => {
   return {
     didAppear: () => {
-      console.log("section 2 appeared!");
+      const root = document.querySelector("#home-privacy-platform");
+      const typeElement = root.querySelector("#home-privacy-platform-p2");
+
+      if (!typeElement.dataset.typeHasAppeared) {
+        new Typed("#home-privacy-platform-p2", {
+          strings: [
+            root.querySelector("#home-privacy-platform-p2-string").textContent,
+          ],
+          typeSpeed: 30,
+          onComplete: () => {
+            root.querySelector(".typed-cursor").remove();
+            Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
+              e.classList.remove("--hidden")
+            );
+          },
+        });
+
+        typeElement.dataset.typeHasAppeared = true;
+      }
     },
 
     didDisappear: () => {

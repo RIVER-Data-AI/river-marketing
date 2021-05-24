@@ -98,7 +98,10 @@ const river = (() => {
     if (!section) return;
 
     console.log("APPEAR", section.id);
-    sections[section.id]?.didAppear({ showBackgroundVideo });
+    sections[section.id]?.didAppear({
+      showBackgroundVideo,
+      scrollToNextSection,
+    });
 
     const { videoName } = section.dataset;
 
