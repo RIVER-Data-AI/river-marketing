@@ -439,13 +439,12 @@ body {
 }
 
 .svg-line-drawing path {
-  color: black;
-  stroke: black;
+  stroke: #ccc;
   fill: transparent;
-  stroke-width: 1;
-  stroke-dasharray: 6700;
-  stroke-dashoffset: 6700;
-  animation: dash 20s linear forwards;
+  stroke-width: 3;
+  stroke-dasharray: 38080;
+  stroke-dashoffset: 38080;
+  animation: dash 5s linear forwards;
 }
 
 @keyframes dash {
