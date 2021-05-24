@@ -229,15 +229,6 @@ body {
   }
 
   .__line-drawing {
-    position: fixed;
-
-    left: 0;
-    top: 45vh;
-
-    svg {
-      height: 50vh;
-      width: 100vw;
-    }
   }
 }
 
@@ -438,13 +429,27 @@ body {
   }
 }
 
-.svg-line-drawing path {
-  stroke: #ccc;
-  fill: transparent;
-  stroke-width: 3;
-  stroke-dasharray: 38080;
-  stroke-dashoffset: 38080;
-  animation: dash 5s linear forwards;
+.svg-line-drawing {
+  position: fixed;
+
+  left: 0;
+  top: 45vh;
+  transition: top ease-in-out 1s, opacity ease-in-out 1s;
+
+  svg {
+    height: 50vh;
+    width: 100vw;
+  }
+
+  path {
+    stroke: #ccc;
+    fill: transparent;
+    stroke-width: 3;
+    stroke-dasharray: 38080;
+    stroke-dashoffset: 38080;
+    animation: dash 5s linear forwards;
+    opacity: 1;
+  }
 }
 
 @keyframes dash {
@@ -488,6 +493,10 @@ html[data-section="home-video-1"] {
       opacity: 0;
     }
   }
+
+  .svg-line-drawing {
+    opacity: 0.2;
+  }
 }
 
 .section.--home-video-1 {
@@ -508,6 +517,10 @@ html[data-section="home-river-gives-you-control"] {
     .__overlay.--blue-blue {
       opacity: 0;
     }
+  }
+
+  .svg-line-drawing {
+    opacity: 0.2;
   }
 }
 
@@ -537,6 +550,10 @@ html[data-section="home-who-owns-your-data"] {
       opacity: 0;
     }
   }
+
+  .svg-line-drawing {
+    opacity: 0.2;
+  }
 }
 
 .section.--home-who-owns-your-data {
@@ -561,6 +578,10 @@ html[data-section="home-who-is-using-your-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
+  }
+
+  .svg-line-drawing {
+    opacity: 0.2;
   }
 }
 
@@ -587,6 +608,10 @@ html[data-section="home-who-is-using-your-data-2"] {
 
   .background-video-container {
   }
+
+  .svg-line-drawing {
+    opacity: 0.2;
+  }
 }
 
 .section.--home-who-is-using-your-data-2 {
@@ -606,6 +631,9 @@ html[data-section="home-who-is-using-your-data-2"] {
 ******************************************************************************/
 
 html[data-section="home-data-untapped"] {
+  .svg-line-drawing {
+    top: 0;
+  }
 }
 
 .section.--home-data-untapped {
@@ -625,6 +653,10 @@ html[data-section="home-how-does-river-work"] {
     .__overlay.--dark-blue-inv {
       opacity: 0;
     }
+  }
+
+  .svg-line-drawing {
+    opacity: 0.2;
   }
 }
 
@@ -654,6 +686,10 @@ html[data-section="home-business-of-data"] {
       opacity: 0;
     }
   }
+
+  .svg-line-drawing {
+    opacity: 0.2;
+  }
 }
 
 .section.--home-business-of-data {
@@ -671,6 +707,10 @@ html[data-section="home-business-of-data"] {
 html[data-section="home-resources"] {
   --body-color: white;
   background-color: var(--blue-dark);
+
+  .svg-line-drawing {
+    opacity: 0;
+  }
 }
 
 .section.--home-resources {
