@@ -1,13 +1,104 @@
 const river = (() => {
+  const videoIds = {
+    smooth: 552069402,
+    choppy: 552596244,
+    rough: 552093404,
+    flowing: 552596313,
+    creek: 552604626,
+  };
+
+  let backgroundVideoPlayerContainer;
+  let backgroundVideoPlayers = {};
+
+  const hideBackgroundVideo = () => {
+    return new Promise((resolve, reject) => {
+      const visibleVideo = backgroundVideoPlayerContainer
+        .querySelector(`.__video.--visible`)
+        ?.classList.remove("--visible");
+
+      setTimeout(resolve, 300);
+    });
+  };
+
+  const initBackgroundVideo = () => {
+    backgroundVideoPlayerContainer = document.getElementById(
+      "background-video-player"
+    );
+
+    const videoNamesInOrder = Array.from(
+      backgroundVideoPlayerContainer.querySelectorAll(`.__video`)
+    )
+      .map((d) => d.dataset.videoName)
+      .reduce((m, v) => (m.includes(v) ? m : [...m, v]), []);
+
+    const initBackgroundVideo = (videoName) => {
+      // Don't double-initialize
+      if (backgroundVideoPlayers[videoName]) {
+        return;
+      }
+
+      const player = new Vimeo.Player(`background-video-player-${videoName}`, {
+        id: videoIds[videoName],
+        controls: false,
+        loop: true,
+        dnt: true,
+        muted: true,
+      });
+
+      if (videoName === "smooth") {
+        player.setPlaybackRate(0.75);
+      }
+
+      backgroundVideoPlayers[videoName] = player;
+
+      const nextVideoName =
+        videoNamesInOrder[videoNamesInOrder.indexOf(videoName) + 1];
+      if (nextVideoName) {
+        player.on("loaded", (playerId) => {
+          initBackgroundVideo(nextVideoName);
+        });
+      } else {
+        player.off("loaded");
+      }
+    };
+
+    initBackgroundVideo(videoNamesInOrder[0]);
+  };
+
   /* Section Tracking */
   const sectionAppeared = (section) => {
     if (!section) return;
 
-    console.log("APPEAR", section?.id);
+    console.log("APPEAR", section.id);
+
+    const { videoName } = section.dataset;
+    const visibleVideo = backgroundVideoPlayerContainer.querySelector(
+      `.__video.--visible`
+    );
+
+    const visibleVideoName = visibleVideo?.dataset?.videoName;
+
+    if (videoName) {
+      console.log("SHOW", videoName, backgroundVideoPlayers[videoName]);
+      if (visibleVideoName && visibleVideoName !== videoName) {
+        backgroundVideoPlayers[visibleVideoName].pause();
+        visibleVideo.classList.remove("--visible");
+      }
+
+      const player = backgroundVideoPlayers[videoName];
+      player.play();
+
+      backgroundVideoPlayerContainer
+        .querySelector(`.--${videoName}`)
+        ?.classList?.add("--visible");
+    } else {
+      backgroundVideoPlayers[visibleVideoName]?.pause();
+      hideBackgroundVideo();
+    }
   };
+
   const sectionDisappeared = (section) => {
     if (!section) return;
-
     console.log("DISAPPEAR", section?.id);
   };
 
@@ -35,17 +126,14 @@ const river = (() => {
       return;
     }
 
-    sectionAppeared(currentlyVisibleSection);
-    sectionDisappeared(document.getElementById(lastVisibleSectionId));
-
     document.documentElement.dataset.section = currentlyVisibleSection.id;
+
+    sectionDisappeared(document.getElementById(lastVisibleSectionId));
+    sectionAppeared(currentlyVisibleSection);
   };
 
   const initSectionTracking = () => {
-    window.addEventListener("DOMContentLoaded", (event) => {
-      updateCurrentlyVisibleSection();
-    });
-
+    updateCurrentlyVisibleSection();
     setInterval(updateCurrentlyVisibleSection, 500);
   };
 
@@ -53,6 +141,8 @@ const river = (() => {
     if (!section) {
       return;
     }
+
+    backgroundVideoPlayers[section.dataset.videoName]?.play();
 
     // Safari apparently has an issue with smooth scrolling; let's punt that for now.
     // https://stackoverflow.com/questions/51229742/javascript-window-scroll-behavior-smooth-not-working-in-safari
@@ -142,35 +232,12 @@ const river = (() => {
       ).textContent = `${windowWidth}px`;
     };
     window.addEventListener("resize", updateBreakpointDebugger);
-    window.addEventListener("DOMContentLoaded", updateBreakpointDebugger);
+    updateBreakpointDebugger();
   };
 
-  const initVideoPlayer = () => {
-    // window.addEventListener("DOMContentLoaded", hideVideo);
-  };
-
-  var youtubeVideoPlayer;
+  const initVideoPlayer = () => {};
 
   const showVideo = (videoName) => {
-    const videoPlayerRect = document
-      .getElementById("video-player")
-      .getBoundingClientRect();
-    const videoWidth = videoPlayerRect.width;
-    const videoHeight = videoPlayerRect.height;
-
-    const videoDictionary = {
-      "video-1": "7-oL_MINZyo",
-      "video-2": "7-oL_MINZyo",
-      "video-3": "7-oL_MINZyo",
-    };
-    const videoId = videoDictionary[videoName] ?? "7-oL_MINZyo";
-
-    youtubeVideoPlayer = new YT.Player("ytplayer", {
-      height: videoHeight,
-      width: videoWidth,
-      videoId: videoId,
-    });
-
     document
       .getElementById("video-player-container")
       .classList.remove("--hidden");
@@ -181,11 +248,24 @@ const river = (() => {
   };
 
   // Set up the page
-  initKeyboardNavigation();
-  initBreakpointTracking();
-  initScrollTracking();
-  initSectionTracking();
-  initVideoPlayer();
+  window.addEventListener("DOMContentLoaded", (event) => {
+    initKeyboardNavigation();
+    initBreakpointTracking();
+    initBackgroundVideo();
+    initScrollTracking();
+    initSectionTracking();
+    initVideoPlayer();
+
+    var typed = new Typed("#home-intro-p1", {
+      strings: [document.querySelector("#home-intro-p1-string").textContent],
+      typeSpeed: 20,
+      onComplete: () => {
+        document
+          .querySelector("#home-intro .__hidden-copy")
+          .classList.remove("--hidden");
+      },
+    });
+  });
 
   return {
     previousSection: scrollToPreviousSection,
