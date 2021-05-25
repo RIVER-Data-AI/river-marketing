@@ -690,7 +690,7 @@ html[data-section="home-who-is-using-your-data-2"] {
 }
 
 /******************************************************************************
-  Slide 12: Data Untapped
+  Data Untapped
 ******************************************************************************/
 
 html[data-section="home-data-untapped"] {
@@ -701,6 +701,26 @@ html[data-section="home-data-untapped"] {
 
 .section.--home-data-untapped {
   max-width: 39em;
+}
+
+/******************************************************************************
+  Working with Big Tech
+******************************************************************************/
+
+html[data-section="home-working-with-big-tech"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .background-video-container {
+    .__overlay.--feathered-gray-blue,
+    .__overlay.--dark-blue-inv {
+      opacity: 0;
+    }
+  }
+}
+
+.section.--home-working-with-big-tech {
+  max-width: 44em;
 }
 
 /******************************************************************************
