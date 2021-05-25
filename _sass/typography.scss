@@ -43,6 +43,13 @@ body {
     color: var(--magenta);
   }
 
+  &.--underline {
+    text-decoration: underline;
+  }
+
+  &.--caps {
+    text-transform: uppercase;
+  }
   &.--no-vmargin {
     margin-top: 0;
     margin-bottom: 0;
@@ -225,6 +232,11 @@ body {
   &.--yellow-fill {
     background-color: var(--yellow);
     color: var(--gray-dark);
+  }
+
+  &.--orange-fill {
+    background-color: var(--orange);
+    color: white;
   }
 
   @include bp-mobile {

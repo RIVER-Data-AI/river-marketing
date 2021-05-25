@@ -19,6 +19,14 @@ html {
   transition: background-color ease-in var(--transition-time);
 }
 
+ul li {
+  color: var(--body-color);
+
+  &::before {
+    color: var(--body-color);
+  }
+}
+
 body {
   margin: 0;
 }
@@ -48,6 +56,24 @@ body {
 
 .col3 {
   column-count: 3;
+}
+
+.flex-col2 {
+  display: flex;
+  flex-flow: row nowrap;
+
+  > * {
+    flex-basis: 50%;
+  }
+}
+
+.flex-col3 {
+  display: flex;
+  flex-flow: row nowrap;
+
+  > * {
+    flex-basis: 33.5%;
+  }
 }
 
 .header {
@@ -430,6 +456,8 @@ body {
 }
 
 .svg-line-drawing {
+  display: none;
+
   position: fixed;
 
   left: 0;
@@ -459,14 +487,14 @@ body {
 }
 
 /******************************************************************************
-  Slides 1-3: Home Intro
+  Home Intro
 *******************************************************************************/
 
 .section.--home-intro {
 }
 
 /******************************************************************************
-  Slide 4: A Privacy Platform You'll Want To Use
+  Priver is a platform for your data
 *******************************************************************************/
 
 html[data-section="home-privacy-platform"] {
@@ -474,7 +502,7 @@ html[data-section="home-privacy-platform"] {
 
 section.--home-privacy-platform {
   .__body {
-    width: 48em;
+    max-width: 48em;
   }
 }
 
@@ -504,7 +532,21 @@ html[data-section="home-video-1"] {
 }
 
 /******************************************************************************
-  Slides 7-8: River Gives You Control
+  Your Data Belongs To You
+*******************************************************************************/
+
+html[data-section="your-data-belongs-to-you"] {
+  --logo-color: var(--gray-light);
+  --body-color: white;
+  background-color: var(--blue-dark);
+}
+
+.section.--your-data-belongs-to-you {
+  max-width: 44em;
+}
+
+/******************************************************************************
+  River Gives You Control
 ******************************************************************************/
 
 html[data-section="home-river-gives-you-control"] {
@@ -537,7 +579,28 @@ html[data-section="home-river-gives-you-control"] {
 }
 
 /******************************************************************************
-  Slide 9: Who Owns Your Data
+  A Privacy Platform You'll Want To Use
+*******************************************************************************/
+
+html[data-section="home-privacy-platform-2"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .background-video-container {
+    .__overlay.--blue-blue {
+      opacity: 0;
+    }
+  }
+}
+
+section.--home-privacy-platform-2 {
+  .__body {
+    max-width: 48em;
+  }
+}
+
+/******************************************************************************
+  Who Owns Your Data
 ******************************************************************************/
 
 html[data-section="home-who-owns-your-data"] {
@@ -569,7 +632,7 @@ html[data-section="home-who-owns-your-data"] {
 }
 
 /******************************************************************************
-  Slide 10: Who Is Using Your Data
+  Who Is Using Your Data
 ******************************************************************************/
 
 html[data-section="home-who-is-using-your-data"] {
