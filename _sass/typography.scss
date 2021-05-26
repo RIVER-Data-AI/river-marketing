@@ -43,6 +43,13 @@ body {
     color: var(--magenta);
   }
 
+  &.--underline {
+    text-decoration: underline;
+  }
+
+  &.--caps {
+    text-transform: uppercase;
+  }
   &.--no-vmargin {
     margin-top: 0;
     margin-bottom: 0;
@@ -98,7 +105,6 @@ body {
 
 .p3 {
   font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
   font-weight: bold;
   font-size: 24px;
   color: var(--body-color);
@@ -150,6 +156,30 @@ body {
 
   &:hover {
     text-decoration: underline;
+  }
+
+  &.--gray-fill {
+    background-color: var(--gray404040);
+    transition: background-color ease-in-out 0.2s;
+    border-radius: 20px;
+    width: 1.6em;
+    height: 1.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1em;
+
+    &,
+    &:hover,
+    &:visited,
+    &:active {
+      color: white;
+    }
+
+    &:hover {
+      text-decoration: none;
+      background-color: #444444;
+    }
   }
 
   @include bp-mobile {
@@ -226,6 +256,11 @@ body {
   &.--yellow-fill {
     background-color: var(--yellow);
     color: var(--gray-dark);
+  }
+
+  &.--orange-fill {
+    background-color: var(--orange);
+    color: white;
   }
 
   @include bp-mobile {

@@ -7,8 +7,35 @@ const river = (() => {
     creek: 552604626,
   };
 
+  const sections = {
+    "home-intro": section1(),
+    "home-privacy-platform": section2(),
+  };
+
   let backgroundVideoPlayerContainer;
   let backgroundVideoPlayers = {};
+
+  const showBackgroundVideo = (videoName) => {
+    const visibleVideo =
+      backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
+
+    const visibleVideoName = visibleVideo?.dataset?.videoName;
+    if (visibleVideoName && visibleVideoName !== videoName) {
+      backgroundVideoPlayers[visibleVideoName].pause();
+      visibleVideo.classList.remove("--visible");
+    }
+
+    const player = backgroundVideoPlayers[videoName];
+    player.play();
+
+    player.on("play", () => {
+      backgroundVideoPlayerContainer
+        .querySelector(`.--${videoName}`)
+        ?.classList?.add("--visible");
+
+      player.off("play");
+    });
+  };
 
   const hideBackgroundVideo = () => {
     return new Promise((resolve, reject) => {
@@ -70,28 +97,19 @@ const river = (() => {
     if (!section) return;
 
     console.log("APPEAR", section.id);
+    sections[section.id]?.didAppear({
+      showBackgroundVideo,
+      scrollToNextSection,
+    });
 
     const { videoName } = section.dataset;
-    const visibleVideo = backgroundVideoPlayerContainer.querySelector(
-      `.__video.--visible`
-    );
-
-    const visibleVideoName = visibleVideo?.dataset?.videoName;
 
     if (videoName) {
-      console.log("SHOW", videoName, backgroundVideoPlayers[videoName]);
-      if (visibleVideoName && visibleVideoName !== videoName) {
-        backgroundVideoPlayers[visibleVideoName].pause();
-        visibleVideo.classList.remove("--visible");
-      }
-
-      const player = backgroundVideoPlayers[videoName];
-      player.play();
-
-      backgroundVideoPlayerContainer
-        .querySelector(`.--${videoName}`)
-        ?.classList?.add("--visible");
+      showBackgroundVideo(videoName);
     } else {
+      const visibleVideo =
+        backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
+      const visibleVideoName = visibleVideo?.dataset?.videoName;
       backgroundVideoPlayers[visibleVideoName]?.pause();
       hideBackgroundVideo();
     }
@@ -100,6 +118,7 @@ const river = (() => {
   const sectionDisappeared = (section) => {
     if (!section) return;
     console.log("DISAPPEAR", section?.id);
+    sections[section.id]?.didDisappear();
   };
 
   const findCurrentlyVisibleSection = () => {
@@ -141,8 +160,6 @@ const river = (() => {
     if (!section) {
       return;
     }
-
-    backgroundVideoPlayers[section.dataset.videoName]?.play();
 
     // Safari apparently has an issue with smooth scrolling; let's punt that for now.
     // https://stackoverflow.com/questions/51229742/javascript-window-scroll-behavior-smooth-not-working-in-safari
@@ -225,11 +242,14 @@ const river = (() => {
   };
 
   const initBreakpointTracking = () => {
+    const bpQuery = "#bp-debugger .__w";
+    if (!document.querySelector(bpQuery)) {
+      return;
+    }
+
     const updateBreakpointDebugger = () => {
       const windowWidth = window.innerWidth;
-      document.querySelector(
-        "#bp-debugger .__w"
-      ).textContent = `${windowWidth}px`;
+      document.querySelector(bpQuery).textContent = `${windowWidth}px`;
     };
     window.addEventListener("resize", updateBreakpointDebugger);
     updateBreakpointDebugger();
@@ -255,23 +275,14 @@ const river = (() => {
     initScrollTracking();
     initSectionTracking();
     initVideoPlayer();
-
-    var typed = new Typed("#home-intro-p1", {
-      strings: [document.querySelector("#home-intro-p1-string").textContent],
-      typeSpeed: 20,
-      onComplete: () => {
-        document
-          .querySelector("#home-intro .__hidden-copy")
-          .classList.remove("--hidden");
-      },
-    });
   });
 
   return {
+    backgroundVideoPlayers,
+    showVideo,
+    hideVideo,
+
     previousSection: scrollToPreviousSection,
     nextSection: scrollToNextSection,
-
-    showVideo: showVideo,
-    hideVideo: hideVideo,
   };
 })();
