@@ -1,5 +1,7 @@
 <header class="header">
-  <div class="__logo">{% include river_logo.svg %}</div>
+  <div class="__logo">
+    <a href="{{site.baseUrl}}/" title="River">{% include river_logo.svg %}</a>
+  </div>
   <div class="__links">
     <a href="javascript:void" title="Platform" class="__link l1">Platform</a>
     <a href="javascript:void" title="Products" class="__link l1">Products</a>
@@ -7,6 +9,19 @@
     <a href="javascript:void" title="About" class="__link l1">About</a>
   </div>
   <div class="__sign-up">
+    <a
+      href="{{ site.baseUrl }}/riverbank"
+      title="Riverbank"
+      class="__link l1 --gray-fill"
+      >R</a
+    >
+    <a
+      href="{{ site.baseUrl }}/streams"
+      title="StreamS"
+      class="__link l1 --gray-fill"
+      >S</a
+    >
+
     <a href="javascript:void" title="Sign Up" class="__link button --sign-up"
       >Sign Up</a
     >

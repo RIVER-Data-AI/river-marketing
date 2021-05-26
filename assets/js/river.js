@@ -16,9 +16,8 @@ const river = (() => {
   let backgroundVideoPlayers = {};
 
   const showBackgroundVideo = (videoName) => {
-    const visibleVideo = backgroundVideoPlayerContainer.querySelector(
-      `.__video.--visible`
-    );
+    const visibleVideo =
+      backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
 
     const visibleVideoName = visibleVideo?.dataset?.videoName;
     if (visibleVideoName && visibleVideoName !== videoName) {
@@ -108,9 +107,8 @@ const river = (() => {
     if (videoName) {
       showBackgroundVideo(videoName);
     } else {
-      const visibleVideo = backgroundVideoPlayerContainer.querySelector(
-        `.__video.--visible`
-      );
+      const visibleVideo =
+        backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
       const visibleVideoName = visibleVideo?.dataset?.videoName;
       backgroundVideoPlayers[visibleVideoName]?.pause();
       hideBackgroundVideo();
@@ -244,11 +242,14 @@ const river = (() => {
   };
 
   const initBreakpointTracking = () => {
+    const bpQuery = "#bp-debugger .__w";
+    if (!document.querySelector(bpQuery)) {
+      return;
+    }
+
     const updateBreakpointDebugger = () => {
       const windowWidth = window.innerWidth;
-      document.querySelector(
-        "#bp-debugger .__w"
-      ).textContent = `${windowWidth}px`;
+      document.querySelector(bpQuery).textContent = `${windowWidth}px`;
     };
     window.addEventListener("resize", updateBreakpointDebugger);
     updateBreakpointDebugger();

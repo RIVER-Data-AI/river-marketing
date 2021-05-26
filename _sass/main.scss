@@ -19,11 +19,15 @@ html {
   transition: background-color ease-in var(--transition-time);
 }
 
-ul li {
-  color: var(--body-color);
+ul {
+  padding-left: 20px;
 
-  &::before {
+  li {
     color: var(--body-color);
+
+    &::before {
+      color: var(--body-color);
+    }
   }
 }
 
@@ -63,7 +67,9 @@ body {
   flex-flow: row nowrap;
 
   > * {
-    flex-basis: 50%;
+    flex-basis: 49%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
   }
 }
 
@@ -100,6 +106,10 @@ body {
   background: transparent;
 
   .__logo {
+    a {
+      display: block;
+      padding: 5px;
+    }
     svg {
       width: 3em;
       color: var(--logo-color);
@@ -141,10 +151,6 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-
-  .__video .__overlay {
-    opacity: 1;
-  }
 
   .__overlay {
     width: 100vw;
@@ -490,6 +496,13 @@ body {
   Home Intro
 *******************************************************************************/
 
+html[data-section="home-intro"] {
+  .background-video-container {
+    .__overlay.--white-fade {
+      opacity: 1;
+    }
+  }
+}
 .section.--home-intro {
 }
 
@@ -498,6 +511,11 @@ body {
 *******************************************************************************/
 
 html[data-section="home-privacy-platform"] {
+  .background-video-container {
+    .__overlay.--white-fade {
+      opacity: 1;
+    }
+  }
 }
 
 section.--home-privacy-platform {
@@ -516,9 +534,8 @@ html[data-section="home-video-1"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--dark-blue,
-    .__overlay.--dark-blue-inv {
-      opacity: 0;
+    .__overlay.--feathered-gray-blue {
+      opacity: 1;
     }
   }
 
@@ -539,6 +556,12 @@ html[data-section="your-data-belongs-to-you"] {
   --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
+
+  .background-video-container {
+    .__overlay.--blue-blue {
+      opacity: 1;
+    }
+  }
 }
 
 .section.--your-data-belongs-to-you {
@@ -556,8 +579,8 @@ html[data-section="home-river-gives-you-control"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--blue-blue {
-      opacity: 0;
+    .__overlay.--gray-blue {
+      opacity: 1;
     }
   }
 
@@ -587,8 +610,8 @@ html[data-section="home-privacy-platform-2"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--blue-blue {
-      opacity: 0;
+    .__overlay.--gray-blue {
+      opacity: 1;
     }
   }
 }
@@ -609,8 +632,8 @@ html[data-section="home-who-owns-your-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--gray-blue {
-      opacity: 0;
+    .__overlay.--blue-blue {
+      opacity: 1;
     }
   }
 
@@ -641,6 +664,9 @@ html[data-section="home-who-is-using-your-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
+    .__overlay.--creek {
+      opacity: 1;
+    }
   }
 
   .svg-line-drawing {
@@ -670,6 +696,9 @@ html[data-section="home-who-is-using-your-data-2"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
+    .__overlay.--creek {
+      opacity: 1;
+    }
   }
 
   .svg-line-drawing {
@@ -712,9 +741,8 @@ html[data-section="home-working-with-big-tech"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--feathered-gray-blue,
-    .__overlay.--dark-blue-inv {
-      opacity: 0;
+    .__overlay.--creek {
+      opacity: 1;
     }
   }
 }
@@ -732,9 +760,8 @@ html[data-section="home-how-does-river-work"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--feathered-gray-blue,
-    .__overlay.--dark-blue-inv {
-      opacity: 0;
+    .__overlay.--dark-blue {
+      opacity: 1;
     }
   }
 
@@ -764,9 +791,8 @@ html[data-section="home-business-of-data"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--feathered-gray-blue,
-    .__overlay.--dark-blue {
-      opacity: 0;
+    .__overlay.--dark-blue-inv {
+      opacity: 1;
     }
   }
 
@@ -784,7 +810,7 @@ html[data-section="home-business-of-data"] {
 }
 
 /******************************************************************************
-  Slide 17: Resources
+  Resources
 ******************************************************************************/
 
 html[data-section="home-resources"] {
@@ -798,4 +824,66 @@ html[data-section="home-resources"] {
 
 .section.--home-resources {
   max-width: 80vw;
+}
+
+/******************************************************************************
+  StreamS
+******************************************************************************/
+
+html[data-section="streams"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .background-video-container {
+    .__overlay.--dark-blue {
+      opacity: 1;
+    }
+  }
+}
+
+.section.--streams {
+  justify-content: flex-start;
+
+  .__example {
+    border-top: 1px solid var(--body-color);
+    border-bottom: 1px solid var(--body-color);
+  }
+
+  .__copy {
+    flex-basis: 59vw;
+  }
+  .__images {
+    max-width: 39vw;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+/******************************************************************************
+  RiverBank
+******************************************************************************/
+
+html[data-section="riverbank"] {
+  .background-video-container {
+    .__overlay.--white-fade {
+      opacity: 1;
+    }
+  }
+}
+
+.section.--riverbank {
+  justify-content: flex-start;
+
+  .__copy {
+    flex-basis: 59vw;
+  }
+  .__images {
+    max-width: 39vw;
+
+    img {
+      max-width: 100%;
+    }
+  }
 }

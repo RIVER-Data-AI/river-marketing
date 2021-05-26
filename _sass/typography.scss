@@ -158,6 +158,30 @@ body {
     text-decoration: underline;
   }
 
+  &.--gray-fill {
+    background-color: var(--gray404040);
+    transition: background-color ease-in-out 0.2s;
+    border-radius: 20px;
+    width: 1.6em;
+    height: 1.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1em;
+
+    &,
+    &:hover,
+    &:visited,
+    &:active {
+      color: white;
+    }
+
+    &:hover {
+      text-decoration: none;
+      background-color: #444444;
+    }
+  }
+
   @include bp-mobile {
     font-size: 24px;
   }
