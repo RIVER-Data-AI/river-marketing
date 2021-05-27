@@ -58,6 +58,10 @@ body {
   &.--typed-string {
     display: none;
   }
+
+  &.--center {
+    text-align: center;
+  }
 }
 
 .p1 {
@@ -161,9 +165,9 @@ body {
   &.--gray-fill {
     background-color: var(--gray404040);
     transition: background-color ease-in-out 0.2s;
-    border-radius: 20px;
-    width: 1.6em;
-    height: 1.6em;
+    border-radius: 1.2em;
+    width: 2.4em;
+    height: 2.4em;
     display: flex;
     justify-content: center;
     align-items: center;

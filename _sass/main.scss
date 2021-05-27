@@ -117,6 +117,15 @@ body {
       transition: color ease-in var(--transition-time);
     }
   }
+  .__page-link {
+    position: absolute;
+    top: 4em;
+    right: 4em;
+
+    &:nth-child(2) {
+      right: 8em;
+    }
+  }
 
   .__links {
     display: flex;
@@ -481,8 +490,8 @@ body {
     stroke: #ccc;
     fill: transparent;
     stroke-width: 3;
-    animation: dash 3s linear forwards;
-    opacity: 1;
+    animation: dash 4s linear forwards;
+    opacity: 0.8;
   }
 
   .__scrib {
@@ -520,6 +529,7 @@ body {
   .__scrib2-3 {
     path {
       transform: scale(-1.7, 1.1) translate(-80%, -20%);
+      stroke-width: 5;
       stroke-dasharray: 38080;
       stroke-dashoffset: 38080;
     }

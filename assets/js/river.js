@@ -65,6 +65,8 @@ const river = (() => {
       return;
     }
 
+    console.log("load", videoName);
+
     const player = new Vimeo.Player(`background-video-player-${videoName}`, {
       id: videoIds[videoName],
       controls: false,
@@ -270,7 +272,7 @@ const river = (() => {
   });
 
   const dispatch = (action) => {
-    console.log("Received", action);
+    console.log(`Received ${action.name}`, action);
 
     switch (action.name) {
       case "DOMContentLoaded":
