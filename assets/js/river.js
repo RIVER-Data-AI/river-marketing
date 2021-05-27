@@ -14,6 +14,7 @@ const river = (() => {
 
   let backgroundVideoPlayerContainer;
   let backgroundVideoPlayers = {};
+  let videoNamesInOrder;
 
   const showBackgroundVideo = (videoName) => {
     const visibleVideo =
@@ -52,44 +53,36 @@ const river = (() => {
       "background-video-player"
     );
 
-    const videoNamesInOrder = Array.from(
+    videoNamesInOrder = Array.from(
       backgroundVideoPlayerContainer.querySelectorAll(`.__video`)
     )
       .map((d) => d.dataset.videoName)
       .reduce((m, v) => (m.includes(v) ? m : [...m, v]), []);
+  };
 
-    const initBackgroundVideo = (videoName) => {
-      // Don't double-initialize
-      if (backgroundVideoPlayers[videoName]) {
-        return;
-      }
+  const loadBackgroundVideo = (videoName) => {
+    if (!videoName || backgroundVideoPlayers[videoName]) {
+      return;
+    }
 
-      const player = new Vimeo.Player(`background-video-player-${videoName}`, {
-        id: videoIds[videoName],
-        controls: false,
-        loop: true,
-        dnt: true,
-        muted: true,
-      });
+    const player = new Vimeo.Player(`background-video-player-${videoName}`, {
+      id: videoIds[videoName],
+      controls: false,
+      loop: true,
+      dnt: true,
+      muted: true,
+    });
 
-      if (videoName === "smooth") {
-        player.setPlaybackRate(0.75);
-      }
+    if (videoName === "smooth") {
+      player.setPlaybackRate(0.75);
+    }
 
-      backgroundVideoPlayers[videoName] = player;
+    backgroundVideoPlayers[videoName] = player;
 
-      const nextVideoName =
-        videoNamesInOrder[videoNamesInOrder.indexOf(videoName) + 1];
-      if (nextVideoName) {
-        player.on("loaded", (playerId) => {
-          initBackgroundVideo(nextVideoName);
-        });
-      } else {
-        player.off("loaded");
-      }
-    };
-
-    initBackgroundVideo(videoNamesInOrder[0]);
+    player.on("loaded", (playerId) => {
+      dispatch({ name: "LoadedBackgroundVideo", videoName });
+      player.off("loaded");
+    });
   };
 
   /* Section Tracking */
@@ -268,14 +261,42 @@ const river = (() => {
   };
 
   // Set up the page
+  initKeyboardNavigation();
+  initScrollTracking();
+  initVideoPlayer();
+
   window.addEventListener("DOMContentLoaded", (event) => {
-    initKeyboardNavigation();
-    initBreakpointTracking();
-    initBackgroundVideo();
-    initScrollTracking();
-    initSectionTracking();
-    initVideoPlayer();
+    dispatch({ name: "DOMContentLoaded" });
   });
+
+  const dispatch = (action) => {
+    console.log("Received", action);
+
+    switch (action.name) {
+      case "DOMContentLoaded":
+        initBreakpointTracking();
+        initBackgroundVideo();
+        setTimeout(() => dispatch({ name: "FinishedLineDrawings" }), 3000);
+        break;
+
+      case "FinishedLineDrawings":
+        initSectionTracking();
+        setTimeout(() => dispatch({ name: "FinishedTyping" }), 2000);
+        break;
+
+      case "FinishedTyping":
+        loadBackgroundVideo(videoNamesInOrder[0]);
+        break;
+
+      case "LoadedBackgroundVideo":
+        const nextVideoIndex = videoNamesInOrder.indexOf(action.videoName) + 1;
+        loadBackgroundVideo(videoNamesInOrder[nextVideoIndex]);
+        break;
+
+      default:
+        return; // Do nothing
+    }
+  };
 
   return {
     backgroundVideoPlayers,

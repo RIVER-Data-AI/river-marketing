@@ -463,8 +463,6 @@ body {
 }
 
 .svg-line-drawing {
-  display: none;
-
   position: fixed;
 
   left: 0;
@@ -472,6 +470,9 @@ body {
   transition: top ease-in-out 1s, opacity ease-in-out 1s;
 
   svg {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 50vh;
     width: 100vw;
   }
@@ -480,10 +481,26 @@ body {
     stroke: #ccc;
     fill: transparent;
     stroke-width: 3;
-    stroke-dasharray: 38080;
-    stroke-dashoffset: 38080;
-    animation: dash 1s linear forwards;
+    animation: dash 3s linear forwards;
     opacity: 1;
+
+    &.scrib {
+      transform: scale(-1, 1) translate(-100%, 30%);
+      stroke-dasharray: 22000;
+      stroke-dashoffset: 22000;
+    }
+
+    &.scrib1 {
+      transform: scale(-1, 1) translate(-100%, -40%);
+      stroke-dasharray: 31000;
+      stroke-dashoffset: 31000;
+    }
+
+    &.scrib2 {
+      transform: scale(-1, 1) translate(-100%, -10%);
+      stroke-dasharray: 38080;
+      stroke-dashoffset: 38080;
+    }
   }
 }
 
