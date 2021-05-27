@@ -483,21 +483,43 @@ body {
     stroke-width: 3;
     animation: dash 3s linear forwards;
     opacity: 1;
+  }
 
-    &.scrib {
-      transform: scale(-1, 1) translate(-100%, 30%);
+  .__scrib {
+    path {
+      transform: scale(-1.5, 1) translate(-80%, -10%);
       stroke-dasharray: 22000;
       stroke-dashoffset: 22000;
     }
+  }
 
-    &.scrib1 {
-      transform: scale(-1, 1) translate(-100%, -40%);
+  .__scrib1 {
+    path {
+      transform: scale(-1.5, 1) translate(-80%, -20%);
       stroke-dasharray: 31000;
       stroke-dashoffset: 31000;
     }
+  }
 
-    &.scrib2 {
-      transform: scale(-1, 1) translate(-100%, -10%);
+  .__scrib2 {
+    path {
+      transform: scale(-1.5, 1) translate(-80%, 0%);
+      stroke-dasharray: 38080;
+      stroke-dashoffset: 38080;
+    }
+  }
+
+  .__scrib2-2 {
+    path {
+      transform: scale(-1.5, 1) translate(-80%, -20%);
+      stroke-dasharray: 38080;
+      stroke-dashoffset: 38080;
+    }
+  }
+
+  .__scrib2-3 {
+    path {
+      transform: scale(-1.7, 1.1) translate(-80%, -20%);
       stroke-dasharray: 38080;
       stroke-dashoffset: 38080;
     }
