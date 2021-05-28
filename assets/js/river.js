@@ -16,6 +16,17 @@ const river = (() => {
   let backgroundVideoPlayers = {};
   let videoNamesInOrder;
 
+  const redrawLineDrawings = () => {
+    Array.from(document.querySelectorAll(".svg-line-drawing svg path")).forEach(
+      (p) => {
+        p.classList.remove("--active");
+        setTimeout(() => {
+          p.classList.add("--active");
+        }, 50);
+      }
+    );
+  };
+
   const showBackgroundVideo = (videoName) => {
     const visibleVideo =
       backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
@@ -96,6 +107,10 @@ const river = (() => {
       showBackgroundVideo,
       scrollToNextSection,
     });
+
+    if (section.id !== "home-intro") {
+      redrawLineDrawings();
+    }
 
     const { videoName } = section.dataset;
 
@@ -278,6 +293,7 @@ const river = (() => {
       case "DOMContentLoaded":
         initBreakpointTracking();
         initBackgroundVideo();
+        redrawLineDrawings();
         setTimeout(() => dispatch({ name: "FinishedLineDrawings" }), 3000);
         break;
 

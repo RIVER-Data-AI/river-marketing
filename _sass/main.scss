@@ -425,23 +425,25 @@ body {
   position: fixed;
 
   left: 0;
-  top: 45vh;
+  bottom: 32vh;
   transition: top ease-in-out 1s, opacity ease-in-out 1s;
 
   svg {
     position: absolute;
     top: 0;
-    left: 0;
-    height: 50vh;
-    width: 100vw;
+    left: -5vw;
+    width: 110vw;
   }
 
   path {
     stroke: #ccc;
     fill: transparent;
     stroke-width: 3;
-    animation: dash 4s linear forwards;
     opacity: 0.8;
+
+    &.--active {
+      animation: dash 4s linear forwards;
+    }
   }
 
   .__scrib {
