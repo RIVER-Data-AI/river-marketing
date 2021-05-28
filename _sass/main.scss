@@ -140,6 +140,7 @@ body {
     }
 
     .__shimmer {
+      display: none;
       position: absolute;
       left: 0;
       top: 0;
@@ -497,6 +498,17 @@ body {
     top: 0;
     left: -5vw;
     width: 110vw;
+
+    $scrib-mask-gradient: linear-gradient(
+      0deg,
+      white 0%,
+      white 10%,
+      rgba(255, 255, 255, 0) 80%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    mask-image: $scrib-mask-gradient;
+    -webkit-mask-image: $scrib-mask-gradient;
   }
 
   path {
@@ -548,6 +560,36 @@ body {
       stroke-width: 5;
       stroke-dasharray: 38080;
       stroke-dashoffset: 38080;
+    }
+  }
+
+  .__scrib2-4 {
+    path {
+      transform: scale(-1.7, 1.1) translate(-82%, -25%);
+      stroke-width: 5;
+      stroke-dasharray: 38080;
+      stroke-dashoffset: 38080;
+      animation-delay: 4s;
+    }
+  }
+
+  .__scrib2-5 {
+    path {
+      transform: scale(-1.7, 1.1) translate(-78%, -30%);
+      stroke-width: 5;
+      stroke-dasharray: 38080;
+      stroke-dashoffset: 38080;
+      animation-delay: 4s;
+    }
+  }
+
+  .__scrib2-6 {
+    path {
+      transform: scale(-1.7, 1.1) translate(-76%, -28%);
+      stroke-width: 5;
+      stroke-dasharray: 38080;
+      stroke-dashoffset: 38080;
+      animation-delay: 4s;
     }
   }
 }
