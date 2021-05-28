@@ -269,9 +269,6 @@ body {
       opacity: 1;
     }
   }
-
-  .__line-drawing {
-  }
 }
 
 .scroll-container {
@@ -422,53 +419,6 @@ body {
 
 .style-guide {
   margin: 200px 50px;
-}
-
-.bp-debugger {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  border: 1px solid var(--gray-dark);
-  display: flex;
-  flex-flow: row nowrap;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
-  font-size: 10px;
-  line-height: 12px;
-  padding: 0;
-  margin: 0;
-  color: var(--body-color);
-
-  .__bp {
-    margin: 0;
-    padding: 4px;
-    border-right: 1px solid var(--gray-dark);
-    text-align: center;
-
-    &::before {
-      @include bp-mobile {
-        content: "📱";
-      }
-
-      @include bp-small {
-        content: "S";
-      }
-
-      @include bp-medium {
-        content: "M";
-      }
-
-      @include bp-large {
-        content: "L";
-      }
-    }
-  }
-
-  .__w {
-    margin: 0;
-    padding: 4px;
-    text-align: center;
-  }
 }
 
 .svg-line-drawing {
