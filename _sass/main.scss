@@ -490,7 +490,7 @@ body {
   position: fixed;
 
   left: 0;
-  bottom: 32vh;
+  bottom: 36vh;
   transition: top ease-in-out 1s, opacity ease-in-out 1s;
 
   svg {
@@ -502,8 +502,8 @@ body {
     $scrib-mask-gradient: linear-gradient(
       0deg,
       white 0%,
-      white 10%,
-      rgba(255, 255, 255, 0) 80%,
+      white 30%,
+      rgba(255, 255, 255, 0) 90%,
       rgba(255, 255, 255, 0) 100%
     );
 
@@ -512,7 +512,7 @@ body {
   }
 
   path {
-    stroke: #ccc;
+    stroke: #bbb;
     fill: transparent;
     stroke-width: 3;
     opacity: 0.8;
@@ -575,21 +575,21 @@ body {
 
   .__scrib2-5 {
     path {
-      transform: scale(-1.7, 1.1) translate(-78%, -30%);
+      transform: scale(-1.7, 0.8) translate(-78%, -30%);
       stroke-width: 5;
       stroke-dasharray: 38080;
       stroke-dashoffset: 38080;
-      animation-delay: 4s;
+      animation-delay: 6s;
     }
   }
 
   .__scrib2-6 {
     path {
-      transform: scale(-1.7, 1.1) translate(-76%, -28%);
+      transform: scale(-1.7, 0.9) translate(-76%, -28%);
       stroke-width: 5;
       stroke-dasharray: 38080;
       stroke-dashoffset: 38080;
-      animation-delay: 4s;
+      animation-delay: 8s;
     }
   }
 }
