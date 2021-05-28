@@ -8,7 +8,7 @@ const section1 = () => {
       if (!typeElement.dataset.typeHasAppeared) {
         document
           .querySelector("#background-video-player .__video.--smooth")
-          .classList.add("--delay-3");
+          .classList.add("--delay-2");
         new Typed("#home-intro-p1", {
           strings: [root.querySelector("#home-intro-p1-string").textContent],
           typeSpeed: 30,
@@ -21,7 +21,7 @@ const section1 = () => {
 
             showBackgroundVideo("smooth");
 
-            setTimeout(scrollToNextSection, 7000);
+            setTimeout(scrollToNextSection, 5000);
           },
         });
 
@@ -50,9 +50,9 @@ const section2 = () => {
           strings: [
             root.querySelector("#home-privacy-platform-p2-string").textContent,
           ],
+          showCursor: false,
           typeSpeed: 30,
           onComplete: () => {
-            root.querySelector(".typed-cursor").remove();
             Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
               e.classList.remove("--hidden")
             );
