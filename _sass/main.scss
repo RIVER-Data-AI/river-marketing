@@ -490,7 +490,7 @@ body {
   position: fixed;
 
   left: 0;
-  bottom: 36vh;
+  bottom: calc(20vh + 20vw);
   transition: top ease-in-out 1s, opacity ease-in-out 1s;
 
   svg {
