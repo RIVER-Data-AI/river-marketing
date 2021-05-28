@@ -10,6 +10,8 @@ const river = (() => {
   const sections = {
     "home-intro": section1(),
     "home-privacy-platform": section2(),
+    streams: sectionStreams(),
+    riverbank: sectionRiverbank(),
   };
 
   let backgroundVideoPlayerContainer;
@@ -287,17 +289,26 @@ const river = (() => {
   });
 
   const dispatch = (action) => {
-    console.log(`Received ${action.name}`, action);
+    const sectionName = document.documentElement.dataset.section;
+    const section = sections[sectionName];
+    console.log(`Received ${action.name}`, action, "visible section", section);
 
     switch (action.name) {
       case "DOMContentLoaded":
         initBreakpointTracking();
         initBackgroundVideo();
         redrawLineDrawings();
-        setTimeout(() => dispatch({ name: "FinishedLineDrawings" }), 3000);
+
+        if (["streams", "riverbank"].includes(sectionName)) {
+          console.log("LOAD", videoNamesInOrder[0], sectionName);
+          loadBackgroundVideo(videoNamesInOrder[0]);
+        } else {
+          setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
+        }
+
         break;
 
-      case "FinishedLineDrawings":
+      case "StartTyping":
         initSectionTracking();
         setTimeout(() => dispatch({ name: "FinishedTyping" }), 2000);
         break;
@@ -307,8 +318,10 @@ const river = (() => {
         break;
 
       case "LoadedBackgroundVideo":
+        section?.dispatch({ showBackgroundVideo }, action);
         const nextVideoIndex = videoNamesInOrder.indexOf(action.videoName) + 1;
         loadBackgroundVideo(videoNamesInOrder[nextVideoIndex]);
+
         break;
 
       default:

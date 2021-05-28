@@ -68,3 +68,27 @@ const section2 = () => {
     },
   };
 };
+
+const sectionRiverbank = () => {
+  return {
+    didAppear: () => {},
+    didDisappear: () => {},
+    dispatch: ({ showBackgroundVideo }, action) => {
+      if (action.name === "LoadedBackgroundVideo") {
+        showBackgroundVideo(action.videoName);
+      }
+    },
+  };
+};
+
+const sectionStreams = () => {
+  return {
+    didAppear: () => {},
+    didDisappear: () => {},
+    dispatch: ({ showBackgroundVideo }, action) => {
+      if (action.name === "LoadedBackgroundVideo") {
+        showBackgroundVideo(action.videoName);
+      }
+    },
+  };
+};

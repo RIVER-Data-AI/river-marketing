@@ -16,7 +16,10 @@ html {
 
   --signup-link-pill-color: var(--red);
   --transition-time: 1s;
-  transition: background-color ease-in var(--transition-time);
+
+  &.--animated-bg {
+    transition: background-color ease-in var(--transition-time);
+  }
 }
 
 ul {
@@ -104,8 +107,12 @@ body {
   align-items: center;
   justify-content: space-between;
   background: transparent;
+  z-index: 5;
 
   .__logo {
+    flex-basis: 25%;
+    flex-shrink: 2;
+
     a {
       display: block;
       padding: 5px;
@@ -117,19 +124,11 @@ body {
       transition: color ease-in var(--transition-time);
     }
   }
-  .__page-link {
-    position: absolute;
-    top: 4em;
-    right: 4em;
-
-    &:nth-child(2) {
-      right: 8em;
-    }
-  }
 
   .__links {
     display: flex;
     flex-basis: 40%;
+    flex-grow: 2;
     justify-content: space-between;
 
     .__link {
@@ -139,6 +138,14 @@ body {
     .l1 {
       color: var(--nav-color);
     }
+  }
+
+  .__page-links {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    flex-basis: 20%;
+    margin-top: 8vh;
   }
 
   .__sign-up {
@@ -845,6 +852,7 @@ html[data-section="streams"] {
 
 .section.--streams {
   justify-content: flex-start;
+  margin-top: calc(8vh + 80px);
 
   .__example {
     border-top: 1px solid var(--body-color);
@@ -877,6 +885,7 @@ html[data-section="riverbank"] {
 
 .section.--riverbank {
   justify-content: flex-start;
+  margin-top: calc(8vh + 80px);
 
   .__copy {
     flex-basis: 59vw;
