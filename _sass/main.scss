@@ -138,6 +138,28 @@ body {
     .l1 {
       color: var(--nav-color);
     }
+
+    .__link-container {
+      .__sublinks {
+        display: none;
+
+        position: absolute;
+        list-style-type: none;
+        margin-top: 0.25em;
+
+        li {
+          display: block;
+          padding: 0.25em 1em;
+          margin-left: -1em;
+        }
+      }
+
+      &:hover {
+        .__sublinks {
+          display: block;
+        }
+      }
+    }
   }
 
   .__page-links {
