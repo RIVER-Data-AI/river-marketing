@@ -246,9 +246,10 @@ body {
   border-radius: 20px;
 
   &.--sign-up {
-    color: white;
+    color: var(--signup-link-text-color);
     font-family: "Baskerville", serif;
     background-color: var(--signup-link-pill-color);
+    transition: background-color 1s ease-in-out;
   }
 
   &.--red-stroke {

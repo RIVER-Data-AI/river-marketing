@@ -14,6 +14,7 @@ html {
   --logo-color: var(--gray-medium);
   --nav-color: var(--body-color);
 
+  --signup-link-text-color: white;
   --signup-link-pill-color: var(--red);
   --transition-time: 1s;
 
@@ -203,7 +204,7 @@ body {
     flex-flow: row nowrap;
     justify-content: space-around;
     flex-basis: 20%;
-    margin-top: 8vh;
+    margin-top: 12vh;
   }
 
   .__sign-up {
@@ -605,6 +606,7 @@ body {
 *******************************************************************************/
 
 html[data-section="home-intro"] {
+  --signup-link-pill-color: var(--magenta);
   .background-video-container {
     .__overlay.--white-fade {
       opacity: 1;
@@ -619,6 +621,7 @@ html[data-section="home-intro"] {
 *******************************************************************************/
 
 html[data-section="home-privacy-platform"] {
+  --signup-link-pill-color: var(--orange);
   .background-video-container {
     .__overlay.--white-fade {
       opacity: 1;
@@ -642,6 +645,7 @@ section.--home-privacy-platform {
 ******************************************************************************/
 
 html[data-section="home-video-1"] {
+  --signup-link-pill-color: var(--red);
   --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
@@ -666,6 +670,8 @@ html[data-section="home-video-1"] {
 *******************************************************************************/
 
 html[data-section="your-data-belongs-to-you"] {
+  --signup-link-pill-color: var(--yellow);
+  --signup-link-text-color: var(--gray-beast);
   --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
@@ -686,6 +692,7 @@ html[data-section="your-data-belongs-to-you"] {
 ******************************************************************************/
 
 html[data-section="home-river-gives-you-control"] {
+  --signup-link-pill-color: var(--green);
   --logo-color: var(--gray-beast);
   --nav-color: var(--gray-beast);
   --body-color: white;
@@ -719,6 +726,7 @@ html[data-section="home-river-gives-you-control"] {
 *******************************************************************************/
 
 html[data-section="home-privacy-platform-2"] {
+  --signup-link-pill-color: var(--magenta);
   --body-color: white;
   background-color: var(--blue-dark);
 
@@ -740,6 +748,8 @@ section.--home-privacy-platform-2 {
 ******************************************************************************/
 
 html[data-section="home-who-owns-your-data"] {
+  --signup-link-pill-color: var(--yellow);
+  --signup-link-text-color: var(--gray-beast);
   --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
@@ -772,6 +782,8 @@ html[data-section="home-who-owns-your-data"] {
 ******************************************************************************/
 
 html[data-section="home-who-is-using-your-data"] {
+  --signup-link-pill-color: var(--yellow);
+  --signup-link-text-color: var(--gray-beast);
   --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
@@ -804,6 +816,9 @@ html[data-section="home-who-is-using-your-data"] {
 ******************************************************************************/
 
 html[data-section="home-who-is-using-your-data-2"] {
+  --signup-link-pill-color: var(--yellow);
+  --signup-link-text-color: var(--gray-beast);
+
   --logo-color: var(--gray-light);
   --body-color: white;
   background-color: var(--blue-dark);
@@ -832,24 +847,11 @@ html[data-section="home-who-is-using-your-data-2"] {
 }
 
 /******************************************************************************
-  Data Untapped
-******************************************************************************/
-
-html[data-section="home-data-untapped"] {
-  .svg-line-drawing {
-    top: 0;
-  }
-}
-
-.section.--home-data-untapped {
-  max-width: 39em;
-}
-
-/******************************************************************************
   Working with Big Tech
 ******************************************************************************/
 
 html[data-section="home-working-with-big-tech"] {
+  --signup-link-pill-color: var(--magenta);
   --body-color: white;
   background-color: var(--blue-dark);
 
@@ -865,10 +867,26 @@ html[data-section="home-working-with-big-tech"] {
 }
 
 /******************************************************************************
+  Data Untapped
+******************************************************************************/
+
+html[data-section="home-data-untapped"] {
+  --signup-link-pill-color: var(--green);
+  .svg-line-drawing {
+    top: 0;
+  }
+}
+
+.section.--home-data-untapped {
+  max-width: 39em;
+}
+
+/******************************************************************************
   Slide 14: How Does River Work
 ******************************************************************************/
 
 html[data-section="home-how-does-river-work"] {
+  --signup-link-pill-color: var(--red);
   --body-color: white;
   background-color: var(--blue-dark);
 
@@ -900,6 +918,7 @@ html[data-section="home-how-does-river-work"] {
 ******************************************************************************/
 
 html[data-section="home-business-of-data"] {
+  --signup-link-pill-color: var(--purple);
   --body-color: white;
   background-color: var(--blue-dark);
 
@@ -944,6 +963,9 @@ html[data-section="home-resources"] {
 ******************************************************************************/
 
 html[data-section="streams"] {
+  --signup-link-pill-color: var(--yellow);
+  --signup-link-text-color: var(--gray-beast);
+
   --body-color: white;
   background-color: var(--blue-dark);
 
