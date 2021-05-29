@@ -9,7 +9,27 @@ const river = (() => {
 
   const sections = {
     "home-intro": section1(),
-    "home-privacy-platform": section2(),
+    "home-privacy-platform": typedTextSection("#home-privacy-platform"),
+    "home-video-1": typedTextAndVideoPlayerSection("#home-video-1"),
+    "your-data-belongs-to-you": typedTextSection("#your-data-belongs-to-you"),
+    "home-river-gives-you-control": typedTextSection(
+      "#home-river-gives-you-control"
+    ),
+    "home-privacy-platform-2": typedTextSection("#home-privacy-platform-2"),
+    "home-who-is-using-your-data": typedTextSection(
+      "#home-who-is-using-your-data"
+    ),
+    "home-who-is-using-your-data-2": typedTextSection(
+      "#home-who-is-using-your-data-2"
+    ),
+    "home-working-with-big-tech": typedTextSection(
+      "#home-working-with-big-tech"
+    ),
+    "home-data-untapped": typedTextAndVideoPlayerSection("#home-data-untapped"),
+    "home-how-does-river-work": typedTextSection("#home-how-does-river-work"),
+    "home-how-business-of-data": typedTextAndVideoPlayerSection(
+      "#home-how-business-of-data"
+    ),
     streams: sectionStreams(),
     riverbank: sectionRiverbank(),
   };

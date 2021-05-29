@@ -1,21 +1,39 @@
+const setupTypingText = (root) => {
+  const typeElement = root.querySelector(".__typing-text-target");
+
+  if (!typeElement.dataset.typeHasAppeared) {
+    new Typed(typeElement, {
+      strings: [root.querySelector(".__typing-text-source").textContent],
+      showCursor: false,
+      typeSpeed: 40,
+      onComplete: () => {
+        Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
+          e.classList.remove("--hidden")
+        );
+      },
+    });
+
+    typeElement.dataset.typeHasAppeared = true;
+  }
+};
+
 // "In the online world"
 const section1 = () => {
   const videoName = "flowing";
   return {
     didAppear: ({ showBackgroundVideo, scrollToNextSection }) => {
       const root = document.querySelector("#home-intro");
-      const typeElement = root.querySelector("#home-intro-p1");
+      const typeElement = root.querySelector(".__typing-text-target");
 
       if (!typeElement.dataset.typeHasAppeared) {
         document
           .querySelector(`#background-video-player .__video.--${videoName}`)
           .classList.add("--delay-2");
-        new Typed("#home-intro-p1", {
-          strings: [root.querySelector("#home-intro-p1-string").textContent],
+        new Typed(typeElement, {
+          strings: [root.querySelector(".__typing-text-source").textContent],
+          showCursor: false,
           typeSpeed: 30,
           onComplete: () => {
-            root.querySelector(".typed-cursor").remove();
-
             Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
               e.classList.remove("--hidden")
             );
@@ -40,35 +58,25 @@ const section1 = () => {
   };
 };
 
-const section2 = () => {
-  return {
-    didAppear: () => {
-      const root = document.querySelector("#home-privacy-platform");
-      const typeElement = root.querySelector("#home-privacy-platform-p2");
+const typedTextSection = (rootSelector) => ({
+  didAppear: () => {
+    setupTypingText(document.querySelector(rootSelector));
+  },
 
-      if (!typeElement.dataset.typeHasAppeared) {
-        new Typed("#home-privacy-platform-p2", {
-          strings: [
-            root.querySelector("#home-privacy-platform-p2-string").textContent,
-          ],
-          showCursor: false,
-          typeSpeed: 30,
-          onComplete: () => {
-            Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
-              e.classList.remove("--hidden")
-            );
-          },
-        });
+  didDisappear: () => {
+    console.log(rootSelector, "disappeared!");
+  },
+});
 
-        typeElement.dataset.typeHasAppeared = true;
-      }
-    },
+const typedTextAndVideoPlayerSection = (rootSelector) => ({
+  didAppear: () => {
+    setupTypingText(document.querySelector(rootSelector));
+  },
 
-    didDisappear: () => {
-      console.log("section 2 disappeared!");
-    },
-  };
-};
+  didDisappear: () => {
+    console.log(rootSelector, "disappeared!");
+  },
+});
 
 const sectionRiverbank = () => {
   return {
