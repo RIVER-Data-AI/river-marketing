@@ -18,6 +18,19 @@ const river = (() => {
   let backgroundVideoPlayers = {};
   let videoNamesInOrder;
 
+  const initLineDrawings = () => {
+    // document
+    //   .querySelector(".svg-line-drawing")
+    //   .addEventListener("animationend", (e) => {
+    //     setTimeout(() => {
+    //       e.target.classList.remove("--active");
+    //       setTimeout(() => {
+    //         e.target.classList.add("--active");
+    //       }, 50);
+    //     }, 8000);
+    //   });
+  };
+
   const redrawLineDrawings = () => {
     Array.from(document.querySelectorAll(".svg-line-drawing svg path")).forEach(
       (p) => {
@@ -87,10 +100,6 @@ const river = (() => {
       dnt: true,
       muted: true,
     });
-
-    if (videoName === "smooth") {
-      player.setPlaybackRate(0.75);
-    }
 
     backgroundVideoPlayers[videoName] = player;
 
@@ -253,20 +262,6 @@ const river = (() => {
     storeScroll();
   };
 
-  const initBreakpointTracking = () => {
-    const bpQuery = "#bp-debugger .__w";
-    if (!document.querySelector(bpQuery)) {
-      return;
-    }
-
-    const updateBreakpointDebugger = () => {
-      const windowWidth = window.innerWidth;
-      document.querySelector(bpQuery).textContent = `${windowWidth}px`;
-    };
-    window.addEventListener("resize", updateBreakpointDebugger);
-    updateBreakpointDebugger();
-  };
-
   const initVideoPlayer = () => {};
 
   const showVideo = (videoName) => {
@@ -291,16 +286,15 @@ const river = (() => {
   const dispatch = (action) => {
     const sectionName = document.documentElement.dataset.section;
     const section = sections[sectionName];
-    console.log(`Received ${action.name}`, action, "visible section", section);
+    console.log(`Recevied ${sectionName}`, action);
 
     switch (action.name) {
       case "DOMContentLoaded":
-        initBreakpointTracking();
+        initLineDrawings();
         initBackgroundVideo();
         redrawLineDrawings();
 
         if (["streams", "riverbank"].includes(sectionName)) {
-          console.log("LOAD", videoNamesInOrder[0], sectionName);
           loadBackgroundVideo(videoNamesInOrder[0]);
         } else {
           setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
@@ -318,8 +312,9 @@ const river = (() => {
         break;
 
       case "LoadedBackgroundVideo":
-        section?.dispatch({ showBackgroundVideo }, action);
+        section?.dispatch && section?.dispatch({ showBackgroundVideo }, action);
         const nextVideoIndex = videoNamesInOrder.indexOf(action.videoName) + 1;
+        console.log("Load next video", videoNamesInOrder[nextVideoIndex]);
         loadBackgroundVideo(videoNamesInOrder[nextVideoIndex]);
 
         break;

@@ -1,5 +1,6 @@
 // "In the online world"
 const section1 = () => {
+  const videoName = "flowing";
   return {
     didAppear: ({ showBackgroundVideo, scrollToNextSection }) => {
       const root = document.querySelector("#home-intro");
@@ -7,7 +8,7 @@ const section1 = () => {
 
       if (!typeElement.dataset.typeHasAppeared) {
         document
-          .querySelector("#background-video-player .__video.--smooth")
+          .querySelector(`#background-video-player .__video.--${videoName}`)
           .classList.add("--delay-2");
         new Typed("#home-intro-p1", {
           strings: [root.querySelector("#home-intro-p1-string").textContent],
@@ -19,7 +20,7 @@ const section1 = () => {
               e.classList.remove("--hidden")
             );
 
-            showBackgroundVideo("smooth");
+            showBackgroundVideo(videoName);
 
             setTimeout(scrollToNextSection, 5000);
           },
@@ -31,10 +32,10 @@ const section1 = () => {
 
     didDisappear: () => {
       document
-        .querySelector("#background-video-player .__video.--smooth")
+        .querySelector(`#background-video-player .__video.--${videoName}`)
         .classList.remove("--delay-3");
 
-      document.querySelector("#home-intro").dataset.videoName = "smooth";
+      document.querySelector("#home-intro").dataset.videoName = videoName;
     },
   };
 };
