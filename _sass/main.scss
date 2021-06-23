@@ -3,7 +3,9 @@
 @import "fonts";
 @import "colors";
 @import "typography";
+@import "overlays";
 @import "effects";
+@import "sections";
 
 * {
   box-sizing: border-box;
@@ -235,76 +237,6 @@ body {
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity ease-in-out var(--transition-time);
-
-    &.--white-fade {
-      background-image: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
-    }
-
-    &.--feathered-gray-blue {
-      background-image: linear-gradient(
-        rgb(107, 107, 107) 0%,
-        rgb(35, 64, 104) 50%,
-        rgba(35, 64, 104, 0.6) 90%,
-        rgba(35, 64, 104, 0) 100%
-      );
-
-      $mask-gradient: linear-gradient(
-        90deg,
-        white 0%,
-        rgba(255, 255, 255, 0) 200%
-      );
-
-      mask-image: $mask-gradient;
-      -webkit-mask-image: $mask-gradient;
-    }
-
-    &.--dark-blue {
-      background-image: linear-gradient(
-        rgb(15, 43, 77) 10%,
-        rgba(15, 43, 77, 0.6) 60%,
-        rgba(15, 43, 77, 0.4)
-      );
-    }
-
-    &.--dark-blue-inv {
-      background-image: linear-gradient(
-        rgba(15, 43, 77, 0.4),
-        rgba(15, 43, 77, 0.6) 40%,
-        rgb(15, 43, 77) 90%
-      );
-    }
-
-    &.--gray-blue {
-      background-image: linear-gradient(
-        #ffffff66,
-        rgba(85, 115, 155, 0.6),
-        rgba(14, 43, 104, 1)
-      );
-    }
-
-    &.--blue-blue {
-      background-image: linear-gradient(
-        rgba(15, 43, 77, 0.4),
-        rgba(15, 43, 77, 1)
-      );
-    }
-
-    &.--blue-blue-2 {
-      background-image: linear-gradient(
-        rgba(35, 64, 104, 0.4),
-        rgba(35, 70, 104, 1)
-      );
-    }
-
-    &.--creek {
-      background-image: linear-gradient(
-        rgba(60, 85, 135, 1),
-        rgba(60, 85, 135, 1) 10%,
-        rgba(60, 85, 135, 0.4) 70%,
-        rgba(35, 70, 104, 0)
-      );
-    }
   }
 
   .__video {
@@ -429,6 +361,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  display: block;
 
   .__overlay {
     position: fixed;
@@ -460,6 +393,8 @@ body {
   }
 
   &.--hidden {
+    display: none;
+
     .__overlay {
       left: 100vw;
       opacity: 0;
@@ -485,6 +420,20 @@ body {
 
 .style-guide {
   margin: 200px 50px;
+
+  .__colors {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+
+    > p {
+      width: 19vw;
+      height: 19vw;
+      margin: 0.2vw;
+      padding: 2vw;
+      color: white;
+    }
+  }
 }
 
 .svg-line-drawing {
@@ -598,429 +547,5 @@ body {
 @keyframes dash {
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-/******************************************************************************
-  Home Intro
-*******************************************************************************/
-
-html[data-section="home-intro"] {
-  --signup-link-pill-color: var(--magenta);
-  .background-video-container {
-    .__overlay.--white-fade {
-      opacity: 1;
-    }
-  }
-}
-.section.--home-intro {
-}
-
-/******************************************************************************
-  Priver is a platform for your data
-*******************************************************************************/
-
-html[data-section="home-privacy-platform"] {
-  --signup-link-pill-color: var(--orange);
-  .background-video-container {
-    .__overlay.--white-fade {
-      opacity: 1;
-    }
-  }
-}
-
-section.--home-privacy-platform {
-  .__body {
-    max-width: 48em;
-  }
-
-  .__typing-text-target {
-    display: flex;
-    flex-flow: row nowrap;
-  }
-}
-
-/******************************************************************************
-  Slides 5-6: Video 1
-******************************************************************************/
-
-html[data-section="home-video-1"] {
-  --signup-link-pill-color: var(--red);
-  --logo-color: var(--gray-light);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--feathered-gray-blue {
-      opacity: 1;
-    }
-  }
-
-  .svg-line-drawing {
-    opacity: 0.2;
-  }
-}
-
-.section.--home-video-1 {
-  max-width: 44em;
-}
-
-/******************************************************************************
-  Your Data Belongs To You
-*******************************************************************************/
-
-html[data-section="your-data-belongs-to-you"] {
-  --signup-link-pill-color: var(--yellow);
-  --signup-link-text-color: var(--gray-beast);
-  --logo-color: var(--gray-light);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--blue-blue {
-      opacity: 1;
-    }
-  }
-}
-
-.section.--your-data-belongs-to-you {
-  max-width: 44em;
-}
-
-/******************************************************************************
-  River Gives You Control
-******************************************************************************/
-
-html[data-section="home-river-gives-you-control"] {
-  --signup-link-pill-color: var(--green);
-  --logo-color: var(--gray-beast);
-  --nav-color: var(--gray-beast);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--gray-blue {
-      opacity: 1;
-    }
-  }
-
-  .svg-line-drawing {
-    opacity: 0.2;
-  }
-}
-
-.section.--home-river-gives-you-control {
-  max-width: 54vw;
-
-  @include bp-mobile {
-    max-width: 80vw;
-  }
-
-  @include bp-small {
-    max-width: 80vw;
-  }
-}
-
-/******************************************************************************
-  A Privacy Platform You'll Want To Use
-*******************************************************************************/
-
-html[data-section="home-privacy-platform-2"] {
-  --signup-link-pill-color: var(--magenta);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--gray-blue {
-      opacity: 1;
-    }
-  }
-}
-
-section.--home-privacy-platform-2 {
-  .__body {
-    max-width: 48em;
-  }
-}
-
-/******************************************************************************
-  Who Owns Your Data
-******************************************************************************/
-
-html[data-section="home-who-owns-your-data"] {
-  --signup-link-pill-color: var(--yellow);
-  --signup-link-text-color: var(--gray-beast);
-  --logo-color: var(--gray-light);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--blue-blue {
-      opacity: 1;
-    }
-  }
-
-  .svg-line-drawing {
-    opacity: 0.2;
-  }
-}
-
-.section.--home-who-owns-your-data {
-  max-width: 54vw;
-
-  @include bp-mobile {
-    max-width: 90vw;
-  }
-
-  @include bp-small {
-    max-width: 90vw;
-  }
-}
-
-/******************************************************************************
-  Who Is Using Your Data
-******************************************************************************/
-
-html[data-section="home-who-is-using-your-data"] {
-  --signup-link-pill-color: var(--yellow);
-  --signup-link-text-color: var(--gray-beast);
-  --logo-color: var(--gray-light);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--creek {
-      opacity: 1;
-    }
-  }
-
-  .svg-line-drawing {
-    opacity: 0.2;
-  }
-}
-
-.section.--home-who-is-using-your-data {
-  max-width: 80vw;
-
-  @include bp-mobile {
-    max-width: 90vw;
-  }
-
-  @include bp-small {
-    max-width: 90vw;
-  }
-}
-
-/******************************************************************************
-  Slide 11: Who Is Using Your Data, 2
-******************************************************************************/
-
-html[data-section="home-who-is-using-your-data-2"] {
-  --signup-link-pill-color: var(--yellow);
-  --signup-link-text-color: var(--gray-beast);
-
-  --logo-color: var(--gray-light);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--creek {
-      opacity: 1;
-    }
-  }
-
-  .svg-line-drawing {
-    opacity: 0.2;
-  }
-}
-
-.section.--home-who-is-using-your-data-2 {
-  max-width: 80vw;
-
-  @include bp-mobile {
-    max-width: 90vw;
-  }
-
-  @include bp-small {
-    max-width: 90vw;
-  }
-}
-
-/******************************************************************************
-  Working with Big Tech
-******************************************************************************/
-
-html[data-section="home-working-with-big-tech"] {
-  --signup-link-pill-color: var(--magenta);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--creek {
-      opacity: 1;
-    }
-  }
-}
-
-.section.--home-working-with-big-tech {
-  max-width: 44em;
-}
-
-/******************************************************************************
-  Data Untapped
-******************************************************************************/
-
-html[data-section="home-data-untapped"] {
-  --signup-link-pill-color: var(--green);
-  .svg-line-drawing {
-    top: 0;
-  }
-}
-
-.section.--home-data-untapped {
-  max-width: 39em;
-}
-
-/******************************************************************************
-  Slide 14: How Does River Work
-******************************************************************************/
-
-html[data-section="home-how-does-river-work"] {
-  --signup-link-pill-color: var(--red);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--dark-blue {
-      opacity: 1;
-    }
-  }
-
-  .svg-line-drawing {
-    opacity: 0.2;
-  }
-}
-
-.section.--home-how-does-river-work {
-  max-width: 80vw;
-
-  @include bp-mobile {
-    max-width: 90vw;
-  }
-
-  @include bp-small {
-    max-width: 90vw;
-  }
-}
-
-/******************************************************************************
-  Slide 15: Business of Data
-******************************************************************************/
-
-html[data-section="home-business-of-data"] {
-  --signup-link-pill-color: var(--purple);
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--dark-blue-inv {
-      opacity: 1;
-    }
-  }
-
-  .svg-line-drawing {
-    opacity: 0.2;
-  }
-}
-
-.section.--home-business-of-data {
-  max-width: 38em;
-
-  .__p1 {
-    max-width: 20em;
-  }
-}
-
-/******************************************************************************
-  Resources
-******************************************************************************/
-
-html[data-section="home-resources"] {
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .svg-line-drawing {
-    opacity: 0;
-  }
-}
-
-.section.--home-resources {
-  max-width: 80vw;
-}
-
-/******************************************************************************
-  StreamS
-******************************************************************************/
-
-html[data-section="streams"] {
-  --signup-link-pill-color: var(--yellow);
-  --signup-link-text-color: var(--gray-beast);
-
-  --body-color: white;
-  background-color: var(--blue-dark);
-
-  .background-video-container {
-    .__overlay.--dark-blue {
-      opacity: 1;
-    }
-  }
-}
-
-.section.--streams {
-  justify-content: flex-start;
-  margin-top: calc(8vh + 80px);
-
-  .__example {
-    border-top: 1px solid var(--body-color);
-    border-bottom: 1px solid var(--body-color);
-  }
-
-  .__copy {
-    flex-basis: 59vw;
-  }
-  .__images {
-    max-width: 39vw;
-
-    img {
-      max-width: 100%;
-    }
-  }
-}
-
-/******************************************************************************
-  RiverBank
-******************************************************************************/
-
-html[data-section="riverbank"] {
-  .background-video-container {
-    .__overlay.--white-fade {
-      opacity: 1;
-    }
-  }
-}
-
-.section.--riverbank {
-  justify-content: flex-start;
-  margin-top: calc(8vh + 80px);
-
-  .__copy {
-    flex-basis: 59vw;
-  }
-  .__images {
-    max-width: 39vw;
-
-    img {
-      max-width: 100%;
-    }
   }
 }

@@ -1,0 +1,88 @@
+.overlay {
+  transition: opacity ease-in-out var(--transition-time);
+
+    &.--white-fade {
+      background-image: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+    }
+
+    &.--feathered-gray-blue {
+      background-image: linear-gradient(
+        rgb(107, 107, 107) 0%,
+        rgb(35, 64, 104) 50%,
+        rgba(35, 64, 104, 0.6) 90%,
+        rgba(35, 64, 104, 0) 100%
+      );
+
+      $mask-gradient: linear-gradient(
+        90deg,
+        white 0%,
+        rgba(255, 255, 255, 0) 200%
+      );
+
+      mask-image: $mask-gradient;
+      -webkit-mask-image: $mask-gradient;
+    }
+
+    &.--dark-blue {
+      background-image: linear-gradient(
+        rgb(15, 43, 77) 10%,
+        rgba(15, 43, 77, 0.6) 60%,
+        rgba(15, 43, 77, 0.4)
+      );
+    }
+
+    &.--dark-blue-inv {
+      background-image: linear-gradient(
+        rgba(15, 43, 77, 0.4),
+        rgba(15, 43, 77, 0.6) 40%,
+        rgb(15, 43, 77) 90%
+      );
+    }
+
+    &.--gray-blue {
+      background-image: linear-gradient(
+        #ffffff66,
+        rgba(85, 115, 155, 0.6),
+        rgba(14, 43, 104, 1)
+      );
+    }
+
+    &.--blue-blue {
+      background-image: linear-gradient(
+        rgba(15, 43, 77, 0.4),
+        rgba(15, 43, 77, 1)
+      );
+    }
+
+    &.--blue-blue-2 {
+      background-image: linear-gradient(
+        rgba(35, 64, 104, 0.4),
+        rgba(35, 70, 104, 1)
+      );
+    }
+
+    &.--creek {
+      background-image: linear-gradient(
+        rgba(60, 85, 135, 1),
+        rgba(60, 85, 135, 1) 10%,
+        rgba(60, 85, 135, 0.4) 70%,
+        rgba(35, 70, 104, 0)
+      );
+    }
+
+    &.--riverbank {
+      background-image: linear-gradient(
+        rgba(16, 38, 83, 0.8),
+        rgba(35, 64, 104, 0.8)
+      );
+    }
+
+    &.--streams {
+      background-image: linear-gradient(
+        rgba(17, 44, 106, 1) 20%,
+        rgba(17, 44, 106, 0.8) 40%,
+        rgba(35, 70, 104, 0.7) 90%,
+        rgba(35, 70, 104, 0.1)
+      );
+    }
+}

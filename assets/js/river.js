@@ -62,7 +62,7 @@ const river = (() => {
     );
   };
 
-  const showBackgroundVideo = (videoName) => {
+  const showBackgroundVideo = (videoName, immediately) => {
     const visibleVideo =
       backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
 
@@ -75,13 +75,19 @@ const river = (() => {
     const player = backgroundVideoPlayers[videoName];
     player.play();
 
-    player.on("play", () => {
+    if (immediately) {
       backgroundVideoPlayerContainer
         .querySelector(`.--${videoName}`)
         ?.classList?.add("--visible");
+    } else {
+      player.on("play", () => {
+        backgroundVideoPlayerContainer
+          .querySelector(`.--${videoName}`)
+          ?.classList?.add("--visible");
 
-      player.off("play");
-    });
+        player.off("play");
+      });
+    }
   };
 
   const hideBackgroundVideo = () => {
@@ -310,13 +316,15 @@ const river = (() => {
 
     switch (action.name) {
       case "DOMContentLoaded":
-        initLineDrawings();
-        initBackgroundVideo();
-        redrawLineDrawings();
-
         if (["streams", "riverbank"].includes(sectionName)) {
+          initBackgroundVideo();
           loadBackgroundVideo(videoNamesInOrder[0]);
+          showBackgroundVideo(videoNamesInOrder[0], true);
         } else {
+          initLineDrawings();
+          initBackgroundVideo();
+          redrawLineDrawings();
+
           setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
         }
 
