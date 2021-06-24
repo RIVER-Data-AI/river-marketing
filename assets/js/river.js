@@ -36,19 +36,24 @@ const river = (() => {
 
   let backgroundVideoPlayerContainer;
   let backgroundVideoPlayers = {};
-  let videoNamesInOrder;
+  let videoNamesInOrder = () => Array.from(
+      backgroundVideoPlayerContainer.querySelectorAll(`.__video`)
+    )
+      .map((d) => d.dataset.videoName)
+      .reduce((m, v) => (m.includes(v) ? m : [...m, v]), []);
 
   const initLineDrawings = () => {
-    // document
-    //   .querySelector(".svg-line-drawing")
-    //   .addEventListener("animationend", (e) => {
-    //     setTimeout(() => {
-    //       e.target.classList.remove("--active");
-    //       setTimeout(() => {
-    //         e.target.classList.add("--active");
-    //       }, 50);
-    //     }, 8000);
-    //   });
+    document
+      .querySelector(".svg-line-drawing svg path")
+      .addEventListener("animationend", (e) => {
+        dispatch("LineDrawingFinished");
+        // setTimeout(() => {
+        //   e.target.classList.remove("--active");
+        //   setTimeout(() => {
+        //     e.target.classList.add("--active");
+        //   }, 50);
+        // }, 8000);
+      });
   };
 
   const redrawLineDrawings = () => {
@@ -104,12 +109,6 @@ const river = (() => {
     backgroundVideoPlayerContainer = document.getElementById(
       "background-video-player"
     );
-
-    videoNamesInOrder = Array.from(
-      backgroundVideoPlayerContainer.querySelectorAll(`.__video`)
-    )
-      .map((d) => d.dataset.videoName)
-      .reduce((m, v) => (m.includes(v) ? m : [...m, v]), []);
   };
 
   const loadBackgroundVideo = (videoName) => {
@@ -314,20 +313,19 @@ const river = (() => {
     const section = sections[sectionName];
     console.log(`Recevied ${sectionName}`, action);
 
+    if (section?.dispatch) {
+      section?.dispatch({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action);
+      return;
+    }
+
     switch (action.name) {
       case "DOMContentLoaded":
-        if (["streams", "riverbank"].includes(sectionName)) {
-          initBackgroundVideo();
-          loadBackgroundVideo(videoNamesInOrder[0]);
-          showBackgroundVideo(videoNamesInOrder[0], true);
-        } else {
-          initLineDrawings();
-          initBackgroundVideo();
-          redrawLineDrawings();
+        initLineDrawings();
+        initBackgroundVideo();
+        loadBackgroundVideo(videoNamesInOrder()[0]);
+        redrawLineDrawings();
 
-          setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
-        }
-
+        setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
         break;
 
       case "StartTyping":
@@ -336,14 +334,14 @@ const river = (() => {
         break;
 
       case "FinishedTyping":
-        loadBackgroundVideo(videoNamesInOrder[0]);
+        loadBackgroundVideo(videoNamesInOrder()[0]);
         break;
 
       case "LoadedBackgroundVideo":
-        section?.dispatch && section?.dispatch({ showBackgroundVideo }, action);
-        const nextVideoIndex = videoNamesInOrder.indexOf(action.videoName) + 1;
-        console.log("Load next video", videoNamesInOrder[nextVideoIndex]);
-        loadBackgroundVideo(videoNamesInOrder[nextVideoIndex]);
+        const videoNames = videoNamesInOrder();
+        const nextVideoIndex = videoNames.indexOf(action.videoName) + 1;
+        console.log("Load next video", videoNames[nextVideoIndex]);
+        loadBackgroundVideo(videoNames[nextVideoIndex]);
 
         break;
 

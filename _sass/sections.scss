@@ -11,6 +11,9 @@ html[data-section="home-intro"] {
   }
 }
 .section.--home-intro {
+  .__body {
+    max-width: 50em;
+  }
 }
 
 /******************************************************************************
@@ -28,7 +31,7 @@ html[data-section="home-privacy-platform"] {
 
 section.--home-privacy-platform {
   .__body {
-    max-width: 48em;
+    max-width: 58em;
   }
 
   .__typing-text-target {
@@ -107,7 +110,7 @@ html[data-section="home-river-gives-you-control"] {
 }
 
 .section.--home-river-gives-you-control {
-  max-width: 54vw;
+  max-width: 62vw;
 
   @include bp-mobile {
     max-width: 80vw;
@@ -387,7 +390,7 @@ html[data-section="streams"] {
   }
   .__images {
     max-width: 39vw;
-    max-height: 38vw;
+    max-height: 22vw;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
 
@@ -422,7 +425,7 @@ html[data-section="riverbank"] {
   }
   .__images {
     max-width: 39vw;
-    max-height: 38vw;
+    max-height: 29vw;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
 

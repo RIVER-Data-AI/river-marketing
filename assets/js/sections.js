@@ -38,9 +38,7 @@ const section1 = () => {
               e.classList.remove("--hidden")
             );
 
-            showBackgroundVideo(videoName);
-
-            setTimeout(scrollToNextSection, 5000);
+            // setTimeout(scrollToNextSection, 5000);
           },
         });
 
@@ -54,6 +52,21 @@ const section1 = () => {
         .classList.remove("--delay-3");
 
       document.querySelector("#home-intro").dataset.videoName = videoName;
+    },
+
+    dispatch: ({ showBackgroundVideo }, action) => {
+      switch(action.name) {
+        case "LoadedBackgroundVideo":
+          if (action.videoName === videoName) {
+            showBackgroundVideo(videoName);
+          }
+
+          break;
+
+        default:
+          break;
+      }
+      
     },
   };
 };
@@ -82,22 +95,24 @@ const sectionRiverbank = () => {
   return {
     didAppear: () => {},
     didDisappear: () => {},
-    dispatch: ({ showBackgroundVideo }, action) => {
-      if (action.name === "LoadedBackgroundVideo") {
-        showBackgroundVideo(action.videoName);
+    dispatch: ({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action) => {
+      switch(action.name) {
+        case "DOMContentLoaded":
+          initBackgroundVideo();
+          
+          const firstVideoName = videoNamesInOrder()[0];
+          loadBackgroundVideo(firstVideoName);
+          showBackgroundVideo(firstVideoName, true);
+          break;
+        case "LoadedBackgroundVideo":
+          showBackgroundVideo(action.videoName);
+          break;
+
+        default:
+          return;
       }
     },
   };
 };
 
-const sectionStreams = () => {
-  return {
-    didAppear: () => {},
-    didDisappear: () => {},
-    dispatch: ({ showBackgroundVideo }, action) => {
-      if (action.name === "LoadedBackgroundVideo") {
-        showBackgroundVideo(action.videoName);
-      }
-    },
-  };
-};
+const sectionStreams = sectionRiverbank;
