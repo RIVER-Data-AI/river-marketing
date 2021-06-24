@@ -379,6 +379,11 @@ html[data-section="streams"] {
 .section.--streams {
   justify-content: flex-start;
   margin-top: calc(8vh + 80px);
+  padding: 0 0 0 5vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   .__example {
     border-top: 1px solid var(--body-color);
@@ -386,11 +391,13 @@ html[data-section="streams"] {
   }
 
   .__copy {
-    flex-basis: 59vw;
+    flex-basis: 38vw;
+    margin-right: 5vw;
   }
+
   .__images {
-    max-width: 39vw;
-    max-height: 22vw;
+    flex-basis: 52vw;
+    max-height: 29.4vw;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
 
@@ -419,13 +426,20 @@ html[data-section="riverbank"] {
 .section.--riverbank {
   justify-content: flex-start;
   margin-top: calc(8vh + 80px);
+  padding: 0 0 0 5vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   .__copy {
-    flex-basis: 59vw;
+    flex-basis: 38vw;
+    margin-right: 5vw;
   }
+
   .__images {
-    max-width: 39vw;
-    max-height: 29vw;
+    flex-basis: 52vw;
+    max-height: 38.5vw;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
 
