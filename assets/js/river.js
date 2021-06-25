@@ -5,6 +5,7 @@ const river = (() => {
     rough: 552093404,
     flowing: 552596313,
     creek: 552604626,
+    jungle: 567652238,
   };
 
   const sections = {

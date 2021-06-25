@@ -398,6 +398,7 @@ html[data-section="streams"] {
   .__images {
     flex-basis: 52vw;
     max-height: 29.4vw;
+    margin-top: 40px;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
 
@@ -440,6 +441,7 @@ html[data-section="riverbank"] {
   .__images {
     flex-basis: 52vw;
     max-height: 38.5vw;
+    margin-top: 40px;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
 
