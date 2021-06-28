@@ -45,7 +45,7 @@ const section1 = () => {
 
               typeElement.dataset.typeHasAppeared = true;
             }
-          }, 2000)
+          }, 2000);
           break;
         
         case "FinishedTyping":
@@ -68,14 +68,22 @@ const section1 = () => {
   };
 };
 
-const typedTextSection = (rootSelector) => ({
+const typedTextSection = (rootSelector, options) => ({
   rootSelector,
   element: () => document.querySelector(rootSelector),
   dispatch: ({ dispatch }, action) => {
-    console.log("dispatching", action);
     switch(action.name) {
       case "SectionDidAppear":
         setupTypingText(document.querySelector(rootSelector));
+
+        if (options?.pauseBackgroundVideo) {
+          dispatch({ name: "PauseBackgroundVideo" })
+        }
+
+        if (options?.redrawLineDrawings) {
+          dispatch({ name: "RedrawLineDrawings" })
+        }
+
         break;
 
       default:

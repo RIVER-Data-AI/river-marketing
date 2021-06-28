@@ -14,9 +14,13 @@ const river = (() => {
     "home-video-1": typedTextAndVideoPlayerSection("#home-video-1"),
     "your-data-belongs-to-you": typedTextSection("#your-data-belongs-to-you"),
     "home-river-gives-you-control": typedTextSection(
-      "#home-river-gives-you-control"
+      "#home-river-gives-you-control",
+      { redrawLineDrawings: true, pauseBackgroundVideo: true }
     ),
-    "home-privacy-platform-2": typedTextSection("#home-privacy-platform-2"),
+    "home-privacy-platform-2": typedTextSection(
+      "#home-privacy-platform-2",
+      { pauseBackgroundVideo: true }
+    ),
     "home-who-is-using-your-data": typedTextSection(
       "#home-who-is-using-your-data"
     ),
@@ -62,6 +66,45 @@ const river = (() => {
     );
   };
 
+  const initBackgroundVideo = () => {
+    backgroundVideoPlayerContainer = document.getElementById(
+      "background-video-player"
+    );
+  };
+
+
+  const loadBackgroundVideo = (videoName) => {
+    if (!videoName || backgroundVideoPlayers[videoName]) {
+      return;
+    }
+
+    console.log("load", videoName);
+
+    const player = new Vimeo.Player(`background-video-player-${videoName}`, {
+      id: videoIds[videoName],
+      controls: false,
+      loop: true,
+      dnt: true,
+      muted: true,
+    });
+
+    backgroundVideoPlayers[videoName] = player;
+
+    player.on("loaded", (playerId) => {
+      dispatch({ name: "LoadedBackgroundVideo", videoName });
+      player.off("loaded");
+    });
+  };
+
+  const pauseBackgroundVideo = () => {
+    const visibleVideo = backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
+    const visibleVideoName = visibleVideo?.dataset?.videoName;
+    if (visibleVideoName) {
+      const player = backgroundVideoPlayers[visibleVideoName];
+      player.getPaused().then((paused) => { if (!paused) player.pause(); });
+    }
+  };
+
   const showBackgroundVideo = (videoName, immediately) => {
     const visibleVideo =
       backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
@@ -97,35 +140,6 @@ const river = (() => {
         ?.classList.remove("--visible");
 
       setTimeout(resolve, 300);
-    });
-  };
-
-  const initBackgroundVideo = () => {
-    backgroundVideoPlayerContainer = document.getElementById(
-      "background-video-player"
-    );
-  };
-
-  const loadBackgroundVideo = (videoName) => {
-    if (!videoName || backgroundVideoPlayers[videoName]) {
-      return;
-    }
-
-    console.log("load", videoName);
-
-    const player = new Vimeo.Player(`background-video-player-${videoName}`, {
-      id: videoIds[videoName],
-      controls: false,
-      loop: true,
-      dnt: true,
-      muted: true,
-    });
-
-    backgroundVideoPlayers[videoName] = player;
-
-    player.on("loaded", (playerId) => {
-      dispatch({ name: "LoadedBackgroundVideo", videoName });
-      player.off("loaded");
     });
   };
 
@@ -297,29 +311,26 @@ const river = (() => {
 
       case "SectionDidAppear":
         const videoName = section.element().dataset?.videoName;
-
-        if (videoName) {
-          showBackgroundVideo(videoName);
-        } else {
-          const visibleVideo =
+        const visibleVideo =
             backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
           const visibleVideoName = visibleVideo?.dataset?.videoName;
+
+        if (videoName) {
+          if (videoName !== visibleVideoName) {
+            showBackgroundVideo(videoName);
+          }
+        } else {
           backgroundVideoPlayers[visibleVideoName]?.pause();
           hideBackgroundVideo();
-        }
-        
-        break;
-      
-      case "SectionDidDisappear":
+        }        
         break;
 
-      case "LineDrawingFinished":
+      case "RedrawLineDrawings":
+        redrawLineDrawings();
         break;
 
-      case "StartTyping":
-        break;
-
-      case "FinishedTyping":
+      case "PauseBackgroundVideo":
+        pauseBackgroundVideo();
         break;
 
       case "LoadedBackgroundVideo":

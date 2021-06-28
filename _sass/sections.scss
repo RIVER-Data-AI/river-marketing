@@ -84,7 +84,7 @@ html[data-section="your-data-belongs-to-you"] {
 }
 
 .section.--your-data-belongs-to-you {
-  max-width: 44em;
+  max-width: 48em;
 }
 
 /******************************************************************************
@@ -93,13 +93,13 @@ html[data-section="your-data-belongs-to-you"] {
 
 html[data-section="home-river-gives-you-control"] {
   --signup-link-pill-color: var(--green);
-  --logo-color: var(--gray-beast);
-  --nav-color: var(--gray-beast);
+  --logo-color: var(--gray-8e);
+  --nav-color: var(--gray-8e);
   --body-color: white;
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--gray-blue {
+    .__overlay.--if-the-service-is-free {
       opacity: 1;
     }
   }
@@ -110,7 +110,7 @@ html[data-section="home-river-gives-you-control"] {
 }
 
 .section.--home-river-gives-you-control {
-  max-width: 62vw;
+  max-width: 84vw;
 
   @include bp-mobile {
     max-width: 80vw;
@@ -131,16 +131,14 @@ html[data-section="home-privacy-platform-2"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--gray-blue {
+    .__overlay.--a-privacy-platform-youll-want-to-use {
       opacity: 1;
     }
   }
 }
 
 section.--home-privacy-platform-2 {
-  .__body {
-    max-width: 48em;
-  }
+  max-width: 68em;
 }
 
 /******************************************************************************

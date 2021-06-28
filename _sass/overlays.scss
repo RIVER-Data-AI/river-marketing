@@ -79,6 +79,22 @@
       );
     }
 
+    &.--if-the-service-is-free {
+      background-image: linear-gradient(
+        rgba(3, 44, 108, 0.7),
+        rgba(3, 44, 108, 0.9)
+      );
+    }
+
+    &.--a-privacy-platform-youll-want-to-use {
+      background-image: linear-gradient(
+        rgba(65, 110, 164, 0.4),
+        rgba(70, 122, 180, 0.6) 40%,
+        rgba(3, 44, 108, 0.8) 80%,
+        rgba(3, 44, 108, 1) 100%
+      );
+    }
+
     &.--riverbank {
       background-image: linear-gradient(
         rgba(11, 23, 35, 0.8),
