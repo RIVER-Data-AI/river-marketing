@@ -1,5 +1,7 @@
 const setupTypingText = (root) => {
+  console.log("Setup typing text target", root);
   const typeElement = root.querySelector(".__typing-text-target");
+  if (!typeElement) { return }
 
   if (!typeElement.dataset.typeHasAppeared) {
     new Typed(typeElement, {
@@ -7,9 +9,10 @@ const setupTypingText = (root) => {
       showCursor: false,
       typeSpeed: 40,
       onComplete: () => {
-        Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
+        Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) => {
           e.classList.remove("--hidden")
-        );
+          e.classList.remove("--hidden-left")
+        });
       },
     });
 

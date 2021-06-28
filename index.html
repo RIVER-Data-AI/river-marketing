@@ -43,12 +43,17 @@ animatedBackgroundColor: true
 
   <section class="section --home-video-1" id="home-video-1" data-video-name="rough">
     <div class="__body --with-video-button">
-      <button onclick="river.showVideo('video-1'); return false;" class="play-video-button __video-button">
+      <button onclick="river.showVideo('video-1'); return false;" class="play-video-button __video-button hidden-copy --hidden-left">
         {% include play_button.svg %}
       </button>
-      <div>
-        <p class="p2">You create $data$ every day.</p>
-        <p class="p1">
+        <div>
+          <p class="p2 __typing-text-source --typed-string">You create $data$ every day.</p>
+          <div>
+          <p class="p2 --no-vmargin __typing-text-target"></p>
+          <p>&nbsp;</p>
+        </div>
+        
+        <p class="p1 --no-vmargin hidden-copy --hidden">
           River gives you the ability to control where your data is being used,
           when it's being used, and who has access to it. It's your data.
         </p>
