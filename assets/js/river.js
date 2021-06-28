@@ -47,7 +47,7 @@ const river = (() => {
     document
       .querySelector(".svg-line-drawing svg path")
       .addEventListener("animationend", (e) => {
-        dispatch("LineDrawingFinished");
+        dispatch({ name: "LineDrawingFinished" });
         // setTimeout(() => {
         //   e.target.classList.remove("--active");
         //   setTimeout(() => {
@@ -69,6 +69,7 @@ const river = (() => {
   };
 
   const showBackgroundVideo = (videoName, immediately) => {
+    console.log("SHOW BG VIDEO", videoName);
     const visibleVideo =
       backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
 
@@ -140,10 +141,12 @@ const river = (() => {
     if (!section) return;
 
     console.log("APPEAR", section.id);
-    sections[section.id]?.didAppear({
-      showBackgroundVideo,
-      scrollToNextSection,
-    });
+    if (sections[section.id]?.didAppear) {
+      sections[section.id]?.didAppear({
+        showBackgroundVideo,
+        scrollToNextSection,
+      });
+    }
 
     if (section.id !== "home-intro") {
       redrawLineDrawings();
@@ -194,13 +197,14 @@ const river = (() => {
 
     document.documentElement.dataset.section = currentlyVisibleSection.id;
 
+    // dispatch({ name: "SectionDidDisappear", section: currentlyVisibleSection })
     sectionDisappeared(document.getElementById(lastVisibleSectionId));
     sectionAppeared(currentlyVisibleSection);
   };
 
   const initSectionTracking = () => {
     updateCurrentlyVisibleSection();
-    setInterval(updateCurrentlyVisibleSection, 500);
+    setInterval(updateCurrentlyVisibleSection, 250);
   };
 
   const scrollToSection = (section) => {
@@ -310,27 +314,42 @@ const river = (() => {
   });
 
   const dispatch = (action) => {
+    const { name: actionName } = action;
     const sectionName = document.documentElement.dataset.section;
     const section = sections[sectionName];
-    console.log(`Recevied ${sectionName}`, action);
-
+    
     if (section?.dispatch) {
-      section?.dispatch({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action);
-      return;
+      console.log(`${sectionName} dispatch(${actionName})`);
+
+      if (section?.dispatch({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action) !== 'ignored') {
+        return;
+      }
     }
 
-    switch (action.name) {
+    console.log(`default dispatch(${actionName})`);
+
+    switch (actionName) {
       case "DOMContentLoaded":
         initLineDrawings();
         initBackgroundVideo();
         loadBackgroundVideo(videoNamesInOrder()[0]);
         redrawLineDrawings();
+        initSectionTracking();
+        break;
 
-        setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
+      case "SectionDidAppear":
+        break;
+      
+      case "SectionDidDisappear":
+        break;
+
+      case "LineDrawingFinished":
+        showBackgroundVideo(videoNamesInOrder()[0]);
+        // setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
         break;
 
       case "StartTyping":
-        initSectionTracking();
+        // initSectionTracking();
         setTimeout(() => dispatch({ name: "FinishedTyping" }), 2000);
         break;
 
@@ -341,8 +360,12 @@ const river = (() => {
       case "LoadedBackgroundVideo":
         const videoNames = videoNamesInOrder();
         const nextVideoIndex = videoNames.indexOf(action.videoName) + 1;
-        console.log("Load next video", videoNames[nextVideoIndex]);
-        loadBackgroundVideo(videoNames[nextVideoIndex]);
+        const nextVideoName = videoNames[nextVideoIndex];
+        
+        if (nextVideoName) {
+          console.log(`Load ${nextVideoName}`);
+          loadBackgroundVideo(nextVideoName);
+        }
 
         break;
 

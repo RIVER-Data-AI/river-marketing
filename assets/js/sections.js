@@ -21,31 +21,6 @@ const setupTypingText = (root) => {
 const section1 = () => {
   const videoName = "flowing";
   return {
-    didAppear: ({ showBackgroundVideo, scrollToNextSection }) => {
-      const root = document.querySelector("#home-intro");
-      const typeElement = root.querySelector(".__typing-text-target");
-
-      if (!typeElement.dataset.typeHasAppeared) {
-        document
-          .querySelector(`#background-video-player .__video.--${videoName}`)
-          .classList.add("--delay-2");
-        new Typed(typeElement, {
-          strings: [root.querySelector(".__typing-text-source").textContent],
-          showCursor: false,
-          typeSpeed: 30,
-          onComplete: () => {
-            Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
-              e.classList.remove("--hidden")
-            );
-
-            // setTimeout(scrollToNextSection, 5000);
-          },
-        });
-
-        typeElement.dataset.typeHasAppeared = true;
-      }
-    },
-
     didDisappear: () => {
       document
         .querySelector(`#background-video-player .__video.--${videoName}`)
@@ -56,14 +31,32 @@ const section1 = () => {
 
     dispatch: ({ showBackgroundVideo }, action) => {
       switch(action.name) {
-        case "LoadedBackgroundVideo":
-          if (action.videoName === videoName) {
-            showBackgroundVideo(videoName);
-          }
+        case "LineDrawingFinished":
+          showBackgroundVideo(videoName);
 
+          setTimeout(() => {
+            const root = document.querySelector("#home-intro");
+            const typeElement = root.querySelector(".__typing-text-target");
+
+            if (!typeElement.dataset.typeHasAppeared) {
+              new Typed(typeElement, {
+                strings: [root.querySelector(".__typing-text-source").textContent],
+                showCursor: false,
+                typeSpeed: 30,
+                onComplete: () => {
+                  Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
+                    e.classList.remove("--hidden")
+                  );
+                },
+              });
+
+              typeElement.dataset.typeHasAppeared = true;
+            }
+          }, 2000)
           break;
 
         default:
+          return 'ignored';
           break;
       }
       

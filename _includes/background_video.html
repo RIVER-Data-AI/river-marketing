@@ -1,6 +1,15 @@
 <div class="background-video-container">
   <div id="background-video-player">
-    {% if page.videos.smooth %}
+    {% if page.videos.flowing %}
+    <div class="__video --flowing" data-video-name="flowing">
+      <div id="background-video-player-flowing"></div>
+      <div class="__overlay overlay --white-fade"></div>
+      <div class="__overlay overlay --gray-blue"></div>
+      <div class="__overlay overlay --blue-blue"></div>
+      <div class="__overlay overlay --dark-blue"></div>
+      <div class="__overlay overlay --dark-blue-inv"></div>
+    </div>
+    {% endif %} {% if page.videos.smooth %}
     <div class="__video --smooth" data-video-name="smooth">
       <div id="background-video-player-smooth"></div>
       <div class="__overlay overlay --white-fade"></div>
@@ -9,15 +18,6 @@
     <div class="__video --rough" data-video-name="rough">
       <div id="background-video-player-rough"></div>
       <div class="__overlay overlay --feathered-gray-blue"></div>
-      <div class="__overlay overlay --dark-blue"></div>
-      <div class="__overlay overlay --dark-blue-inv"></div>
-    </div>
-    {% endif %} {% if page.videos.flowing %}
-    <div class="__video --flowing" data-video-name="flowing">
-      <div id="background-video-player-flowing"></div>
-      <div class="__overlay overlay --white-fade"></div>
-      <div class="__overlay overlay --gray-blue"></div>
-      <div class="__overlay overlay --blue-blue"></div>
       <div class="__overlay overlay --dark-blue"></div>
       <div class="__overlay overlay --dark-blue-inv"></div>
     </div>
