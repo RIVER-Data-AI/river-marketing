@@ -48,12 +48,6 @@ const river = (() => {
       .querySelector(".svg-line-drawing svg path")
       .addEventListener("animationend", (e) => {
         dispatch({ name: "LineDrawingFinished" });
-        // setTimeout(() => {
-        //   e.target.classList.remove("--active");
-        //   setTimeout(() => {
-        //     e.target.classList.add("--active");
-        //   }, 50);
-        // }, 8000);
       });
   };
 
@@ -69,7 +63,6 @@ const river = (() => {
   };
 
   const showBackgroundVideo = (videoName, immediately) => {
-    console.log("SHOW BG VIDEO", videoName);
     const visibleVideo =
       backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
 
@@ -146,10 +139,6 @@ const river = (() => {
         showBackgroundVideo,
         scrollToNextSection,
       });
-    }
-
-    if (section.id !== "home-intro") {
-      redrawLineDrawings();
     }
 
     const { videoName } = section.dataset;
@@ -360,14 +349,13 @@ const river = (() => {
         const nextVideoName = videoNames[nextVideoIndex];
         
         if (nextVideoName) {
-          console.log(`Load ${nextVideoName}`);
           loadBackgroundVideo(nextVideoName);
         }
 
         break;
 
       default:
-        return; // Do nothing
+        return;
     }
   };
 

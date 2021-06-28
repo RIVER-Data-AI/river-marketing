@@ -1,5 +1,4 @@
 const setupTypingText = (root) => {
-  console.log("Setup typing text target", root);
   const typeElement = root.querySelector(".__typing-text-target");
   if (!typeElement) { return }
 
@@ -9,10 +8,7 @@ const setupTypingText = (root) => {
       showCursor: false,
       typeSpeed: 40,
       onComplete: () => {
-        Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) => {
-          e.classList.remove("--hidden")
-          e.classList.remove("--hidden-left")
-        });
+        Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) => e.classList.add("--visible"))
       },
     });
 
@@ -49,7 +45,7 @@ const section1 = () => {
                 typeSpeed: 30,
                 onComplete: () => {
                   Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
-                    e.classList.remove("--hidden")
+                    e.classList.add("--visible")
                   );
 
                   setTimeout(scrollToNextSection, 4000);

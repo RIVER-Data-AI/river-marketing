@@ -414,16 +414,15 @@ body {
 .hidden-copy {
   transition: opacity ease-in-out var(--transition-time),
     transform ease-in-out var(--transition-time);
+  transform: translate(0%, 100%);
+  opacity: 0;
 
-  opacity: 1;
-
-  &.--hidden {
-    opacity: 0;
-    transform: translate(0%, 100%);
+  &.--visible {
+    opacity: 1;
+    transform: none !important;
   }
 
-  &.--hidden-left {
-    opacity: 0;
+  &.--left {
     transform: translate(-200%, 0);
   }
 }

@@ -7,16 +7,16 @@
 
     &.--feathered-gray-blue {
       background-image: linear-gradient(
-        rgb(107, 107, 107) 0%,
-        rgb(35, 64, 104) 50%,
-        rgba(35, 64, 104, 0.6) 90%,
-        rgba(35, 64, 104, 0) 100%
+        rgba(107, 107, 107, 1.0) 0%,
+        rgba(107, 107, 107, 0.8) 10%,
+        rgb(35, 64, 104) 70%,
+        rgba(35, 64, 104, 0.9) 100%,
       );
 
       $mask-gradient: linear-gradient(
         90deg,
         white 0%,
-        rgba(255, 255, 255, 0) 200%
+        rgba(255, 255, 255, 0) 150%
       );
 
       mask-image: $mask-gradient;
