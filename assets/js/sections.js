@@ -18,24 +18,19 @@ const setupTypingText = (root) => {
 
 // "In the online world"
 const section1 = () => {
+  const rootSelector = "#home-intro";
   const videoName = "flowing";
 
   return {
-    didDisappear: () => {
-      document
-        .querySelector(`#background-video-player .__video.--${videoName}`)
-        .classList.remove("--delay-3");
-
-      document.querySelector("#home-intro").dataset.videoName = videoName;
-    },
-
-    dispatch: ({ showBackgroundVideo, scrollToNextSection }, action) => {
+    rootSelector,
+    element: () => document.querySelector(rootSelector),
+    dispatch: ({ dispatch, showBackgroundVideo, scrollToNextSection }, action) => {
       switch(action.name) {
         case "LineDrawingFinished":
           showBackgroundVideo(videoName);
 
           setTimeout(() => {
-            const root = document.querySelector("#home-intro");
+            const root = document.querySelector(rootSelector);
             const typeElement = root.querySelector(".__typing-text-target");
 
             if (!typeElement.dataset.typeHasAppeared) {
@@ -44,11 +39,7 @@ const section1 = () => {
                 showCursor: false,
                 typeSpeed: 30,
                 onComplete: () => {
-                  Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
-                    e.classList.add("--visible")
-                  );
-
-                  setTimeout(scrollToNextSection, 4000);
+                  dispatch({ name: "FinishedTyping" });
                 },
               });
 
@@ -57,8 +48,19 @@ const section1 = () => {
           }, 2000)
           break;
         
+        case "FinishedTyping":
+          const root = document.querySelector(rootSelector);
+          Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
+            e.classList.add("--visible")
+          );
+          setTimeout(() => { dispatch({ name: "ScrollToNextSection" }) }, 4000);
+          break;
+
+        case "ScrollToNextSection":
+          scrollToNextSection();
+          break;
+        
         default:
-          return 'ignored';
           break;
       }
       
@@ -67,47 +69,43 @@ const section1 = () => {
 };
 
 const typedTextSection = (rootSelector) => ({
-  didAppear: () => {
-    setupTypingText(document.querySelector(rootSelector));
-  },
+  rootSelector,
+  element: () => document.querySelector(rootSelector),
+  dispatch: ({ dispatch }, action) => {
+    console.log("dispatching", action);
+    switch(action.name) {
+      case "SectionDidAppear":
+        setupTypingText(document.querySelector(rootSelector));
+        break;
 
-  didDisappear: () => {
-    console.log(rootSelector, "disappeared!");
-  },
+      default:
+        break;
+    }
+  }
 });
 
-const typedTextAndVideoPlayerSection = (rootSelector) => ({
-  didAppear: () => {
-    setupTypingText(document.querySelector(rootSelector));
-  },
+const typedTextAndVideoPlayerSection = typedTextSection;
 
-  didDisappear: () => {
-    console.log(rootSelector, "disappeared!");
+const sectionRiverbank = () => ({
+  dispatch: ({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action) => {
+    switch(action.name) {
+      case "DOMContentLoaded":
+        initBackgroundVideo();
+        
+        const firstVideoName = videoNamesInOrder()[0];
+        loadBackgroundVideo(firstVideoName);
+        showBackgroundVideo(firstVideoName, true);
+        return 'stop';
+        break;
+
+      case "LoadedBackgroundVideo":
+        showBackgroundVideo(action.videoName);
+        break;
+
+      default:
+        break;
+    }
   },
 });
-
-const sectionRiverbank = () => {
-  return {
-    didAppear: () => {},
-    didDisappear: () => {},
-    dispatch: ({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action) => {
-      switch(action.name) {
-        case "DOMContentLoaded":
-          initBackgroundVideo();
-          
-          const firstVideoName = videoNamesInOrder()[0];
-          loadBackgroundVideo(firstVideoName);
-          showBackgroundVideo(firstVideoName, true);
-          break;
-        case "LoadedBackgroundVideo":
-          showBackgroundVideo(action.videoName);
-          break;
-
-        default:
-          return;
-      }
-    },
-  };
-};
 
 const sectionStreams = sectionRiverbank;

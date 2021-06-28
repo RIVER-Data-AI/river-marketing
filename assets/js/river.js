@@ -130,36 +130,6 @@ const river = (() => {
   };
 
   /* Section Tracking */
-  const sectionAppeared = (section) => {
-    if (!section) return;
-
-    console.log("APPEAR", section.id);
-    if (sections[section.id]?.didAppear) {
-      sections[section.id]?.didAppear({
-        showBackgroundVideo,
-        scrollToNextSection,
-      });
-    }
-
-    const { videoName } = section.dataset;
-
-    if (videoName) {
-      showBackgroundVideo(videoName);
-    } else {
-      const visibleVideo =
-        backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
-      const visibleVideoName = visibleVideo?.dataset?.videoName;
-      backgroundVideoPlayers[visibleVideoName]?.pause();
-      hideBackgroundVideo();
-    }
-  };
-
-  const sectionDisappeared = (section) => {
-    if (!section) return;
-    console.log("DISAPPEAR", section?.id);
-    sections[section.id]?.didDisappear();
-  };
-
   const findCurrentlyVisibleSection = () => {
     const sections = document.getElementsByClassName("section");
     for (const section of sections) {
@@ -186,9 +156,8 @@ const river = (() => {
 
     document.documentElement.dataset.section = currentlyVisibleSection.id;
 
-    // dispatch({ name: "SectionDidDisappear", section: currentlyVisibleSection })
-    sectionDisappeared(document.getElementById(lastVisibleSectionId));
-    sectionAppeared(currentlyVisibleSection);
+    dispatch({ name: "SectionDidDisappear", section: sections[lastVisibleSectionId] });
+    dispatch({ name: "SectionDidAppear", section: sections[currentlyVisibleSection.id] });
   };
 
   const initSectionTracking = () => {
@@ -305,17 +274,17 @@ const river = (() => {
   const dispatch = (action) => {
     const { name: actionName } = action;
     const sectionName = document.documentElement.dataset.section;
-    const section = sections[sectionName];
+    const section = action.section ?? sections[sectionName];
     
     if (section?.dispatch) {
-      console.log(`${sectionName} dispatch(${actionName})`);
+      console.log(`${sectionName} dispatch(${actionName})`, action);
 
-      if (section?.dispatch({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder, scrollToNextSection }, action) !== 'ignored') {
+      if (section?.dispatch({ dispatch, initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder, scrollToNextSection }, action) === 'stop') {
         return;
       }
     }
 
-    console.log(`default dispatch(${actionName})`);
+    console.log(`default dispatch(${actionName})`, action);
 
     switch (actionName) {
       case "DOMContentLoaded":
@@ -327,6 +296,18 @@ const river = (() => {
         break;
 
       case "SectionDidAppear":
+        const videoName = section.element().dataset?.videoName;
+
+        if (videoName) {
+          showBackgroundVideo(videoName);
+        } else {
+          const visibleVideo =
+            backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
+          const visibleVideoName = visibleVideo?.dataset?.videoName;
+          backgroundVideoPlayers[visibleVideoName]?.pause();
+          hideBackgroundVideo();
+        }
+        
         break;
       
       case "SectionDidDisappear":
@@ -336,11 +317,9 @@ const river = (() => {
         break;
 
       case "StartTyping":
-        setTimeout(() => dispatch({ name: "FinishedTyping" }), 2000);
         break;
 
       case "FinishedTyping":
-        loadBackgroundVideo(videoNamesInOrder()[0]);
         break;
 
       case "LoadedBackgroundVideo":
