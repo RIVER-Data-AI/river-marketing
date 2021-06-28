@@ -321,7 +321,7 @@ const river = (() => {
     if (section?.dispatch) {
       console.log(`${sectionName} dispatch(${actionName})`);
 
-      if (section?.dispatch({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action) !== 'ignored') {
+      if (section?.dispatch({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder, scrollToNextSection }, action) !== 'ignored') {
         return;
       }
     }
@@ -344,12 +344,9 @@ const river = (() => {
         break;
 
       case "LineDrawingFinished":
-        showBackgroundVideo(videoNamesInOrder()[0]);
-        // setTimeout(() => dispatch({ name: "StartTyping" }), 3000);
         break;
 
       case "StartTyping":
-        // initSectionTracking();
         setTimeout(() => dispatch({ name: "FinishedTyping" }), 2000);
         break;
 

@@ -2,7 +2,7 @@
   transition: opacity ease-in-out var(--transition-time);
 
     &.--white-fade {
-      background-image: linear-gradient(#ffffffff, #ffffffff, #ffffff88);
+      background-image: linear-gradient(#ffffffff, #ffffffff 40%, #ffffff66 70%, #ffffff00);
     }
 
     &.--feathered-gray-blue {

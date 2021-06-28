@@ -20,6 +20,7 @@ const setupTypingText = (root) => {
 // "In the online world"
 const section1 = () => {
   const videoName = "flowing";
+
   return {
     didDisappear: () => {
       document
@@ -29,7 +30,7 @@ const section1 = () => {
       document.querySelector("#home-intro").dataset.videoName = videoName;
     },
 
-    dispatch: ({ showBackgroundVideo }, action) => {
+    dispatch: ({ showBackgroundVideo, scrollToNextSection }, action) => {
       switch(action.name) {
         case "LineDrawingFinished":
           showBackgroundVideo(videoName);
@@ -47,6 +48,8 @@ const section1 = () => {
                   Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
                     e.classList.remove("--hidden")
                   );
+
+                  setTimeout(scrollToNextSection, 4000);
                 },
               });
 
@@ -54,7 +57,7 @@ const section1 = () => {
             }
           }, 2000)
           break;
-
+        
         default:
           return 'ignored';
           break;
