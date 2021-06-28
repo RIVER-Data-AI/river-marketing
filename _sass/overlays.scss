@@ -70,6 +70,15 @@
       );
     }
 
+    &.--your-data-belongs-to-you {
+      background-image: linear-gradient(
+        rgba(3, 44, 108, 1),
+        rgba(3, 44, 108, 0.8) 15%,
+        rgba(70, 122, 180, 0.6) 40%, 
+        rgba(65, 110, 164, 0.8) 100%
+      );
+    }
+
     &.--riverbank {
       background-image: linear-gradient(
         rgba(11, 23, 35, 0.8),
