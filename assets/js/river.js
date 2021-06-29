@@ -31,8 +31,8 @@ const river = (() => {
     ),
     "home-data-untapped": typedTextAndVideoPlayerSection("#home-data-untapped"),
     "home-how-does-river-work": typedTextSection("#home-how-does-river-work"),
-    "home-how-business-of-data": typedTextAndVideoPlayerSection(
-      "#home-how-business-of-data"
+    "home-business-of-data": typedTextAndVideoPlayerSection(
+      "#home-business-of-data"
     ),
     streams: sectionStreams(),
     riverbank: sectionRiverbank(),

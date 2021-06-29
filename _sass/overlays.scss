@@ -1,129 +1,142 @@
 .overlay {
   transition: opacity ease-in-out var(--transition-time);
 
-    &.--white-fade {
-      background-image: linear-gradient(#ffffffff, #ffffffff 40%, #ffffff66 70%, #ffffff00);
-    }
+  &.--white-fade {
+    background-image: linear-gradient(
+      #ffffffff,
+      #ffffffff 40%,
+      #ffffff66 70%,
+      #ffffff00
+    );
+  }
 
-    &.--feathered-gray-blue {
-      background-image: linear-gradient(
-        rgba(107, 107, 107, 1.0) 0%,
-        rgba(107, 107, 107, 0.8) 10%,
-        rgb(35, 64, 104) 70%,
-        rgba(35, 64, 104, 0.9) 100%,
-      );
+  &.--feathered-gray-blue {
+    background-image: linear-gradient(
+      rgba(107, 107, 107, 1) 0%,
+      rgba(107, 107, 107, 0.8) 10%,
+      rgb(35, 64, 104) 70%,
+      rgba(35, 64, 104, 0.9) 100%
+    );
 
-      $mask-gradient: linear-gradient(
-        90deg,
-        white 0%,
-        rgba(255, 255, 255, 0) 150%
-      );
+    $mask-gradient: linear-gradient(
+      90deg,
+      white 0%,
+      rgba(255, 255, 255, 0) 150%
+    );
 
-      mask-image: $mask-gradient;
-      -webkit-mask-image: $mask-gradient;
-    }
+    mask-image: $mask-gradient;
+    -webkit-mask-image: $mask-gradient;
+  }
 
-    &.--dark-blue {
-      background-image: linear-gradient(
-        rgb(15, 43, 77) 10%,
-        rgba(15, 43, 77, 0.6) 60%,
-        rgba(15, 43, 77, 0.4)
-      );
-    }
+  &.--dark-blue {
+    background-image: linear-gradient(
+      rgb(15, 43, 77) 10%,
+      rgba(15, 43, 77, 0.6) 60%,
+      rgba(15, 43, 77, 0.4)
+    );
+  }
 
-    &.--dark-blue-inv {
-      background-image: linear-gradient(
-        rgba(15, 43, 77, 0.4),
-        rgba(15, 43, 77, 0.6) 40%,
-        rgb(15, 43, 77) 90%
-      );
-    }
+  &.--dark-blue-inv {
+    background-image: linear-gradient(
+      rgba(15, 43, 77, 0.4),
+      rgba(15, 43, 77, 0.6) 40%,
+      rgb(15, 43, 77) 90%
+    );
+  }
 
-    &.--gray-blue {
-      background-image: linear-gradient(
-        #ffffff66,
-        rgba(85, 115, 155, 0.6),
-        rgba(14, 43, 104, 1)
-      );
-    }
+  &.--gray-blue {
+    background-image: linear-gradient(
+      #ffffff66,
+      rgba(85, 115, 155, 0.6),
+      rgba(14, 43, 104, 1)
+    );
+  }
 
-    &.--blue-blue {
-      background-image: linear-gradient(
-        rgba(15, 43, 77, 0.4),
-        rgba(15, 43, 77, 1)
-      );
-    }
+  &.--blue-blue {
+    background-image: linear-gradient(
+      rgba(15, 43, 77, 0.4),
+      rgba(15, 43, 77, 1)
+    );
+  }
 
-    &.--blue-blue-2 {
-      background-image: linear-gradient(
-        rgba(35, 64, 104, 0.4),
-        rgba(35, 70, 104, 1)
-      );
-    }
+  &.--blue-blue-2 {
+    background-image: linear-gradient(
+      rgba(35, 64, 104, 0.4),
+      rgba(35, 70, 104, 1)
+    );
+  }
 
-    &.--creek {
-      background-image: linear-gradient(
-        rgba(60, 85, 135, 1),
-        rgba(60, 85, 135, 1) 10%,
-        rgba(60, 85, 135, 0.4) 70%,
-        rgba(35, 70, 104, 0)
-      );
-    }
+  &.--creek {
+    background-image: linear-gradient(
+      rgba(60, 85, 135, 1),
+      rgba(60, 85, 135, 1) 10%,
+      rgba(60, 85, 135, 0.4) 70%,
+      rgba(35, 70, 104, 0)
+    );
+  }
 
-    &.--your-data-belongs-to-you {
-      background-image: linear-gradient(
-        rgba(3, 44, 108, 1),
-        rgba(3, 44, 108, 0.8) 15%,
-        rgba(70, 122, 180, 0.6) 40%, 
-        rgba(65, 110, 164, 0.8) 100%
-      );
-    }
+  &.--your-data-belongs-to-you {
+    background-image: linear-gradient(
+      rgba(3, 44, 108, 1),
+      rgba(3, 44, 108, 0.8) 15%,
+      rgba(70, 122, 180, 0.6) 40%,
+      rgba(65, 110, 164, 0.8) 100%
+    );
+  }
 
-    &.--if-the-service-is-free {
-      background-image: linear-gradient(
-        rgba(3, 44, 108, 0.7),
-        rgba(3, 44, 108, 0.9)
-      );
-    }
+  &.--if-the-service-is-free {
+    background-image: linear-gradient(
+      rgba(3, 44, 108, 0.7),
+      rgba(3, 44, 108, 0.9)
+    );
+  }
 
-    &.--a-privacy-platform-youll-want-to-use {
-      background-image: linear-gradient(
-        rgba(65, 110, 164, 0.4),
-        rgba(70, 122, 180, 0.6) 40%,
-        rgba(3, 44, 108, 0.8) 80%,
-        rgba(3, 44, 108, 1) 100%
-      );
-    }
+  &.--a-privacy-platform-youll-want-to-use {
+    background-image: linear-gradient(
+      rgba(65, 110, 164, 0.4),
+      rgba(70, 122, 180, 0.6) 40%,
+      rgba(3, 44, 108, 0.8) 80%,
+      rgba(3, 44, 108, 1) 100%
+    );
+  }
 
-    &.--the-business-of-river {
-      background-image: linear-gradient(
-        rgba(255, 255, 255, 0.2), 
-        rgba(59, 84, 168, 0.4),
-        rgba(39, 64, 148, 1.0)
-      );
-    }
+  &.--working-with-big-tech {
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(37, 93, 187, 0.6) 60%,
+      rgba(50, 100, 185, 1) 100%
+    );
+  }
 
-    &.--the-business-of-data {
-      background-image: linear-gradient(
-        rgba(255, 255, 255, 0.2), 
-        rgba(39, 64, 148, 0.4),
-        rgba(19, 44, 128, 1.0)
-      );
-    }
+  &.--the-business-of-river {
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(59, 84, 168, 0.4),
+      rgba(39, 64, 148, 1)
+    );
+  }
 
-    &.--riverbank {
-      background-image: linear-gradient(
-        rgba(11, 23, 35, 0.8),
-        rgba(111, 143, 175, 1) 60%,
-        rgba(111, 143, 175, 0.8) 80%
-      );
-    }
+  &.--the-business-of-data {
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(39, 64, 148, 0.4),
+      rgba(19, 44, 128, 1)
+    );
+  }
 
-    &.--streams {
-      background-image: linear-gradient(
-        rgba(111, 143, 175, 0.5),
-        rgba(14, 43, 104, 0.8) 60%,
-        rgba(14, 43, 104, 0.9) 80%,
-      );
-    }
+  &.--riverbank {
+    background-image: linear-gradient(
+      rgba(11, 23, 35, 0.8),
+      rgba(111, 143, 175, 1) 60%,
+      rgba(111, 143, 175, 0.8) 80%
+    );
+  }
+
+  &.--streams {
+    background-image: linear-gradient(
+      rgba(111, 143, 175, 0.5),
+      rgba(14, 43, 104, 0.8) 60%,
+      rgba(14, 43, 104, 0.9) 80%
+    );
+  }
 }

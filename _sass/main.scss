@@ -282,13 +282,14 @@ body {
 .scroll-container {
   position: relative;
   overflow-y: scroll;
+  overflow-x: hidden;
   scroll-snap-type: y mandatory;
 }
 
 .section {
   display: flex;
   height: 100%;
-  width: 100vw;
+  width: 99vw;
   scroll-snap-align: center;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -421,14 +422,17 @@ body {
     transform ease-in-out var(--transition-time);
   transform: translate(0%, 100%);
   opacity: 0;
+  visibility: hidden;
 
   &.--visible {
+    display: block !important;
+    visibility: visible;
     opacity: 1;
     transform: none !important;
   }
 
   &.--left {
-    transform: translate(-200%, 0);
+    transform: translate(-100%, 0);
   }
 
   &.--right {

@@ -10,7 +10,9 @@
       <div class="__overlay overlay --dark-blue-inv"></div>
       <div class="__overlay overlay --your-data-belongs-to-you"></div>
       <div class="__overlay overlay --if-the-service-is-free"></div>
-      <div class="__overlay overlay --a-privacy-platform-youll-want-to-use"></div>
+      <div
+        class="__overlay overlay --a-privacy-platform-youll-want-to-use"
+      ></div>
     </div>
     {% endif %} {% if page.videos.smooth %}
     <div class="__video --smooth" data-video-name="smooth">
@@ -30,6 +32,7 @@
     <div class="__video --creek" data-video-name="creek">
       <div id="background-video-player-creek"></div>
       <div class="__overlay overlay --creek"></div>
+      <div class="__overlay overlay --working-with-big-tech"></div>
       <div class="__overlay overlay --streams"></div>
     </div>
     {% endif %} {% if page.videos.jungle %}
@@ -40,7 +43,5 @@
     {% endif %}
   </div>
 
-  {% if page.lineDrawing %}
-    {% include line_drawings.html %}
-  {% endif %}
+  {% if page.lineDrawing %} {% include line_drawings.html %} {% endif %}
 </div>
