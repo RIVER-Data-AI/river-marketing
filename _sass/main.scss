@@ -212,7 +212,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     flex-basis: 30%;
-    
+
     .__pages {
       margin: 0 2vw 0 0;
       display: flex;
@@ -480,7 +480,7 @@ body {
   }
 
   path {
-    stroke: #bbb;
+    stroke: #aaa;
     fill: transparent;
     stroke-width: 1;
     opacity: 0.8;
@@ -492,72 +492,25 @@ body {
 
   .__scrib {
     path {
-      transform: scale(-1.5, 1) translate(-80%, -10%);
-      stroke-dasharray: 22000;
-      stroke-dashoffset: 22000;
+      transform: translate(0%, -25%);
+      stroke-dasharray: 29500;
+      stroke-dashoffset: 29500;
     }
   }
 
   .__scrib1 {
     path {
-      transform: scale(-1.5, 1) translate(-80%, -20%);
-      stroke-dasharray: 31000;
-      stroke-dashoffset: 31000;
+      transform: translate(-5%, -27%);
+      stroke-dasharray: 32500;
+      stroke-dashoffset: 32500;
     }
   }
 
   .__scrib2 {
     path {
-      transform: scale(-1.5, 1) translate(-80%, 0%);
-      stroke-dasharray: 38080;
-      stroke-dashoffset: 38080;
-    }
-  }
-
-  .__scrib2-2 {
-    path {
-      transform: scale(-1.5, 1) translate(-80%, -20%);
-      stroke-dasharray: 38080;
-      stroke-dashoffset: 38080;
-    }
-  }
-
-  .__scrib2-3 {
-    path {
-      transform: scale(-1.7, 1.1) translate(-80%, -20%);
-      stroke-width: 1;
-      stroke-dasharray: 38080;
-      stroke-dashoffset: 38080;
-    }
-  }
-
-  .__scrib2-4 {
-    path {
-      transform: scale(-1.7, 1.1) translate(-82%, -25%);
-      stroke-width: 1;
-      stroke-dasharray: 38080;
-      stroke-dashoffset: 38080;
-      animation-delay: 4s;
-    }
-  }
-
-  .__scrib2-5 {
-    path {
-      transform: scale(-1.7, 0.8) translate(-78%, -30%);
-      stroke-width: 1;
-      stroke-dasharray: 38080;
-      stroke-dashoffset: 38080;
-      animation-delay: 6s;
-    }
-  }
-
-  .__scrib2-6 {
-    path {
-      transform: scale(-1.7, 0.9) translate(-76%, -28%);
-      stroke-width: 1;
-      stroke-dasharray: 38080;
-      stroke-dashoffset: 38080;
-      animation-delay: 8s;
+      transform: translate(-5%, -22%);
+      stroke-dasharray: 41500;
+      stroke-dashoffset: 41500;
     }
   }
 }
