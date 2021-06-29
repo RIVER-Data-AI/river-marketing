@@ -95,6 +95,22 @@
       );
     }
 
+    &.--the-business-of-river {
+      background-image: linear-gradient(
+        rgba(255, 255, 255, 0.2), 
+        rgba(59, 84, 168, 0.4),
+        rgba(39, 64, 148, 1.0)
+      );
+    }
+
+    &.--the-business-of-data {
+      background-image: linear-gradient(
+        rgba(255, 255, 255, 0.2), 
+        rgba(39, 64, 148, 0.4),
+        rgba(19, 44, 128, 1.0)
+      );
+    }
+
     &.--riverbank {
       background-image: linear-gradient(
         rgba(11, 23, 35, 0.8),
