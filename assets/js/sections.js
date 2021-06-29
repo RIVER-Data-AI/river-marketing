@@ -2,7 +2,7 @@ const setupTypingText = (root, dispatch) => {
   const typeElement = root.querySelector(".__typing-text-target");
 
   if (!typeElement) {
-    dispatch({ name: "RevealHiddenCopy", rootElement: root })
+    dispatch({ name: "RevealHiddenCopy", rootElement: root });
     return;
   }
 
@@ -12,7 +12,7 @@ const setupTypingText = (root, dispatch) => {
       showCursor: false,
       typeSpeed: 40,
       onComplete: () => {
-        dispatch({ name: "RevealHiddenCopy", rootElement: root })
+        dispatch({ name: "RevealHiddenCopy", rootElement: root });
       },
     });
 
@@ -28,10 +28,13 @@ const section1 = () => {
   return {
     rootSelector,
     element: () => document.querySelector(rootSelector),
-    dispatch: ({ dispatch, showBackgroundVideo, scrollToNextSection }, action) => {
-      switch(action.name) {
+    dispatch: (
+      { dispatch, showBackgroundVideo, scrollToNextSection },
+      action
+    ) => {
+      switch (action.name) {
         case "LineDrawingFinished":
-          showBackgroundVideo(videoName);
+          // showBackgroundVideo(videoName);
 
           setTimeout(() => {
             const root = document.querySelector(rootSelector);
@@ -39,7 +42,9 @@ const section1 = () => {
 
             if (!typeElement.dataset.typeHasAppeared) {
               new Typed(typeElement, {
-                strings: [root.querySelector(".__typing-text-source").textContent],
+                strings: [
+                  root.querySelector(".__typing-text-source").textContent,
+                ],
                 showCursor: false,
                 typeSpeed: 30,
                 onComplete: () => {
@@ -51,21 +56,22 @@ const section1 = () => {
             }
           }, 2000);
           break;
-        
+
         case "FinishedTyping":
           const root = document.querySelector(rootSelector);
           dispatch({ name: "RevealHiddenCopy", rootElement: root });
-          setTimeout(() => { dispatch({ name: "ScrollToNextSection" }) }, 4000);
+          setTimeout(() => {
+            dispatch({ name: "ScrollToNextSection" });
+          }, 4000);
           break;
 
         case "ScrollToNextSection":
           scrollToNextSection();
           break;
-        
+
         default:
           break;
       }
-      
     },
   };
 };
@@ -74,16 +80,16 @@ const typedTextSection = (rootSelector, options) => ({
   rootSelector,
   element: () => document.querySelector(rootSelector),
   dispatch: ({ dispatch }, action) => {
-    switch(action.name) {
+    switch (action.name) {
       case "SectionDidAppear":
         setupTypingText(document.querySelector(rootSelector), dispatch);
 
         if (options?.pauseBackgroundVideo) {
-          dispatch({ name: "PauseBackgroundVideo" })
+          dispatch({ name: "PauseBackgroundVideo" });
         }
 
         if (options?.redrawLineDrawings) {
-          dispatch({ name: "RedrawLineDrawings" })
+          dispatch({ name: "RedrawLineDrawings" });
         }
 
         break;
@@ -91,22 +97,32 @@ const typedTextSection = (rootSelector, options) => ({
       default:
         break;
     }
-  }
+  },
 });
 
 const typedTextAndVideoPlayerSection = typedTextSection;
 
 const sectionRiverbank = () => ({
-  element: () => { document.querySelector("section") },
-  dispatch: ({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action) => {
-    switch(action.name) {
+  element: () => {
+    document.querySelector("section");
+  },
+  dispatch: (
+    {
+      initBackgroundVideo,
+      loadBackgroundVideo,
+      showBackgroundVideo,
+      videoNamesInOrder,
+    },
+    action
+  ) => {
+    switch (action.name) {
       case "DOMContentLoaded":
         initBackgroundVideo();
-        
+
         const firstVideoName = videoNamesInOrder()[0];
         loadBackgroundVideo(firstVideoName);
         showBackgroundVideo(firstVideoName, true);
-        return 'stop';
+        return "stop";
         break;
 
       case "LoadedBackgroundVideo":

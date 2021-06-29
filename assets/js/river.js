@@ -17,10 +17,9 @@ const river = (() => {
       "#home-river-gives-you-control",
       { redrawLineDrawings: true, pauseBackgroundVideo: true }
     ),
-    "home-privacy-platform-2": typedTextSection(
-      "#home-privacy-platform-2",
-      { pauseBackgroundVideo: true }
-    ),
+    "home-privacy-platform-2": typedTextSection("#home-privacy-platform-2", {
+      pauseBackgroundVideo: true,
+    }),
     "home-who-is-using-your-data": typedTextSection(
       "#home-who-is-using-your-data"
     ),
@@ -41,9 +40,8 @@ const river = (() => {
 
   let backgroundVideoPlayerContainer;
   let backgroundVideoPlayers = {};
-  let videoNamesInOrder = () => Array.from(
-      backgroundVideoPlayerContainer.querySelectorAll(`.__video`)
-    )
+  let videoNamesInOrder = () =>
+    Array.from(backgroundVideoPlayerContainer.querySelectorAll(`.__video`))
       .map((d) => d.dataset.videoName)
       .reduce((m, v) => (m.includes(v) ? m : [...m, v]), []);
 
@@ -72,7 +70,6 @@ const river = (() => {
     );
   };
 
-
   const loadBackgroundVideo = (videoName) => {
     if (!videoName || backgroundVideoPlayers[videoName]) {
       return;
@@ -97,11 +94,14 @@ const river = (() => {
   };
 
   const pauseBackgroundVideo = () => {
-    const visibleVideo = backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
+    const visibleVideo =
+      backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
     const visibleVideoName = visibleVideo?.dataset?.videoName;
     if (visibleVideoName) {
       const player = backgroundVideoPlayers[visibleVideoName];
-      player.getPaused().then((paused) => { if (!paused) player.pause(); });
+      player.getPaused().then((paused) => {
+        if (!paused) player.pause();
+      });
     }
   };
 
@@ -170,8 +170,14 @@ const river = (() => {
 
     document.documentElement.dataset.section = currentlyVisibleSection.id;
 
-    dispatch({ name: "SectionDidDisappear", section: sections[lastVisibleSectionId] });
-    dispatch({ name: "SectionDidAppear", section: sections[currentlyVisibleSection.id] });
+    dispatch({
+      name: "SectionDidDisappear",
+      section: sections[lastVisibleSectionId],
+    });
+    dispatch({
+      name: "SectionDidAppear",
+      section: sections[currentlyVisibleSection.id],
+    });
   };
 
   const initSectionTracking = () => {
@@ -290,11 +296,23 @@ const river = (() => {
     const sectionName = document.documentElement.dataset.section;
     const section = action.section ?? sections[sectionName];
     const sectionElement = section?.element();
-    
+
     if (section?.dispatch) {
       console.log(`${sectionName} dispatch(${actionName})`, action);
 
-      if (section?.dispatch({ dispatch, initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder, scrollToNextSection }, action) === 'stop') {
+      if (
+        section?.dispatch(
+          {
+            dispatch,
+            initBackgroundVideo,
+            loadBackgroundVideo,
+            showBackgroundVideo,
+            videoNamesInOrder,
+            scrollToNextSection,
+          },
+          action
+        ) === "stop"
+      ) {
         return;
       }
     }
@@ -305,16 +323,23 @@ const river = (() => {
       case "DOMContentLoaded":
         initLineDrawings();
         initBackgroundVideo();
-        loadBackgroundVideo(videoNamesInOrder()[0]);
+
+        const firstVideoName = videoNamesInOrder()[0];
+        loadBackgroundVideo(firstVideoName);
         redrawLineDrawings();
         initSectionTracking();
+
+        // We know the animation for the line drawing is
+        setTimeout(() => {
+          showBackgroundVideo(firstVideoName);
+        }, 3500);
         break;
 
       case "SectionDidAppear":
         const videoName = sectionElement.dataset?.videoName;
         const visibleVideo =
-            backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
-          const visibleVideoName = visibleVideo?.dataset?.videoName;
+          backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
+        const visibleVideoName = visibleVideo?.dataset?.videoName;
 
         if (videoName) {
           if (videoName !== visibleVideoName) {
@@ -323,7 +348,7 @@ const river = (() => {
         } else {
           backgroundVideoPlayers[visibleVideoName]?.pause();
           hideBackgroundVideo();
-        }        
+        }
         break;
 
       case "RedrawLineDrawings":
@@ -338,7 +363,7 @@ const river = (() => {
         const videoNames = videoNamesInOrder();
         const nextVideoIndex = videoNames.indexOf(action.videoName) + 1;
         const nextVideoName = videoNames[nextVideoIndex];
-        
+
         if (nextVideoName) {
           loadBackgroundVideo(nextVideoName);
         }
@@ -346,9 +371,11 @@ const river = (() => {
         break;
 
       case "RevealHiddenCopy":
-        Array.from(action.rootElement.querySelectorAll(".hidden-copy")).forEach((e) => e.classList.add("--visible"))
+        Array.from(action.rootElement.querySelectorAll(".hidden-copy")).forEach(
+          (e) => e.classList.add("--visible")
+        );
         break;
-        
+
       default:
         return;
     }
