@@ -86,6 +86,11 @@ body {
   > * {
     flex-basis: 33.5%;
   }
+
+  > .--col2 {
+    margin-left: 1em;
+    flex-basis: 66%;
+  }
 }
 
 .header {
@@ -425,6 +430,10 @@ body {
   &.--left {
     transform: translate(-200%, 0);
   }
+
+  &.--right {
+    transform: translate(200%, 0);
+  }
 }
 
 .style-guide {
@@ -449,7 +458,7 @@ body {
   position: fixed;
 
   left: 0;
-  bottom: calc(20vh + 20vw);
+  top: calc(80vh - 20vw);
   transition: top ease-in-out 1s, opacity ease-in-out 1s;
 
   svg {

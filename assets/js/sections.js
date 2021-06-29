@@ -1,6 +1,10 @@
-const setupTypingText = (root) => {
+const setupTypingText = (root, dispatch) => {
   const typeElement = root.querySelector(".__typing-text-target");
-  if (!typeElement) { return }
+
+  if (!typeElement) {
+    dispatch({ name: "RevealHiddenCopy", rootElement: root })
+    return;
+  }
 
   if (!typeElement.dataset.typeHasAppeared) {
     new Typed(typeElement, {
@@ -8,7 +12,7 @@ const setupTypingText = (root) => {
       showCursor: false,
       typeSpeed: 40,
       onComplete: () => {
-        Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) => e.classList.add("--visible"))
+        dispatch({ name: "RevealHiddenCopy", rootElement: root })
       },
     });
 
@@ -50,9 +54,7 @@ const section1 = () => {
         
         case "FinishedTyping":
           const root = document.querySelector(rootSelector);
-          Array.from(root.querySelectorAll(".hidden-copy")).forEach((e) =>
-            e.classList.add("--visible")
-          );
+          dispatch({ name: "RevealHiddenCopy", rootElement: root });
           setTimeout(() => { dispatch({ name: "ScrollToNextSection" }) }, 4000);
           break;
 
@@ -74,7 +76,7 @@ const typedTextSection = (rootSelector, options) => ({
   dispatch: ({ dispatch }, action) => {
     switch(action.name) {
       case "SectionDidAppear":
-        setupTypingText(document.querySelector(rootSelector));
+        setupTypingText(document.querySelector(rootSelector), dispatch);
 
         if (options?.pauseBackgroundVideo) {
           dispatch({ name: "PauseBackgroundVideo" })
@@ -95,6 +97,7 @@ const typedTextSection = (rootSelector, options) => ({
 const typedTextAndVideoPlayerSection = typedTextSection;
 
 const sectionRiverbank = () => ({
+  element: () => { document.querySelector("section") },
   dispatch: ({ initBackgroundVideo, loadBackgroundVideo, showBackgroundVideo, videoNamesInOrder }, action) => {
     switch(action.name) {
       case "DOMContentLoaded":

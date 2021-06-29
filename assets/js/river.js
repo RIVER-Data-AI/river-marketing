@@ -289,6 +289,7 @@ const river = (() => {
     const { name: actionName } = action;
     const sectionName = document.documentElement.dataset.section;
     const section = action.section ?? sections[sectionName];
+    const sectionElement = section?.element();
     
     if (section?.dispatch) {
       console.log(`${sectionName} dispatch(${actionName})`, action);
@@ -310,7 +311,7 @@ const river = (() => {
         break;
 
       case "SectionDidAppear":
-        const videoName = section.element().dataset?.videoName;
+        const videoName = sectionElement.dataset?.videoName;
         const visibleVideo =
             backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
           const visibleVideoName = visibleVideo?.dataset?.videoName;
@@ -344,6 +345,10 @@ const river = (() => {
 
         break;
 
+      case "RevealHiddenCopy":
+        Array.from(action.rootElement.querySelectorAll(".hidden-copy")).forEach((e) => e.classList.add("--visible"))
+        break;
+        
       default:
         return;
     }

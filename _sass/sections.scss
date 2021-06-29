@@ -261,7 +261,7 @@ html[data-section="home-working-with-big-tech"] {
 }
 
 .section.--home-working-with-big-tech {
-  max-width: 44em;
+  max-width: 59em;
 }
 
 /******************************************************************************
@@ -271,7 +271,7 @@ html[data-section="home-working-with-big-tech"] {
 html[data-section="home-data-untapped"] {
   --signup-link-pill-color: var(--green);
   .svg-line-drawing {
-    top: 0;
+    top: calc(-20vw);
   }
 }
 
