@@ -325,13 +325,18 @@ const river = (() => {
         initBackgroundVideo();
 
         const firstVideoName = videoNamesInOrder()[0];
+
         loadBackgroundVideo(firstVideoName);
         redrawLineDrawings();
         initSectionTracking();
 
-        // We know the animation for the line drawing is
+        // line drawing animation length = 4s
         setTimeout(() => {
           showBackgroundVideo(firstVideoName);
+
+          if (videoNamesInOrder()[1]) {
+            loadBackgroundVideo(videoNamesInOrder()[1]);
+          }
         }, 3500);
         break;
 
@@ -361,6 +366,12 @@ const river = (() => {
 
       case "LoadedBackgroundVideo":
         const videoNames = videoNamesInOrder();
+
+        // Allow first video to load and delay retriggering the loading chain.
+        if (videoNames.indexOf(action.videoName) == 0) {
+          return;
+        }
+
         const nextVideoIndex = videoNames.indexOf(action.videoName) + 1;
         const nextVideoName = videoNames[nextVideoIndex];
 
