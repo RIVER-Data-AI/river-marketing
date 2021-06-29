@@ -498,6 +498,14 @@ body {
     }
   }
 
+  .__scrib-2 {
+    path {
+      transform: scale(1.2, 1.2) translate(-10%, -50%);
+      stroke-dasharray: 29500;
+      stroke-dashoffset: 29500;
+    }
+  }
+
   .__scrib1 {
     path {
       transform: translate(-5%, -27%);
@@ -506,9 +514,25 @@ body {
     }
   }
 
+  .__scrib1-2 {
+    path {
+      transform: scale(1.2, 1.2) translate(-10%, -40%);
+      stroke-dasharray: 32500;
+      stroke-dashoffset: 32500;
+    }
+  }
+
   .__scrib2 {
     path {
       transform: translate(-5%, -22%);
+      stroke-dasharray: 41500;
+      stroke-dashoffset: 41500;
+    }
+  }
+
+  .__scrib2-2 {
+    path {
+      transform: scale(1.2, 1.2) translate(-10%, -40%);
       stroke-dasharray: 41500;
       stroke-dashoffset: 41500;
     }
