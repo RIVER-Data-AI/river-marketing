@@ -404,8 +404,6 @@ body {
   }
 
   &.--hidden {
-    display: none;
-
     .__overlay {
       left: 100vw;
       opacity: 0;
