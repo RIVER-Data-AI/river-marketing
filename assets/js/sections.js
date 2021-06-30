@@ -1,64 +1,53 @@
-const setupTypingText = (root, dispatch) => {
-  const typeElement = root.querySelector(".__typing-text-target");
-
-  if (!typeElement) {
-    dispatch({ name: "RevealHiddenCopy", rootElement: root });
-    return;
-  }
-
-  if (!typeElement.dataset.typeHasAppeared) {
-    new Typed(typeElement, {
-      strings: [root.querySelector(".__typing-text-source").textContent],
-      showCursor: false,
-      typeSpeed: 40,
-      onComplete: () => {
-        dispatch({ name: "RevealHiddenCopy", rootElement: root });
-      },
-    });
-
-    typeElement.dataset.typeHasAppeared = true;
-  }
-};
-
 // "In the online world"
 const section1 = () => {
   const rootSelector = "#home-intro";
   const videoName = "flowing";
 
-  return {
+  const section = {
     rootSelector,
     element: () => document.querySelector(rootSelector),
+    typed: null,
     dispatch: (
-      { dispatch, showBackgroundVideo, scrollToNextSection },
+      {
+        dispatch,
+        showBackgroundVideo,
+        loadBackgroundVideo,
+        scrollToNextSection,
+        videoNamesInOrder,
+      },
       action
     ) => {
+      const root = document.querySelector(rootSelector);
+      const typeElement = root.querySelector(".__typing-text-target");
+      const typedText = root.querySelector(".__typing-text-source").textContent;
+
       switch (action.name) {
+        case "SectionDidAppear":
+          if (!section.typed) {
+            const typed = new Typed(typeElement, {
+              strings: [typedText],
+              showCursor: false,
+              typeSpeed: 30,
+              onComplete: () => {
+                dispatch({ name: "FinishedTyping", typed });
+              },
+            });
+            typed.stop();
+            section.typed = typed;
+          }
+          break;
+
         case "LineDrawingFinished":
-          // showBackgroundVideo(videoName);
-
           setTimeout(() => {
-            const root = document.querySelector(rootSelector);
-            const typeElement = root.querySelector(".__typing-text-target");
-
             if (!typeElement.dataset.typeHasAppeared) {
-              new Typed(typeElement, {
-                strings: [
-                  root.querySelector(".__typing-text-source").textContent,
-                ],
-                showCursor: false,
-                typeSpeed: 30,
-                onComplete: () => {
-                  dispatch({ name: "FinishedTyping" });
-                },
-              });
-
+              section.typed.start();
+              dispatch({ name: "StartedTyping", typed: section.typed });
               typeElement.dataset.typeHasAppeared = true;
             }
           }, 2000);
           break;
 
         case "FinishedTyping":
-          const root = document.querySelector(rootSelector);
           dispatch({ name: "RevealHiddenCopy", rootElement: root });
           setTimeout(() => {
             dispatch({ name: "ScrollToNextSection" });
@@ -74,31 +63,63 @@ const section1 = () => {
       }
     },
   };
+
+  return section;
 };
 
-const typedTextSection = (rootSelector, options) => ({
-  rootSelector,
-  element: () => document.querySelector(rootSelector),
-  dispatch: ({ dispatch }, action) => {
-    switch (action.name) {
-      case "SectionDidAppear":
-        setupTypingText(document.querySelector(rootSelector), dispatch);
+const typedTextSection = (rootSelector, options) => {
+  const section = {
+    rootSelector,
+    typed: null,
+    element: () => document.querySelector(rootSelector),
+    dispatch: ({ dispatch }, action) => {
+      const root = document.querySelector(rootSelector);
 
-        if (options?.pauseBackgroundVideo) {
-          dispatch({ name: "PauseBackgroundVideo" });
-        }
+      switch (action.name) {
+        case "SectionDidAppear":
+          const typeElement = root.querySelector(".__typing-text-target");
 
-        if (options?.redrawLineDrawings) {
-          dispatch({ name: "RedrawLineDrawings" });
-        }
+          if (!typeElement) {
+            dispatch({ name: "RevealHiddenCopy", rootElement: root });
+          }
 
-        break;
+          if (!typeElement?.dataset?.typeHasAppeared) {
+            section.typed = new Typed(typeElement, {
+              strings: [
+                root.querySelector(".__typing-text-source").textContent,
+              ],
+              showCursor: false,
+              typeSpeed: 40,
+              onComplete: () => {
+                dispatch({ name: "FinishedTyping", typed: section.typed });
+              },
+            });
 
-      default:
-        break;
-    }
-  },
-});
+            typeElement.dataset.typeHasAppeared = true;
+          }
+
+          if (options?.pauseBackgroundVideo) {
+            dispatch({ name: "PauseBackgroundVideo" });
+          }
+
+          if (options?.redrawLineDrawings) {
+            dispatch({ name: "RedrawLineDrawings" });
+          }
+
+          break;
+
+        case "FinishedTyping":
+          dispatch({ name: "RevealHiddenCopy", rootElement: root });
+          break;
+
+        default:
+          break;
+      }
+    },
+  };
+
+  return section;
+};
 
 const typedTextAndVideoPlayerSection = typedTextSection;
 

@@ -144,7 +144,12 @@ const river = (() => {
   };
 
   /* Section Tracking */
-  const findCurrentlyVisibleSection = () => {
+  // Read the document dataset for current section
+  const currentSection = () =>
+    sections[document.documentElement.dataset?.section];
+
+  // Read the scroll position of the doc and return visible ELEMENT
+  const visibleSectionElement = () => {
     const sections = document.getElementsByClassName("section");
     for (const section of sections) {
       const sectionRect = section.getBoundingClientRect();
@@ -155,10 +160,9 @@ const river = (() => {
     }
   };
 
-  const updateCurrentlyVisibleSection = () => {
+  const updateCurrentSection = () => {
     const lastVisibleSectionId = document.documentElement.dataset.section;
-
-    const currentlyVisibleSection = findCurrentlyVisibleSection();
+    const currentlyVisibleSection = visibleSectionElement();
 
     if (!currentlyVisibleSection) {
       return;
@@ -181,8 +185,13 @@ const river = (() => {
   };
 
   const initSectionTracking = () => {
-    updateCurrentlyVisibleSection();
-    setInterval(updateCurrentlyVisibleSection, 250);
+    const scrollContainer = document.querySelector(".scroll-container");
+    scrollContainer.addEventListener("click", () => {
+      dispatch({ name: "SkipAnimation" });
+    });
+
+    updateCurrentSection();
+    setInterval(updateCurrentSection, 250);
   };
 
   const scrollToSection = (section) => {
@@ -198,11 +207,17 @@ const river = (() => {
   };
 
   const scrollToPreviousSection = () => {
-    scrollToSection(findCurrentlyVisibleSection()?.previousElementSibling);
+    scrollToSection(visibleSectionElement()?.previousElementSibling);
   };
 
   const scrollToNextSection = () => {
-    scrollToSection(findCurrentlyVisibleSection()?.nextElementSibling);
+    animationsRunning = false;
+
+    if (animationsRunning) {
+      console.log("Finish animations");
+    } else {
+      scrollToSection(visibleSectionElement()?.nextElementSibling);
+    }
   };
 
   const initKeyboardNavigation = () => {
@@ -282,6 +297,17 @@ const river = (() => {
     document.getElementById("video-player-container").classList.add("--hidden");
   };
 
+  // Skip CSS transitions
+  // https://medium.com/building-blocks/how-to-skip-css-transitions-with-jquery-e0155d06e82e
+  const skipTransition = (element, cb) => {
+    element.classList.add("x-transition");
+    if (cb) {
+      cb();
+    }
+    element.offsetHeight;
+    element.classList.remove("x-transition");
+  };
+
   // Set up the page
   initKeyboardNavigation();
   initScrollTracking();
@@ -333,11 +359,17 @@ const river = (() => {
         // line drawing animation length = 4s
         setTimeout(() => {
           showBackgroundVideo(firstVideoName);
-
-          if (videoNamesInOrder()[1]) {
-            loadBackgroundVideo(videoNamesInOrder()[1]);
-          }
         }, 3500);
+        break;
+
+      case "StartedTyping":
+        break;
+
+      case "FinishedTyping":
+        if (videoNamesInOrder()[1]) {
+          loadBackgroundVideo(videoNamesInOrder()[1]);
+        }
+
         break;
 
       case "SectionDidAppear":
@@ -348,7 +380,7 @@ const river = (() => {
 
         if (videoName) {
           if (videoName !== visibleVideoName) {
-            showBackgroundVideo(videoName);
+            showBackgroundVideo(videoName, true);
           }
         } else {
           backgroundVideoPlayers[visibleVideoName]?.pause();
@@ -381,9 +413,42 @@ const river = (() => {
 
         break;
 
+      case "SkipAnimation":
+        const typed = section.typed;
+        root = sectionElement;
+
+        if (typed) {
+          typed.stop();
+          typed.destroy();
+
+          const typeElement = root.querySelector(".__typing-text-target");
+          const typedText = root.querySelector(
+            ".__typing-text-source"
+          ).textContent;
+
+          typeElement.innerHTML = typedText;
+          typeElement.dataset.typeHasAppeared = true;
+
+          dispatch({ name: "FinishedTyping" });
+        }
+
+        dispatch({
+          name: "RevealHiddenCopy",
+          rootElement: visibleSectionElement(),
+          skipTransition: true,
+        });
+
+        break;
+
       case "RevealHiddenCopy":
         Array.from(action.rootElement.querySelectorAll(".hidden-copy")).forEach(
-          (e) => e.classList.add("--visible")
+          (e) => {
+            if (action.skipTransition) {
+              skipTransition(e, () => e.classList.add("--visible"));
+            } else {
+              e.classList.add("--visible");
+            }
+          }
         );
         break;
 
