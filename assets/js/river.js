@@ -34,6 +34,10 @@ const river = (() => {
     "home-business-of-data": typedTextAndVideoPlayerSection(
       "#home-business-of-data"
     ),
+    "home-resources": {
+      rootSelector: "#home-resources",
+      element: () => document.querySelector("#home-resources"),
+    },
     streams: sectionStreams(),
     riverbank: sectionRiverbank(),
   };
@@ -90,6 +94,7 @@ const river = (() => {
     player.on("loaded", (playerId) => {
       dispatch({ name: "LoadedBackgroundVideo", videoName });
       player.off("loaded");
+      player.play();
     });
   };
 
@@ -111,19 +116,19 @@ const river = (() => {
 
     const visibleVideoName = visibleVideo?.dataset?.videoName;
     if (visibleVideoName && visibleVideoName !== videoName) {
-      backgroundVideoPlayers[visibleVideoName].pause();
+      backgroundVideoPlayers[visibleVideoName]?.pause();
       visibleVideo.classList.remove("--visible");
     }
 
     const player = backgroundVideoPlayers[videoName];
-    player.play();
+    player?.play();
 
     if (immediately) {
       backgroundVideoPlayerContainer
         .querySelector(`.--${videoName}`)
         ?.classList?.add("--visible");
     } else {
-      player.on("play", () => {
+      player?.on("play", () => {
         backgroundVideoPlayerContainer
           .querySelector(`.--${videoName}`)
           ?.classList?.add("--visible");
@@ -400,14 +405,23 @@ const river = (() => {
         const videoNames = videoNamesInOrder();
 
         // Allow first video to load and delay retriggering the loading chain.
-        if (videoNames.indexOf(action.videoName) == 0) {
+        if (
+          sectionName === "#home-intro" &&
+          videoNames.indexOf(action.videoName) == 0
+        ) {
           return;
+        }
+
+        const sectionVideoName = sectionElement.dataset?.videoName;
+        if (sectionVideoName === action.videoName) {
+          showBackgroundVideo(sectionVideoName, true);
         }
 
         const nextVideoIndex = videoNames.indexOf(action.videoName) + 1;
         const nextVideoName = videoNames[nextVideoIndex];
 
         if (nextVideoName) {
+          console.log("Load next!", nextVideoName);
           loadBackgroundVideo(nextVideoName);
         }
 
