@@ -84,6 +84,13 @@ const typedTextSection = (rootSelector, options) => {
           }
 
           if (!typeElement?.dataset?.typeHasAppeared) {
+            const textContent = root.querySelector(
+              ".__typing-text-source"
+            )?.textContent;
+            if (!textContent) {
+              return;
+            }
+
             section.typed = new Typed(typeElement, {
               strings: [
                 root.querySelector(".__typing-text-source").textContent,
@@ -143,7 +150,22 @@ const sectionRiverbank = () => ({
         const firstVideoName = videoNamesInOrder()[0];
         loadBackgroundVideo(firstVideoName);
         showBackgroundVideo(firstVideoName, true);
-        return "stop";
+
+        setInterval(() => {
+          const images = document.querySelector("section .__images");
+          const currentImage =
+            images.querySelector("img.--current") ??
+            images.querySelector("img");
+
+          const nextImage =
+            currentImage.nextElementSibling ??
+            currentImage.parentElement.querySelector("img");
+
+          currentImage.classList.remove("--current");
+          nextImage.classList.add("--current");
+          nextImage.scrollIntoView({ behavior: "smooth" });
+        }, 3000);
+
         break;
 
       case "LoadedBackgroundVideo":

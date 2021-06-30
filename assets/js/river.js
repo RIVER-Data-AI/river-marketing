@@ -50,9 +50,9 @@ const river = (() => {
       .reduce((m, v) => (m.includes(v) ? m : [...m, v]), []);
 
   const initLineDrawings = () => {
-    document
+    const svgElement = document
       .querySelector(".svg-line-drawing svg path")
-      .addEventListener("animationend", (e) => {
+      ?.addEventListener("animationend", (e) => {
         dispatch({ name: "LineDrawingFinished" });
       });
   };
@@ -191,7 +191,7 @@ const river = (() => {
 
   const initSectionTracking = () => {
     const scrollContainer = document.querySelector(".scroll-container");
-    scrollContainer.addEventListener("click", () => {
+    scrollContainer?.addEventListener("click", () => {
       dispatch({ name: "SkipAnimation" });
     });
 
