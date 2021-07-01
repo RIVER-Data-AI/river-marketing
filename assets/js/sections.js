@@ -50,6 +50,7 @@ const section1 = () => {
         case "FinishedTyping":
           dispatch({ name: "RevealHiddenCopy", rootElement: root });
           setTimeout(() => {
+            dispatch({ name: "PlayBackgroundVideo", videoName: "rough" });
             dispatch({ name: "ScrollToNextSection" });
           }, 4000);
           break;

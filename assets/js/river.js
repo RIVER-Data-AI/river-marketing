@@ -396,6 +396,10 @@ const river = (() => {
         redrawLineDrawings();
         break;
 
+      case "PlayBackgroundVideo":
+        backgroundVideoPlayers[action.videoName]?.play();
+        break;
+
       case "PauseBackgroundVideo":
         pauseBackgroundVideo();
         break;
