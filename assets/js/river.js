@@ -6,6 +6,7 @@ const river = (() => {
     flowing: 552596313,
     creek: 552604626,
     jungle: 567652238,
+    waterfall: 570072799,
   };
 
   const sections = {
