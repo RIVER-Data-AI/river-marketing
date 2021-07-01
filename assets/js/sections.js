@@ -152,6 +152,7 @@ const sectionRiverbank = () => ({
         loadBackgroundVideo(firstVideoName);
         showBackgroundVideo(firstVideoName, true);
 
+        var i = 0;
         setInterval(() => {
           const images = document.querySelector("section .__images");
           const currentImage =
@@ -164,7 +165,13 @@ const sectionRiverbank = () => ({
 
           currentImage.classList.remove("--current");
           nextImage.classList.add("--current");
-          nextImage.scrollIntoView({ behavior: "smooth" });
+          images.scrollTo({
+            left: 0,
+            top: i * (currentImage.scrollHeight + 2),
+            behavior: "smooth",
+          });
+          i = (i + 1) % 3;
+          // nextImage.scrollIntoView({ behavior: "smooth" });
         }, 3000);
 
         break;
