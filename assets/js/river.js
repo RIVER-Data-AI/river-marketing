@@ -312,6 +312,11 @@ const river = (() => {
       videoPlayer.off("play");
     });
 
+    videoPlayer.on("ended", () => {
+      hideVideo();
+      videoPlayer.off("ended");
+    });
+
     document
       .getElementById("video-player-container")
       .classList.remove("--hidden");
