@@ -94,7 +94,6 @@ const river = (() => {
     player.on("loaded", (playerId) => {
       dispatch({ name: "LoadedBackgroundVideo", videoName });
       player.off("loaded");
-      player.play();
     });
   };
 
@@ -192,7 +191,7 @@ const river = (() => {
   const initSectionTracking = () => {
     const scrollContainer = document.querySelector(".scroll-container");
     scrollContainer?.addEventListener("click", () => {
-      dispatch({ name: "SkipAnimation" });
+      // dispatch({ name: "SkipAnimation" });
     });
 
     updateCurrentSection();
