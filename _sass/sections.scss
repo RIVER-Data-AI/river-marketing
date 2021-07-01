@@ -449,3 +449,38 @@ html[data-section="riverbank"] {
     }
   }
 }
+
+/******************************************************************************
+  Signup
+******************************************************************************/
+
+html[data-section="signup"] {
+  --body-color: white;
+  background-color: var(--blue-dark);
+
+  .background-video-container {
+    .__overlay.--signup {
+      opacity: 1;
+    }
+  }
+}
+
+.section.--signup {
+  justify-content: flex-start;
+  margin-top: calc(8vh + 80px);
+  padding: 0 0 0 5vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 50em;
+
+  .__body {
+    flex-basis: 50em;
+    margin-right: 5vw;
+  }
+
+  div.mce_inline_error {
+    background: rgba(0, 0, 0, 0.2) !important;
+  }
+}
