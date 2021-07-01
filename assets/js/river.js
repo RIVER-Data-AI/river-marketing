@@ -40,6 +40,7 @@ const river = (() => {
     },
     streams: sectionStreams(),
     riverbank: sectionRiverbank(),
+    signup: sectionSignup(),
   };
 
   let backgroundVideoPlayerContainer;

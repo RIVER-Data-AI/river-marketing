@@ -180,3 +180,36 @@ const sectionRiverbank = () => ({
 });
 
 const sectionStreams = sectionRiverbank;
+
+const sectionSignup = () => ({
+  rootSelector: "#signup",
+  element: () => {
+    document.querySelector("section");
+  },
+  dispatch: (
+    {
+      initBackgroundVideo,
+      loadBackgroundVideo,
+      showBackgroundVideo,
+      videoNamesInOrder,
+    },
+    action
+  ) => {
+    switch (action.name) {
+      case "DOMContentLoaded":
+        initBackgroundVideo();
+
+        const firstVideoName = videoNamesInOrder()[0];
+        loadBackgroundVideo(firstVideoName);
+        showBackgroundVideo(firstVideoName, true);
+        break;
+
+      case "LoadedBackgroundVideo":
+        showBackgroundVideo(action.videoName);
+        break;
+
+      default:
+        break;
+    }
+  },
+});
