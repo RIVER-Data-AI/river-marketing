@@ -387,19 +387,39 @@ body {
 
   .__video-player {
     position: fixed;
-    left: 5vw;
+    left: 10vw;
     top: 10vh;
-    width: 90vw;
+    width: 80vw;
     height: 80vh;
-    background: white;
     transition: left ease-in var(--transition-time);
     transition-delay: 0.1s;
 
     text-align: center;
 
-    img {
-      width: 90vw;
-      height: 80vh;
+    .__int {
+      .__player {
+        iframe {
+          width: 80vw;
+          max-height: 99vh;
+          max-width: 99vw;
+          min-height: 45vh;
+          min-width: calc(min(80vw, 142vh));
+        }
+      }
+
+      .__placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90vw;
+        height: 80vh;
+        transition: opacity ease-in-out var(--transition-time);
+
+        &.--hidden {
+          opacity: 0;
+          z-index: -1;
+        }
+      }
     }
   }
 

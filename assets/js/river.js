@@ -291,13 +291,33 @@ const river = (() => {
 
   const initVideoPlayer = () => {};
 
-  const showVideo = (videoName) => {
+  var videoPlayer;
+  const showVideo = (videoId) => {
+    const placeholderImage = document
+      .getElementById("video-player-container")
+      ?.querySelector(".__placeholder");
+
+    placeholderImage?.classList?.remove("--hidden");
+
+    videoPlayer = new Vimeo.Player(document.querySelector(`#video-player`), {
+      id: videoId,
+      controls: true,
+      muted: false,
+    });
+
+    videoPlayer.play();
+    videoPlayer.on("play", () => {
+      placeholderImage?.classList?.add("--hidden");
+      videoPlayer.off("play");
+    });
+
     document
       .getElementById("video-player-container")
       .classList.remove("--hidden");
   };
 
   const hideVideo = () => {
+    videoPlayer?.pause();
     document.getElementById("video-player-container").classList.add("--hidden");
   };
 
