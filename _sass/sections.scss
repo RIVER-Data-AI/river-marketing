@@ -259,7 +259,7 @@ html[data-section="home-who-is-using-your-data-2"] {
 }
 
 /******************************************************************************
-  Working with Big Tech
+  Working with Deep Tech
 ******************************************************************************/
 
 html[data-section="home-working-with-big-tech"] {
@@ -268,8 +268,13 @@ html[data-section="home-working-with-big-tech"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--working-with-big-tech {
+    .overlay.--util {
       opacity: 1;
+      background-image: linear-gradient(
+        rgba(154, 177, 187, 1) 10%,
+        rgba(208, 220, 206, 1) 45%,
+        rgba(219, 226, 209, 1)
+      );
     }
   }
 }
