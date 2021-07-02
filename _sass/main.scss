@@ -249,6 +249,7 @@ body {
   }
 
   .__links {
+    visibility: hidden;
     list-style-type: none;
     padding: 0;
     position: absolute;
@@ -264,11 +265,14 @@ body {
 
     a {
       padding: 0.5em 0;
+      white-space: nowrap;
+      font-size: 22px;
     }
   }
 
   &.--visible {
     .__links {
+      visibility: visible;
       opacity: 1;
       top: 2em;
       z-index: 1;
