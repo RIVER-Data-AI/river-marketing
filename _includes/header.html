@@ -1,9 +1,34 @@
 <header class="header">
   <div class="__logo">
-    <a href="{{ site.baseurl }}{% link index.html %}" title="River"
+    <a
+      href="{{ site.baseurl }}{% link index.html %}"
+      title="River"
+      class="__river"
       >{% include river_logo.svg %}</a
     >
-    <div class="__shimmer"></div>
+    <div id="hamburger" class="__hamburger hamburger">
+      <a href="javascript:river.toggleHamburger();" class="__toggle">🍔</a>
+      <ul class="__links">
+        {% include hamburger_link.html title="Introduction" section="home-intro"
+        %} {% include hamburger_link.html title="River is a platform for your
+        data" section="home-privacy-platform" %} {% include hamburger_link.html
+        title="You create $data$ every day" section="home-video-1" %} {% include
+        hamburger_link.html title="Your Data Belongs to You"
+        section="your-data-belongs-to-you" %} {% include hamburger_link.html
+        title="If the service is free, you are probably the product"
+        section="home-river-gives-you-control" %} {% include hamburger_link.html
+        title="A privacy platform you'll want to use"
+        section="home-privacy-platform-2" %} {% include hamburger_link.html
+        title="Who is using your data?" section="home-who-is-using-your-data" %}
+        {% include hamburger_link.html title="Working with Deep Tech"
+        section="home-working-with-big-tech" %} {% include hamburger_link.html
+        title="Data Untapped" section="home-data-untapped" %} {% include
+        hamburger_link.html title="The Business of River"
+        section="home-how-does-river-work" %} {% include hamburger_link.html
+        title="The Business of Data" section="home-business-of-data" %} {%
+        include hamburger_link.html title="About" section="home-resources" %}
+      </ul>
+    </div>
   </div>
   <div class="__links">
     <div class="__link-container">

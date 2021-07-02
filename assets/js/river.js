@@ -226,6 +226,29 @@ const river = (() => {
     }
   };
 
+  const hamburgerSelector = "#hamburger";
+  const toggleHamburger = () => {
+    if (
+      document.querySelector(hamburgerSelector).classList.contains("--visible")
+    ) {
+      hideHamburger();
+    } else {
+      showHamburger();
+    }
+  };
+
+  const showHamburger = () => {
+    const hamburger = document
+      .querySelector(hamburgerSelector)
+      .classList.add("--visible");
+  };
+
+  const hideHamburger = () => {
+    const hamburger = document
+      .querySelector(hamburgerSelector)
+      .classList.remove("--visible");
+  };
+
   const initKeyboardNavigation = () => {
     document.addEventListener("keyup", (event) => {
       if (event.defaultPrevented) {
@@ -506,6 +529,13 @@ const river = (() => {
     showVideo,
     hideVideo,
 
+    toggleHamburger,
+
+    showSection: (sectionId) => {
+      console.log("Show ", sectionId, sections[sectionId]);
+      scrollToSection(sections[sectionId]?.element());
+      hideHamburger();
+    },
     previousSection: scrollToPreviousSection,
     nextSection: scrollToNextSection,
   };
