@@ -1,5 +1,18 @@
 .overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
   transition: opacity ease-in-out var(--transition-time);
+
+  &.--util {
+    background: transparent;
+    transition: opacity ease-in-out var(--transition-time),
+      transform ease-in-out var(--transition-time);
+  }
 
   &.--white-fade {
     background-image: linear-gradient(
@@ -76,27 +89,29 @@
   }
 
   &.--your-data-belongs-to-you {
-    background-image: linear-gradient(
-      rgba(3, 44, 108, 1),
-      rgba(3, 44, 108, 0.8) 15%,
-      rgba(70, 122, 180, 0.6) 40%,
-      rgba(65, 110, 164, 0.8) 100%
+    background-image: radial-gradient(
+      circle at top,
+      rgba(92, 178, 178, 1) 0%,
+      rgba(50, 102, 156, 1) 37%,
+      rgba(5, 9, 47, 1) 90%
     );
   }
 
   &.--if-the-service-is-free {
-    background-image: linear-gradient(
-      rgba(3, 44, 108, 0.7),
-      rgba(3, 44, 108, 0.9)
+    background-image: radial-gradient(
+      circle at bottom,
+      rgba(92, 178, 178, 1) 0%,
+      rgba(50, 102, 156, 1) 37%,
+      rgba(5, 9, 47, 1) 90%
     );
   }
 
   &.--a-privacy-platform-youll-want-to-use {
-    background-image: linear-gradient(
-      rgba(65, 110, 164, 0.4),
-      rgba(70, 122, 180, 0.6) 40%,
-      rgba(3, 44, 108, 0.8) 80%,
-      rgba(3, 44, 108, 1) 100%
+    background-image: radial-gradient(
+      circle at top,
+      rgba(92, 178, 178, 1) 0%,
+      rgba(50, 102, 156, 1) 37%,
+      rgba(5, 9, 47, 1) 90%
     );
   }
 

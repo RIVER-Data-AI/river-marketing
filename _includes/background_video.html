@@ -22,6 +22,8 @@
     {% endif %} {% if page.videos.rough %}
     <div class="__video --rough" data-video-name="rough">
       <div id="background-video-player-rough"></div>
+      <div class="__overlay overlay --util"></div>
+
       <div class="__overlay overlay --feathered-gray-blue"></div>
       <div class="__overlay overlay --dark-blue"></div>
       <div class="__overlay overlay --dark-blue-inv"></div>
@@ -49,6 +51,6 @@
     </div>
     {% endif %}
   </div>
-
+  <div class="overlay --util"></div>
   {% if page.lineDrawing %} {% include line_drawings.html %} {% endif %}
 </div>

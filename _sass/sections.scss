@@ -76,9 +76,15 @@ html[data-section="your-data-belongs-to-you"] {
   --body-color: white;
   background-color: var(--blue-dark);
 
+  .svg-line-drawing {
+    top: calc(-20vw);
+  }
+
   .background-video-container {
-    .__overlay.--your-data-belongs-to-you {
+    .overlay.--util {
       opacity: 1;
+      background-image: radial-gradient(#5cb2b2 0%, #32669c 17%, #05092f 50%);
+      transform: scale(2, 2) translate(0, -25vh);
     }
   }
 }
@@ -99,8 +105,10 @@ html[data-section="home-river-gives-you-control"] {
   background-color: var(--blue-dark);
 
   .background-video-container {
-    .__overlay.--if-the-service-is-free {
+    .overlay.--util {
       opacity: 1;
+      background-image: radial-gradient(#5cb2b2 0%, #32669c 17%, #05092f 50%);
+      transform: scale(2, 2) translate(0, 25vh);
     }
   }
 
@@ -130,9 +138,15 @@ html[data-section="home-privacy-platform-2"] {
   --body-color: white;
   background-color: var(--blue-dark);
 
+  .svg-line-drawing {
+    top: calc(-20vw);
+  }
+
   .background-video-container {
-    .__overlay.--a-privacy-platform-youll-want-to-use {
+    .overlay.--util {
       opacity: 1;
+      background-image: radial-gradient(#5cb2b2 0%, #32669c 17%, #05092f 50%);
+      transform: scale(2, 2) translate(0, -25vh);
     }
   }
 }
