@@ -498,4 +498,19 @@ html[data-section="signup"] {
   div.mce_inline_error {
     background: rgba(0, 0, 0, 0.2) !important;
   }
+
+  #mc_embed_signup .mc-field-group {
+    margin-bottom: 1em;
+    padding-bottom: 0;
+  }
+
+  #mce-EMAIL {
+    padding: 20px 10px;
+  }
+
+  #mc-embedded-subscribe {
+    margin-left: 0;
+    padding: 0.6em 4em;
+    letter-spacing: 0.1px;
+  }
 }

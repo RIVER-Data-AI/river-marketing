@@ -234,7 +234,8 @@ body {
   justify-content: space-around;
 }
 
-.button {
+.button,
+.river-button {
   font-family: "Montserrat", serif;
   font-size: 20px;
   line-height: 22px;
@@ -243,7 +244,10 @@ body {
   text-decoration: none;
   letter-spacing: 0.2em;
   padding: 0.6em 1.4em 0.35em 1.4em;
-  border-radius: 20px;
+
+  // Use !important to bully the mailchimp styles
+  border-radius: 20px !important;
+  border: none !important;
 
   &.--block {
     display: block;
