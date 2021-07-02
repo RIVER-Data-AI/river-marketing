@@ -165,13 +165,30 @@ const sectionRiverbank = () => ({
 
           currentImage.classList.remove("--current");
           nextImage.classList.add("--current");
-          images.scrollTo({
-            left: 0,
-            top: i * (currentImage.scrollHeight + 2),
-            behavior: "smooth",
-          });
+
+          // Manually do this smooth scroll for sake of Safari
+          const animationLength = 500;
+          const animationStart = new Date();
+          const originalScrollPosition = images.scrollLeft;
+          const targetScrollPosition = i * (currentImage.scrollWidth + 5);
+
+          const animationInterval = setInterval(() => {
+            const l = (new Date() - animationStart) / animationLength;
+
+            images.scrollTo({
+              left:
+                originalScrollPosition +
+                (targetScrollPosition - originalScrollPosition) * l,
+              top: 0,
+              behavior: "smooth",
+            });
+
+            if (l > 1) {
+              clearInterval(animationInterval);
+            }
+          }, 1);
+
           i = (i + 1) % 3;
-          // nextImage.scrollIntoView({ behavior: "smooth" });
         }, 3000);
 
         break;

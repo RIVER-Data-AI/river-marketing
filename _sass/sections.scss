@@ -408,11 +408,14 @@ html[data-section="streams"] {
   }
 
   .__images {
+    display: flex;
+    flex-flow: row nowrap;
+
     flex-basis: 52vw;
     max-height: 29vw;
     margin-top: 40px;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
 
     img {
       max-width: 100%;
@@ -452,15 +455,19 @@ html[data-section="riverbank"] {
   }
 
   .__images {
+    display: flex;
+    flex-flow: row nowrap;
+
     flex-basis: 52vw;
     max-height: 29vw;
     margin-top: 40px;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
 
     img {
       max-width: 100%;
       scroll-snap-align: center;
+      margin-right: 5px;
     }
   }
 }
