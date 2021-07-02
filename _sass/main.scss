@@ -248,6 +248,9 @@ body {
     display: block;
   }
 
+  .__links-c {
+  }
+
   .__links {
     visibility: hidden;
     list-style-type: none;
@@ -271,6 +274,9 @@ body {
   }
 
   &.--visible {
+    .__links-c {
+    }
+
     .__links {
       visibility: visible;
       opacity: 1;
