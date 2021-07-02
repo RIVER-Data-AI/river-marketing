@@ -382,6 +382,7 @@ body {
     align-items: center;
     max-width: 30vw;
     text-decoration: none;
+    transition: opacity var(--transition-time);
 
     svg {
       color: var(--body-color);

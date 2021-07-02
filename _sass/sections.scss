@@ -209,10 +209,50 @@ html[data-section="home-who-is-using-your-data"] {
   .svg-line-drawing {
     opacity: 0.2;
   }
+
+  .section.--home-privacy-platform-2 {
+    .__breadcrumb {
+      opacity: 0;
+    }
+  }
+
+  .section.--home-who-is-using-your-data {
+    .__body {
+      position: fixed;
+      top: 20em;
+      max-width: 80vw;
+    }
+
+    .__scroll-copy {
+      transform: translate(0, 0);
+    }
+  }
+
+  .section.--home-who-is-using-your-data-2 {
+    .__body {
+      &,
+      .hidden-copy.--visible {
+        visibility: hidden;
+      }
+    }
+  }
 }
 
 .section.--home-who-is-using-your-data {
-  max-width: 80vw;
+  .__body {
+    z-index: 0;
+  }
+
+  .__scroll-cover {
+    width: 99vw;
+    height: 99vh;
+    z-index: 10;
+  }
+
+  .__scroll-copy {
+    transition: transform var(--transition-time);
+    transform: translate(-100%, 0);
+  }
 
   @include bp-mobile {
     max-width: 90vw;
@@ -244,10 +284,63 @@ html[data-section="home-who-is-using-your-data-2"] {
   .svg-line-drawing {
     opacity: 0.2;
   }
+
+  .section.--home-who-is-using-your-data {
+    .__body {
+      &,
+      .hidden-copy.--visible {
+        visibility: hidden;
+      }
+    }
+
+    .__breadcrumb {
+      position: fixed;
+      bottom: 1em;
+    }
+  }
+
+  .section.--home-who-is-using-your-data-2 {
+    .__body {
+      position: fixed;
+      top: 20em;
+      max-width: 80vw;
+
+      .__scroll-copy {
+        transform: translate(0, 0);
+      }
+    }
+
+    .__breadcrumb {
+      position: fixed;
+      bottom: 1em;
+      opacity: 1;
+    }
+  }
 }
 
 .section.--home-who-is-using-your-data-2 {
   max-width: 80vw;
+  position: relative;
+
+  .__breadcrumb {
+    margin-top: 40em;
+    opacity: 0;
+  }
+
+  .__body {
+    z-index: 0;
+  }
+
+  .__scroll-cover {
+    width: 99vw;
+    height: 99vh;
+    z-index: 10;
+  }
+
+  .__scroll-copy {
+    transition: transform var(--transition-time);
+    transform: translate(100%, 0);
+  }
 
   @include bp-mobile {
     max-width: 90vw;
@@ -274,6 +367,12 @@ html[data-section="home-working-with-big-tech"] {
         rgba(208, 220, 206, 1) 45%,
         rgba(219, 226, 209, 1)
       );
+    }
+  }
+
+  .section.--home-who-is-using-your-data-2 {
+    .__breadcrumb {
+      visibility: hidden;
     }
   }
 }
