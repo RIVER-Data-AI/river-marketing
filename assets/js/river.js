@@ -16,7 +16,7 @@ const river = (() => {
     "your-data-belongs-to-you": typedTextSection("#your-data-belongs-to-you"),
     "home-river-gives-you-control": typedTextSection(
       "#home-river-gives-you-control",
-      { redrawLineDrawings: true, pauseBackgroundVideo: true }
+      { pauseBackgroundVideo: true }
     ),
     "home-privacy-platform-2": typedTextSection("#home-privacy-platform-2", {
       pauseBackgroundVideo: true,
