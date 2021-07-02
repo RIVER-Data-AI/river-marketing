@@ -428,6 +428,7 @@ html[data-section="streams"] {
 html[data-section="riverbank"] {
   --body-color: white;
   background-color: var(--blue-dark);
+  background-image: url("#{$baseurl}/assets/img/riverbank-bg.jpeg");
 
   .background-video-container {
     .__overlay.--riverbank {
