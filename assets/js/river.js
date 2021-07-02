@@ -217,13 +217,7 @@ const river = (() => {
   };
 
   const scrollToNextSection = () => {
-    animationsRunning = false;
-
-    if (animationsRunning) {
-      console.log("Finish animations");
-    } else {
-      scrollToSection(visibleSectionElement()?.nextElementSibling);
-    }
+    scrollToSection(visibleSectionElement()?.nextElementSibling);
   };
 
   const hamburgerSelector = "#hamburger";
@@ -412,7 +406,9 @@ const river = (() => {
 
         // line drawing animation length = 4s
         setTimeout(() => {
-          showBackgroundVideo(firstVideoName);
+          if (document.documentElement.dataset.section === "home-intro") {
+            showBackgroundVideo(firstVideoName);
+          }
         }, 3500);
         break;
 
