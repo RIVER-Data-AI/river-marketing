@@ -155,6 +155,9 @@ const sectionRiverbank = () => ({
         var i = 0;
         setInterval(() => {
           const images = document.querySelector("section .__images");
+          const childImages = Array.from(images.children);
+          const numImages = childImages.length;
+
           const currentImage =
             images.querySelector("img.--current") ??
             images.querySelector("img");
@@ -162,6 +165,7 @@ const sectionRiverbank = () => ({
           const nextImage =
             currentImage.nextElementSibling ??
             currentImage.parentElement.querySelector("img");
+          const nextImageIndex = childImages.indexOf(nextImage);
 
           currentImage.classList.remove("--current");
           nextImage.classList.add("--current");
@@ -170,7 +174,8 @@ const sectionRiverbank = () => ({
           const animationLength = 500;
           const animationStart = new Date();
           const originalScrollPosition = images.scrollLeft;
-          const targetScrollPosition = i * (currentImage.scrollWidth + 5);
+          const targetScrollPosition =
+            nextImageIndex * (currentImage.scrollWidth + 5);
 
           const animationInterval = setInterval(() => {
             const l = (new Date() - animationStart) / animationLength;
@@ -185,10 +190,19 @@ const sectionRiverbank = () => ({
 
             if (l > 1) {
               clearInterval(animationInterval);
+
+              if (i === numImages - 1) {
+                images.scrollTo({ left: 0, top: 0 });
+                images
+                  .querySelector("img.--current")
+                  .classList.remove("--current");
+                images.querySelector("img").classList.add("--current");
+                i = 0;
+              }
             }
           }, 1);
 
-          i = (i + 1) % 3;
+          i = (i + 1) % numImages;
         }, 3000);
 
         break;
