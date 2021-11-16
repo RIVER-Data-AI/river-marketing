@@ -460,11 +460,10 @@ body {
     .__int {
       .__player {
         iframe {
-          width: 80vw;
+          width: calc(min(1063px, 80vw));
+          height: calc(min(597px, 80vh));
           max-height: 99vh;
           max-width: 99vw;
-          min-height: 45vh;
-          min-width: calc(min(80vw, 142vh));
         }
       }
 
