@@ -17,7 +17,7 @@ html[data-section="home-intro"] {
 }
 
 /******************************************************************************
-  Priver is a platform for your data
+  River is a platform for your data
 *******************************************************************************/
 
 html[data-section="home-privacy-platform"] {
@@ -218,13 +218,9 @@ html[data-section="home-who-is-using-your-data"] {
 
   .section.--home-who-is-using-your-data {
     .__body {
+      max-width: 80vw;
       position: fixed;
       top: 20em;
-      max-width: 80vw;
-    }
-
-    .__scroll-copy {
-      transform: translate(0, 0);
     }
   }
 
@@ -239,20 +235,7 @@ html[data-section="home-who-is-using-your-data"] {
 }
 
 .section.--home-who-is-using-your-data {
-  .__body {
-    z-index: 0;
-  }
-
-  .__scroll-cover {
-    width: 99vw;
-    height: 99vh;
-    z-index: 10;
-  }
-
-  .__scroll-copy {
-    transition: transform var(--transition-time);
-    transform: translate(-100%, 0);
-  }
+  max-width: 80vw;
 
   @include bp-mobile {
     max-width: 90vw;
@@ -301,13 +284,9 @@ html[data-section="home-who-is-using-your-data-2"] {
 
   .section.--home-who-is-using-your-data-2 {
     .__body {
+      max-width: 80vw;
       position: fixed;
       top: 20em;
-      max-width: 80vw;
-
-      .__scroll-copy {
-        transform: translate(0, 0);
-      }
     }
 
     .__breadcrumb {
@@ -329,17 +308,6 @@ html[data-section="home-who-is-using-your-data-2"] {
 
   .__body {
     z-index: 0;
-  }
-
-  .__scroll-cover {
-    width: 99vw;
-    height: 99vh;
-    z-index: 10;
-  }
-
-  .__scroll-copy {
-    transition: transform var(--transition-time);
-    transform: translate(100%, 0);
   }
 
   @include bp-mobile {
