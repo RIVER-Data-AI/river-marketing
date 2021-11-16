@@ -1,7 +1,7 @@
 <li class="__li">
   <a
-    href="javascript:void"
-    onclick="river.showSection('{{ include.section }}'); return false;"
+    href="{{ site.baseurl }}{% link index.html %}#{{ include.section }}"
+    onclick="return river.showSection(event)"
     title="{{ include.title }}"
     class="l2"
     >{{ include.title }}</a

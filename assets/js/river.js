@@ -9,6 +9,8 @@ const river = (() => {
     waterfall: 570072799,
   };
 
+  const pageId = () => document.documentElement.dataset.id
+
   const sections = {
     "home-intro": section1(),
     "home-privacy-platform": typedTextSection("#home-privacy-platform"),
@@ -202,7 +204,7 @@ const river = (() => {
 
   const scrollToSection = (section) => {
     if (!section) {
-      return;
+      return
     }
 
     // Safari apparently has an issue with smooth scrolling; let's punt that for now.
@@ -420,6 +422,7 @@ const river = (() => {
             showBackgroundVideo(firstVideoName);
           }
         }, 3500);
+
         break;
 
       case "StartedTyping":
@@ -537,10 +540,38 @@ const river = (() => {
 
     toggleHamburger,
 
-    showSection: (sectionId) => {
-      console.log("Show ", sectionId, sections[sectionId]);
-      scrollToSection(sections[sectionId]?.element());
-      hideHamburger();
+    /*
+     *
+     *
+     */
+    showSection: (arg) => {
+      if (typeof(arg) === 'string') {
+        const sectionId = arg
+        const section = sections[sectionId]
+        if (!section) { return }
+
+        history.pushState(null, null, `#${sectionId}`)
+        scrollToSection(section.element());
+        hideHamburger();
+
+        return false;
+      }
+      
+      if (typeof(arg) === 'object') {
+        const event = arg
+        const { hash, href } = event.target
+        if (!hash) { return }
+
+        const sectionId = hash.replace('#', '')
+        const sectionElement = sections[sectionId]?.element()
+        if (!sectionElement) { return }
+
+        history.pushState(null, null, href)
+        scrollToSection(sectionElement)
+        hideHamburger()
+        
+        return false
+      }
     },
     previousSection: scrollToPreviousSection,
     nextSection: scrollToNextSection,
