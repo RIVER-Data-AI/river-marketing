@@ -23,6 +23,7 @@ body {
 .p2,
 .p3,
 .p4,
+.p5,
 .l1,
 .l2 {
   transition: color ease-in 0.3s;
@@ -70,22 +71,22 @@ body {
 
 .p1 {
   font-family: "Montserrat", sans-serif;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 1.5em;
   margin-top: 28px;
   margin-bottom: 28px;
   color: var(--body-color);
 
   @include bp-mobile {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   @include bp-small {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   @include bp-medium {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 
@@ -134,6 +135,27 @@ body {
   font-family: "Baskerville", serif;
   font-style: italic;
   font-size: 28px;
+  color: var(--body-color);
+
+  @include bp-mobile {
+    font-size: 18px;
+  }
+
+  @include bp-small {
+    font-size: 18px;
+  }
+
+  @include bp-medium {
+    font-size: 22px;
+  }
+}
+
+.p5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 26px;
+  line-height: 1.5em;
+  margin-top: 28px;
+  margin-bottom: 28px;
   color: var(--body-color);
 
   @include bp-mobile {
