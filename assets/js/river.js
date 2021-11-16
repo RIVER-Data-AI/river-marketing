@@ -311,29 +311,39 @@ const river = (() => {
   const initVideoPlayer = () => {};
 
   var videoPlayer;
-  const showVideo = (videoId) => {
+  const showVideo = async (videoId) => {
     const placeholderImage = document
       .getElementById("video-player-container")
       ?.querySelector(".__placeholder");
 
     placeholderImage?.classList?.remove("--hidden");
 
-    videoPlayer = new Vimeo.Player(document.querySelector(`#video-player`), {
-      id: videoId,
-      controls: true,
-      muted: false,
-    });
+    if (videoPlayer) {
+      const existingPlayerId = await videoPlayer.getVideoId();
+      if (`${existingPlayerId}` === videoId) {
+        return;
+      }
 
-    videoPlayer.play();
-    videoPlayer.on("play", () => {
-      placeholderImage?.classList?.add("--hidden");
-      videoPlayer.off("play");
-    });
+      await videoPlayer.loadVideo(videoId);
+      videoPlayer.play();
+    } else {
+      videoPlayer = new Vimeo.Player(document.querySelector(`#video-player`), {
+        id: videoId,
+        controls: true,
+        muted: false,
+      });
 
-    videoPlayer.on("ended", () => {
-      hideVideo();
-      videoPlayer.off("ended");
-    });
+      videoPlayer.play();
+      videoPlayer.on("play", () => {
+        placeholderImage?.classList?.add("--hidden");
+        videoPlayer.off("play");
+      });
+
+      videoPlayer.on("ended", () => {
+        hideVideo();
+        videoPlayer.off("ended");
+      });
+    }
 
     document
       .getElementById("video-player-container")
