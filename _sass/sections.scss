@@ -441,6 +441,34 @@ html[data-section="home-resources"] {
   max-width: 80vw;
 }
 
+
+html[data-section="streams"],
+html[data-section="about"],
+html[data-section="team"] {
+  justify-content: flex-start;
+  margin-top: calc(8vh + 80px);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .section {
+    width: unset;
+    margin: 0 5em;
+  }
+
+  .__logo-and-title {
+    img {
+      max-height: 10em;
+    }
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1em;
+  }
+}
+
 /******************************************************************************
   StreamS
 ******************************************************************************/
@@ -455,42 +483,6 @@ html[data-section="streams"] {
   .background-video-container {
     .__overlay.--streams {
       opacity: 1;
-    }
-  }
-}
-
-.section.--streams {
-  justify-content: flex-start;
-  margin-top: calc(8vh + 80px);
-  padding: 0 0 0 5vw;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  .__example {
-    border-top: 1px solid var(--body-color);
-    border-bottom: 1px solid var(--body-color);
-  }
-
-  .__copy {
-    flex-basis: 38vw;
-    margin-right: 5vw;
-  }
-
-  .__images {
-    display: flex;
-    flex-flow: row nowrap;
-
-    flex-basis: 52vw;
-    max-height: 29vw;
-    margin-top: 40px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-
-    img {
-      max-width: 100%;
-      scroll-snap-align: center;
     }
   }
 }
@@ -523,6 +515,17 @@ html[data-section="riverbank"] {
   .__copy {
     flex-basis: 38vw;
     margin-right: 5vw;
+
+    .__logo-and-title {
+      img {
+        max-height: 10em;
+      }
+  
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      gap: 1em;
+    }
   }
 
   .__images {
@@ -534,6 +537,12 @@ html[data-section="riverbank"] {
     margin-top: 40px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
     img {
       max-width: 100%;
@@ -550,15 +559,14 @@ html[data-section="riverbank"] {
 html[data-section="about"] {
   justify-content: flex-start;
   margin-top: calc(8vh + 80px);
-  padding: 0 0 0 5vw;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: flex-start;
 
-  .__copy {
-    flex-basis: 38vw;
-    margin-right: 5vw;
+  .section {
+    width: unset;
+    margin: 0 5em;
   }
 }
 
@@ -617,20 +625,9 @@ html[data-section="signup"] {
 ******************************************************************************/
 
 html[data-section="team"] {
-  justify-content: flex-start;
-  margin-top: calc(8vh + 80px);
-  padding: 0 0 0 5vw;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  .__copy {
-    flex-basis: 38vw;
-    margin-right: 5vw;
-  }
-
   .__list {
+    padding: 0;
+
     li {
       list-style-type: none;
       display: inline;
