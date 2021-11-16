@@ -560,23 +560,6 @@ html[data-section="about"] {
     flex-basis: 38vw;
     margin-right: 5vw;
   }
-
-  .__images {
-    display: flex;
-    flex-flow: row nowrap;
-
-    flex-basis: 52vw;
-    max-height: 29vw;
-    margin-top: 40px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-
-    img {
-      max-width: 100%;
-      scroll-snap-align: center;
-      margin-right: 5px;
-    }
-  } 
 }
 
 /******************************************************************************
@@ -626,5 +609,36 @@ html[data-section="signup"] {
     margin-left: 0;
     padding: 0.6em 4em;
     letter-spacing: 0.1px;
+  }
+}
+
+/******************************************************************************
+  Team
+******************************************************************************/
+
+html[data-section="team"] {
+  justify-content: flex-start;
+  margin-top: calc(8vh + 80px);
+  padding: 0 0 0 5vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .__copy {
+    flex-basis: 38vw;
+    margin-right: 5vw;
+  }
+
+  .__list {
+    li {
+      list-style-type: none;
+      display: inline;
+
+      &::after {
+        content: " | ";
+        color: var(--yellow);
+      }
+    }
   }
 }
