@@ -631,6 +631,15 @@ html[data-section="signup"] {
 ******************************************************************************/
 
 html[data-section="team"] {
+  --body-color: white;
+  background-color: #010509;
+
+  .background-video-container {
+    .__overlay.--team {
+      opacity: 1;
+    }
+  }
+
   .__list {
     padding: 0;
 

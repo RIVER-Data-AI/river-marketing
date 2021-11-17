@@ -158,4 +158,8 @@
   &.--about {
     background-image: linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8));
   }
+  
+  &.--team {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+  }
 }

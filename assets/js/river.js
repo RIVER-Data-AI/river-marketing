@@ -10,6 +10,7 @@ const river = (() => {
     waterfall: 570072799,
     streams: 646700670,
     riverbank: 646705836,
+    team: 646709932,
   };
 
   const pageId = () => document.documentElement.dataset.id
