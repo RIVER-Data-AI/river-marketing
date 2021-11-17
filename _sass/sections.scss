@@ -331,11 +331,15 @@ html[data-section="home-working-with-big-tech"] {
     .overlay.--util {
       opacity: 1;
       background-image: linear-gradient(
-        rgba(154, 177, 187, 1) 10%,
-        rgba(208, 220, 206, 1) 45%,
-        rgba(219, 226, 209, 1)
+        rgba(27, 43, 65, 1) 5%,
+        rgba(77, 95, 127, 1) 40%,
+        rgba(226, 227, 230, 1) 100%
       );
     }
+  }
+
+  .svg-line-drawing {
+    opacity: 0.1;
   }
 
   .section.--home-who-is-using-your-data-2 {
