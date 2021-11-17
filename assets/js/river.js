@@ -9,6 +9,7 @@ const river = (() => {
     jungle: 567652238,
     waterfall: 570072799,
     streams: 646700670,
+    riverbank: 646705836,
   };
 
   const pageId = () => document.documentElement.dataset.id

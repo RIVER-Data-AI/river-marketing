@@ -510,8 +510,7 @@ html[data-section="streams"] {
 
 html[data-section="riverbank"] {
   --body-color: white;
-  background-color: var(--blue-dark);
-  background-image: url("#{$baseurl}/assets/img/riverbank-bg.jpeg");
+  background-color: #010509;
 
   .background-video-container {
     .__overlay.--riverbank {
@@ -521,17 +520,19 @@ html[data-section="riverbank"] {
 }
 
 .section.--riverbank {
-  justify-content: flex-start;
-  margin-top: calc(8vh + 80px);
-  padding: 0 0 0 5vw;
+  width: unset;
+  padding: 0;
+  margin: calc(8vh + 80px) 6em 0 6em;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  --transition-time: 2s;
 
   .__copy {
     flex-basis: 38vw;
     margin-right: 5vw;
+    margin-top: 1em;
   }
 
   .__images {

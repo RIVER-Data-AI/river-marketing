@@ -150,7 +150,6 @@ const sectionRiverbank = () => ({
 
         const firstVideoName = videoNamesInOrder()[0];
         loadBackgroundVideo(firstVideoName);
-        showBackgroundVideo(firstVideoName, true);
 
         var i = 0;
         setInterval(() => {
