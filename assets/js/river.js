@@ -8,6 +8,7 @@ const river = (() => {
     creek: 552604626,
     jungle: 567652238,
     waterfall: 570072799,
+    streams: 646700670,
   };
 
   const pageId = () => document.documentElement.dataset.id
