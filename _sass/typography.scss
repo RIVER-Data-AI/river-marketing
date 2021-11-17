@@ -25,7 +25,8 @@ body {
 .p4,
 .p5,
 .l1,
-.l2 {
+.l2,
+.l3 {
   transition: color ease-in 0.3s;
 
   &.--green {
@@ -249,6 +250,26 @@ body {
 
   @include bp-medium {
     font-size: 24px;
+  }
+}
+
+.l3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: var(--body-color);
+  text-decoration: none;
+
+  @include bp-mobile {
+    font-size: 14px;
+  }
+
+  @include bp-small {
+    font-size: 14px;
+  }
+
+  @include bp-medium {
+    font-size: 18px;
   }
 }
 

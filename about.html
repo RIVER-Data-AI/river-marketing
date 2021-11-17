@@ -2,14 +2,15 @@
 # about.html
 title: About Us
 layout: default
+videos: { about: true }
 lineDrawing: false
 pageId: about
 initialSection: "about"
 ---
 
-<section class="section --about" id="about" data-video-name="waterfall">
+<section class="section --about" id="about" data-video-name="about">
   <div class="__copy">
-    <p class="p2">About Us</p>
+    <p class="p2 __page-title">About Us</p>
     <div class="col2">
       <div class="__card">
         <p class="p3 --no-vmargin">We Are River</p>
@@ -29,6 +30,6 @@ initialSection: "about"
     </div>
   </div>
   <p>
-    <a class="p3" href="{{ site.baseurl }}{% link signup.html %}" title="Join Us">Sign up to learn more about what you can do with your de-identified data.</a>
+    <a class="l3" href="{{ site.baseurl }}{% link signup.html %}" title="Join Us">Sign up to learn more about what you can do with your de-identified data.</a>
   </p>
 </section>

@@ -217,10 +217,8 @@ const sectionRiverbank = () => ({
   },
 });
 
-const sectionStreams = sectionRiverbank;
-
-const sectionSignup = () => ({
-  rootSelector: "#signup",
+const basicSection = (rootSelector) => ({
+  rootSelector: rootSelector,
   element: () => {
     document.querySelector("section");
   },
@@ -239,7 +237,6 @@ const sectionSignup = () => ({
 
         const firstVideoName = videoNamesInOrder()[0];
         loadBackgroundVideo(firstVideoName);
-        showBackgroundVideo(firstVideoName, true);
         break;
 
       case "LoadedBackgroundVideo":

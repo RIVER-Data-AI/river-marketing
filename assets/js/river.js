@@ -1,5 +1,6 @@
 const river = (() => {
   const videoIds = {
+    about: 646686845,
     smooth: 552069402,
     choppy: 552596244,
     rough: 552093404,
@@ -41,9 +42,11 @@ const river = (() => {
       rootSelector: "#home-resources",
       element: () => document.querySelector("#home-resources"),
     },
-    streams: sectionStreams(),
+    streams: basicSection("#streams"),
     riverbank: sectionRiverbank(),
-    signup: sectionSignup(),
+    signup: basicSection("#signup"),
+    about: basicSection("#about"),
+    team: basicSection("#team")
   };
 
   let backgroundVideoPlayerContainer;
