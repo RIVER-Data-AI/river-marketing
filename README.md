@@ -1,6 +1,22 @@
 # River Marketing Website
 
-Acceptance environment: https://carbonfive.github.io/river-marketing/
+This is a simple marketing website for forthcoming product called RIVER.
+
+It's currently hosted via Github pages at https://carbonfive.github.io/river-marketing/
+
+## Getting Started
+
+##### Install Dependencies
+`bundle`
+##### Run Dev Server
+`scripts/run-dev`
+##### Visit http://localhost:4000
+
+## Technical Overview
+
+- [Jekyll](https://jekyllrb.com)
+- SASS via Jekyll assets config
+- JS is very oldschool; no compilation, just `<script>` tags in order
 
 ## Maintenance Notes
 
