@@ -8,14 +8,12 @@
     <meta charset="utf-8" />
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" />
-    <script src="{{ site.baseurl }}/assets/js/password.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cryptico/0.0.1343522940/cryptico.min.js"></script>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="{{ site.baseurl }}/assets/js/typed.js"></script>
     <script src="{{ site.baseurl }}/assets/js/sections.js"></script>
     <script src="{{ site.baseurl }}/assets/js/river.js"></script>
   </head>
-  <body onload="promptPassword()" hidden>
+  <body>
     {% include background_video.html %} {% include header.html %}
     <main class="main">{{ content }}</main>
     {% include video_player.html %}
