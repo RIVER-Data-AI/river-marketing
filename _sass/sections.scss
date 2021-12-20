@@ -649,8 +649,52 @@ html[data-section="team"] {
 
       &::after {
         content: " | ";
-        color: var(--yellow);
       }
+
+      &:last-child::after {
+        content: none;
+      }
+    }
+  }
+
+  .__key-people,
+  .__professional-firms,
+  .__contributors,
+  .__thanks {
+    text-align: center;
+    .p3 {
+      margin-bottom: 0;
+    }
+    .__list {
+      margin-top: 0;
+    }
+  }
+
+  .__key-people {
+    .p3,
+    .__list li::after {
+      color: var(--yellow);
+    }
+  }
+
+  .__professional-firms {
+    .p3,
+    .__list li::after {
+      color: var(--orange);
+    }
+  }
+
+  .__contributors {
+    .p3,
+    .__list li::after {
+      color: var(--purple);
+    }
+  }
+
+  .__thanks {
+    .p3,
+    .__list li::after {
+      color: var(--red);
     }
   }
 }

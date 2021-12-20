@@ -45,6 +45,14 @@ body {
     color: var(--magenta);
   }
 
+  &.--purple {
+    color: var(--purple);
+  }
+
+  &.--red {
+    color: var(--red);
+  }
+
   &.--underline {
     text-decoration: underline;
   }
