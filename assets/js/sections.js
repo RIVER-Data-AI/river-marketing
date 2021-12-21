@@ -1,3 +1,8 @@
+const passwordSection = (rootSelector) => {
+  return {
+  }
+}
+
 // "In the online world"
 const section1 = () => {
   const rootSelector = "#home-intro";

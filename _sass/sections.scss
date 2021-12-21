@@ -736,3 +736,78 @@ html[data-section="videos"] {
     font-size: 28px;
   }
 }
+
+/******************************************************************************
+  Videos
+******************************************************************************/
+
+html[data-section="password-prompt"] {
+  overflow: hidden;
+
+  .password-prompt {
+    height: 100vh;
+    width: 90vw;
+    opacity: 1;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+
+    overflow: hidden;
+
+    .__logo,
+    .__welcome {
+      color: var(--gray-8e);
+    }
+    
+    .__logo {
+      width: 10em;
+      margin: 0 auto;
+      margin-top: 10vh;
+    }
+
+    .__welcome {
+      font-size: 5em;
+    }
+
+    .__form {
+      width: 100%;
+      max-width: 40em;
+    }
+    .__input {
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .__submit {
+      display: none;
+    }
+
+    .__error {
+      color: var(--red);
+      text-align: center;
+
+      transition: opacity linear 1s;
+      
+      &.--hidden {
+        opacity: 0;
+      }
+    }
+
+    .__help {
+      justify-self: flex-end;
+      text-align: center;
+      width: 100%;
+      margin-top: auto;
+      
+      &, a {
+        color: var(--white);
+      }
+    }
+
+    &.--hidden {
+      opacity: 0;
+    }
+  }
+}

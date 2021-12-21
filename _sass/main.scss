@@ -99,10 +99,6 @@ body {
   }
 }
 
-.header {
-  height: 8vh;
-}
-
 .scroll-container {
   height: 92vh;
   margin-top: 8vh;
@@ -242,6 +238,10 @@ body {
     .__link.--sign-up {
       min-height: 2em;
     }
+  }
+
+  &.--hidden {
+    display: none;
   }
 }
 

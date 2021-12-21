@@ -1,4 +1,5 @@
 const river = (() => {
+  const sitePassword = 'jumpin';
   const videoIds = {
     about: 646686845,
     smooth: 552069402,
@@ -11,11 +12,13 @@ const river = (() => {
     streams: 646700670,
     riverbank: 646705836,
     team: 646709932,
+    password: 658798601
   };
 
   const pageId = () => document.documentElement.dataset.id
 
   const sections = {
+    "home-password": passwordSection("#home-password-prompt"),
     "home-intro": section1(),
     "home-privacy-platform": typedTextSection("#home-privacy-platform"),
     "home-video-1": typedTextAndVideoPlayerSection("#home-video-1"),
@@ -410,18 +413,72 @@ const river = (() => {
       }
     }
 
-    console.log(`default dispatch(${actionName})`, action);
+    console.log(`default dispatch(${actionName})`, action, sectionElement);
+    const passwordPrompt = document.getElementById("password-prompt");
 
     switch (actionName) {
       case "DOMContentLoaded":
         initLineDrawings();
         initBackgroundVideo();
+        initSectionTracking();
 
+        if (passwordPrompt) {
+          dispatch({ name: "PasswordChallenge" })
+        } else {
+          dispatch({ name: "StartSlideshow" });
+        }
+        
+        break;
+
+      case "PasswordChallenge":
+        document.getElementById("header")?.classList.add('--hidden');
+        document.getElementById("scroll-container")?.classList.add("--hidden");
+
+        loadBackgroundVideo('password');
+        showBackgroundVideo('password');
+
+        const passwordForm = document.getElementById('password-form');
+        const passwordInput = document.getElementById('password-input');
+        
+        passwordForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          if (passwordInput.value === sitePassword) {
+            dispatch({ name: 'PasswordSuccess' });
+          } else {
+            const passwordError = document.getElementById('password-error'); 
+            passwordError.style.display = 'block';
+            passwordError.classList.remove('--hidden');
+          }
+        })
+
+        passwordInput.focus();
+
+        break;
+
+      case "PasswordSuccess":
+        const scrollContainer = document.getElementById("scroll-container");
+
+        if (!scrollContainer) {
+          window.location = '/river';
+          return
+        } else {
+          document.getElementById("password-prompt").classList.add("--hidden");
+          document.getElementById("header").classList.remove('--hidden');
+          document.getElementById("scroll-container").classList.remove("--hidden");
+          hideBackgroundVideo();
+  
+          setTimeout(() => { document.getElementById("home-password-prompt").remove() }, 110)  
+        }
+
+        dispatch({ name: "StartSlideshow" });
+        break;
+
+      case "StartSlideshow":
         const firstVideoName = videoNamesInOrder()[0];
-
         loadBackgroundVideo(firstVideoName);
         redrawLineDrawings();
-        initSectionTracking();
+        
 
         // line drawing animation length = 4s
         setTimeout(() => {
@@ -436,13 +493,12 @@ const river = (() => {
         break;
 
       case "FinishedTyping":
-        if (videoNamesInOrder()[1]) {
-          loadBackgroundVideo(videoNamesInOrder()[1]);
-        }
-
+        loadBackgroundVideo(videoNamesInOrder()[1]);
         break;
 
       case "SectionDidAppear":
+        if (!sectionElement) { return }
+
         const videoName = sectionElement.dataset?.videoName;
         const visibleVideo =
           backgroundVideoPlayerContainer.querySelector(`.__video.--visible`);
@@ -471,18 +527,20 @@ const river = (() => {
         break;
 
       case "LoadedBackgroundVideo":
-        const videoNames = videoNamesInOrder();
+        if (sectionName === "#password" && actionName.videoName === "#password" ) {
+          console.log("holy shit password")
+          return;
+        }
 
-        // Allow first video to load and delay retriggering the loading chain.
-        if (
-          sectionName === "#home-intro" &&
-          videoNames.indexOf(action.videoName) == 0
-        ) {
+        if (sectionName === "#home-intro" && action.videoName != firstVideoName) {
+          // Let line drawing play out and present image on its own schedule
+          console.log("Home intro; skipping stuff")
           return;
         }
 
         const sectionVideoName = sectionElement.dataset?.videoName;
-        if (sectionVideoName === action.videoName) {
+        if (sectionVideoName == action.videoName) {
+          console.log("show background", sectionVideoName)
           showBackgroundVideo(sectionVideoName, true);
         }
 
@@ -490,7 +548,7 @@ const river = (() => {
         const nextVideoName = videoNames[nextVideoIndex];
 
         if (nextVideoName) {
-          console.log("Load next!", nextVideoName);
+          console.log("Load next video:", nextVideoName);
           loadBackgroundVideo(nextVideoName);
         }
 
@@ -581,6 +639,6 @@ const river = (() => {
       }
     },
     previousSection: scrollToPreviousSection,
-    nextSection: scrollToNextSection,
+    nextSection: scrollToNextSection
   };
 })();
