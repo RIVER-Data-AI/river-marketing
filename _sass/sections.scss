@@ -447,7 +447,8 @@ html[data-section="home-resources"] {
 
 html[data-section="streams"],
 html[data-section="about"],
-html[data-section="team"] {
+html[data-section="team"],
+html[data-section="videos"] {
   justify-content: flex-start;
   margin-top: calc(8vh + 80px);
   display: flex;
@@ -696,5 +697,29 @@ html[data-section="team"] {
     .__list li::after {
       color: var(--red);
     }
+  }
+}
+
+/******************************************************************************
+  Videos
+******************************************************************************/
+
+html[data-section="videos"] {
+  --body-color: white;
+  background-color: #010509;
+
+  main {
+    width: 100vw;
+  }
+
+  .video-cell {
+    flex-basis: 33%;
+    border: 1px solid var(--white);
+    text-align: center;
+    padding: 2em;
+  }
+
+  .p1 {
+    font-size: 28px;
   }
 }

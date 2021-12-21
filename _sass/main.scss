@@ -44,7 +44,6 @@ body {
 .col2,
 .col3 {
   column-gap: 2em;
-  column-width: 50%;
 
   > *:first-child {
     margin-top: 0;
@@ -58,14 +57,21 @@ body {
       margin-top: 0;
     }
   }
+
+  @include bp-mobile {
+    column-count: unset;
+    column-width: unset;
+  }
 }
 
 .col2 {
   column-count: 2;
+  column-width: 50%;
 }
 
 .col3 {
   column-count: 3;
+  column-width: 33.3%;
 }
 
 .flex-col2 {
@@ -396,6 +402,7 @@ body {
     }
     .__teaser {
       margin-left: 0.5em;
+      display: none;
     }
   }
 }

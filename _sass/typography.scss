@@ -321,6 +321,11 @@ body {
     background-color: white;
   }
 
+  &.--red-fill {
+    background-color: var(--red);
+    color: var(--white);
+  }
+
   &.--yellow-fill {
     background-color: var(--yellow);
     color: var(--gray-dark);
@@ -329,6 +334,11 @@ body {
   &.--orange-fill {
     background-color: var(--orange);
     color: white;
+  }
+
+  &.--purple-fill {
+    background-color: var(--purple);
+    color: var(--white);
   }
 
   @include bp-mobile {

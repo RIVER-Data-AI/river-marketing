@@ -327,12 +327,12 @@ const river = (() => {
     placeholderImage?.classList?.remove("--hidden");
 
     if (videoPlayer) {
+      console.log('retrig baby')
       const existingPlayerId = await videoPlayer.getVideoId();
-      if (`${existingPlayerId}` === videoId) {
-        return;
+      if (`${existingPlayerId}` !== videoId) {
+        await videoPlayer.loadVideo(videoId);
       }
 
-      await videoPlayer.loadVideo(videoId);
       videoPlayer.play();
     } else {
       videoPlayer = new Vimeo.Player(document.querySelector(`#video-player`), {
