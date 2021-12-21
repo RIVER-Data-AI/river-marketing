@@ -217,10 +217,17 @@ html[data-section="home-who-is-using-your-data"] {
   }
 
   .section.--home-who-is-using-your-data {
+    position: relative;
+
     .__body {
       max-width: 80vw;
       position: fixed;
       top: 20em;
+    }
+
+    .__breadcrumb {
+      position: absolute;
+      bottom: 1em;
     }
   }
 
