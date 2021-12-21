@@ -441,11 +441,11 @@ const river = (() => {
         const passwordInput = document.getElementById('password-input');
         
         passwordForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          
           if (passwordInput.value === sitePassword) {
             dispatch({ name: 'PasswordSuccess' });
           } else {
+            e.preventDefault();
+          
             const passwordError = document.getElementById('password-error'); 
             passwordError.style.display = 'block';
             passwordError.classList.remove('--hidden');

@@ -11,7 +11,7 @@ animatedBackgroundColor: true
 <section id="password-prompt" class="section password-prompt" data-video-name="password">
     <div class="__logo">{% include river_logo.svg %}</div>
     <p class="__welcome p2">Welcome</p>
-    <form class="__form" id="password-form" action="{{ site.baseUrl }}">
+    <form class="__form" id="password-form" action="{{ site.baseUrl }}{{ link river.html }}">
       <input id="password-input" type="text" class="p1 __input" placeholder="Your personal access code" onsubmit="console.log('submit')" />
       <input class="__submit" type="submit" />
     </form>
