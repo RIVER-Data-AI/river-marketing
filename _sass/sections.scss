@@ -708,6 +708,12 @@ html[data-section="videos"] {
   --body-color: white;
   background-color: #010509;
 
+  .background-video-container {
+    .__overlay.--dark-blue {
+      opacity: 1;
+    }
+  }
+
   main {
     width: 100vw;
   }

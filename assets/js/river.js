@@ -49,7 +49,8 @@ const river = (() => {
     riverbank: sectionRiverbank(),
     signup: basicSection("#signup"),
     about: basicSection("#about"),
-    team: basicSection("#team")
+    team: basicSection("#team"),
+    videos: basicSection("#videos")
   };
 
   let backgroundVideoPlayerContainer;
