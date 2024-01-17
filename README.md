@@ -2,7 +2,7 @@
 
 This is a simple marketing website for forthcoming product called RIVER.
 
-It's currently hosted via Github pages at https://carbonfive.github.io/river-marketing/
+It's currently hosted via Github pages at https://river-data-ai.github.io/river-marketing/
 
 ## Getting Started
 
